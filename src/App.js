@@ -282,7 +282,7 @@ export default function App() {
           opacity: 0.3
         }}
       >
-        <source src="/alika.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/dl2rqs0lo/video/upload/Cinematic_sunrise_shot_202511182351_wwjlkk.mp4" type="video/mp4" />
       </video>
 
       {/* Left side - Company info */}
