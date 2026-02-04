@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 
 export default function App() {
@@ -10,14 +10,225 @@ export default function App() {
   const [showAntiqueLearnMore, setShowAntiqueLearnMore] = useState(false);
   const [antiqueActiveTab, setAntiqueActiveTab] = useState('tab3'); // 'tab1', 'tab2', 'tab3'
   const [showAMTLearnMore, setShowAMTLearnMore] = useState(false);
+  const [amtActiveTab, setAmtActiveTab] = useState('tab1'); // 'tab1' = Projects, 'tab2' = Team, 'tab3' = Partners
   const [showGulfConsult2LearnMore, setShowGulfConsult2LearnMore] = useState(false);
+  const [gulfConsult2ActiveTab, setGulfConsult2ActiveTab] = useState('tab1'); // 'tab1' = Projects, 'tab2' = Team, 'tab3' = Partners
   const [showGSGLearnMore, setShowGSGLearnMore] = useState(false);
+  const [gsgActiveTab, setGsgActiveTab] = useState('tab1'); // 'tab1' = Projects, 'tab2' = Team, 'tab3' = Partners
   const [showGulfDorrahLearnMore, setShowGulfDorrahLearnMore] = useState(false);
   const [showCentralMedicalcareLearnMore, setShowCentralMedicalcareLearnMore] = useState(false);
   const [showRKLearnMore, setShowRKLearnMore] = useState(false);
   const [showAHEnvironmentalLearnMore, setShowAHEnvironmentalLearnMore] = useState(false);
+  const [ahEnvironmentalActiveTab, setAhEnvironmentalActiveTab] = useState('tab1'); // 'tab1' = Partners, 'tab2' = Team, 'tab3' = Projects
   const [showIDCLearnMore, setShowIDCLearnMore] = useState(false);
   const [showGTALearnMore, setShowGTALearnMore] = useState(false);
+  const [dorrahVideoPlaying, setDorrahVideoPlaying] = useState(false);
+  const [dorrahVideoFullscreen, setDorrahVideoFullscreen] = useState(false);
+  const dorrahVideoContainerRef = useRef(null);
+  const [amtVideoPlaying, setAmtVideoPlaying] = useState(false);
+  const [amtVideoFullscreen, setAmtVideoFullscreen] = useState(false);
+  const amtVideoContainerRef = useRef(null);
+  const [tlcoVideoPlaying, setTlcoVideoPlaying] = useState(false);
+  const [tlcoVideoFullscreen, setTlcoVideoFullscreen] = useState(false);
+  const tlcoVideoContainerRef = useRef(null);
+  const [gulfConsultVideoPlaying, setGulfConsultVideoPlaying] = useState(false);
+  const [gulfConsultVideoFullscreen, setGulfConsultVideoFullscreen] = useState(false);
+  const gulfConsultVideoContainerRef = useRef(null);
+  const [gulfLogoVideoPlaying, setGulfLogoVideoPlaying] = useState(false);
+  const [gulfLogoVideoFullscreen, setGulfLogoVideoFullscreen] = useState(false);
+  const gulfLogoVideoContainerRef = useRef(null);
+  const [antiqueVideoPlaying, setAntiqueVideoPlaying] = useState(false);
+  const [antiqueVideoFullscreen, setAntiqueVideoFullscreen] = useState(false);
+  const antiqueVideoContainerRef = useRef(null);
+  const [idcVideoPlaying, setIdcVideoPlaying] = useState(false);
+  const [idcVideoFullscreen, setIdcVideoFullscreen] = useState(false);
+  const idcVideoContainerRef = useRef(null);
+  const [gulfConsultArchVideoPlaying, setGulfConsultArchVideoPlaying] = useState(false);
+  const [gulfConsultArchVideoFullscreen, setGulfConsultArchVideoFullscreen] = useState(false);
+  const gulfConsultArchVideoContainerRef = useRef(null);
+  const [centralMedicalcareVideoPlaying, setCentralMedicalcareVideoPlaying] = useState(false);
+  const [centralMedicalcareVideoFullscreen, setCentralMedicalcareVideoFullscreen] = useState(false);
+  const centralMedicalcareVideoContainerRef = useRef(null);
+
+  // Handle fullscreen change for Dorrah
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        setDorrahVideoFullscreen(false);
+        setDorrahVideoPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Handle fullscreen change for AMT
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        setAmtVideoFullscreen(false);
+        setAmtVideoPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Handle fullscreen change for TLCO
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        setTlcoVideoFullscreen(false);
+        setTlcoVideoPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Handle fullscreen change for Gulf Consult
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        setGulfConsultVideoFullscreen(false);
+        setGulfConsultVideoPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Handle fullscreen change for Gulf Logo (id === 12)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        setGulfLogoVideoFullscreen(false);
+        setGulfLogoVideoPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Handle fullscreen change for Antique video (id === 2)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        setAntiqueVideoFullscreen(false);
+        setAntiqueVideoPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Handle fullscreen change for IDC video
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        setIdcVideoFullscreen(false);
+        setIdcVideoPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Handle fullscreen change for Gulf Consult Architects video (id === 9)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        setGulfConsultArchVideoFullscreen(false);
+        setGulfConsultArchVideoPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Handle fullscreen change for Central Medicalcare video (id === 3)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        setCentralMedicalcareVideoFullscreen(false);
+        setCentralMedicalcareVideoPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
 
   // Company logos data
   const companies = [
@@ -49,45 +260,78 @@ export default function App() {
       display: 'flex',
       overflow: 'hidden',
       fontFamily: 'Arial, sans-serif',
-      position: 'relative'
+      position: 'relative',
+      aspectRatio: '16/9',
+      minHeight: '100vh',
+      minWidth: '100vw'
     }}>
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          opacity: 0.3
+        }}
+      >
+        <source src="/alika.mp4" type="video/mp4" />
+      </video>
+
       {/* Left side - Company info */}
       <div style={{
-        flex: '0 0 35%',
+        flex: '0 0 var(--left-panel-width, 35%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '60px 40px',
+        padding: 'var(--main-padding, clamp(20px, 3vw, 60px)) clamp(20px, 2.5vw, 40px)',
         position: 'relative',
         zIndex: 10
       }}>
         {/* Logo */}
-        <div>
+        <div style={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
           <img
             src="/alika.png"
             alt="Alika Logo"
             className="left-hero-item left-hero-item--alika"
+            style={{
+              width: 'var(--main-logo-size, clamp(200px, 25vw, 400px))',
+              height: 'auto',
+              maxWidth: '100%'
+            }}
           />
         </div>
       </div>
 
       {/* Right side - Diamond grid */}
       <div style={{
-        flex: '0 0 65%',
+        flex: '0 0 var(--right-panel-width, 65%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        padding: '60px',
+        padding: 'var(--main-padding, clamp(20px, 3vw, 60px))',
         overflow: 'hidden'
       }}>
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(5, 130px)',
-          gridTemplateRows: 'repeat(4, 130px)',
-          gap: '25px',
+          gridTemplateColumns: `repeat(5, var(--grid-item-size, clamp(80px, 8vw, 130px)))`,
+          gridTemplateRows: `repeat(4, var(--grid-item-size, clamp(80px, 8vw, 130px)))`,
+          gap: 'var(--grid-gap, clamp(15px, 1.5vw, 25px))',
           transform: 'rotate(45deg)',
           position: 'relative'
         }}>
@@ -107,8 +351,10 @@ export default function App() {
                   <div
                     style={{
                       cursor: company.id === 10 || company.id === 3 || company.id === 11 || company.id === 1 || company.id === 6 || company.id === 5 || company.id === 2 || company.id === 7 || company.id === 8 || company.id === 9 || company.id === 12 || company.id === 4 ? 'pointer' : 'default',
-                      width: '130px',
-                      height: '130px',
+                      width: '100%',
+                      height: '100%',
+                      minWidth: 'var(--grid-item-size, clamp(80px, 8vw, 130px))',
+                      minHeight: 'var(--grid-item-size, clamp(80px, 8vw, 130px))',
                       background: '#E8E8E8',
                       border: '1px solid rgba(200, 200, 200, 0.5)',
                       display: 'flex',
@@ -208,8 +454,8 @@ export default function App() {
               {/* AMT Logo - Top Left */}
               <div style={{
                 position: 'fixed',
-                top: '40px',
-                left: '60px',
+                top: 'clamp(30px, 3vh, 60px)',
+                left: 'clamp(40px, 4vw, 80px)',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
               }}>
@@ -217,8 +463,8 @@ export default function App() {
                   src={selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: '400px',
-                    maxHeight: '200px',
+                    maxWidth: 'var(--amt-logo-size, clamp(300px, 25vw, 500px))',
+                    maxHeight: 'var(--amt-logo-height, clamp(150px, 12vw, 250px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -230,30 +476,210 @@ export default function App() {
               {/* AMT Internal Image - Top Right */}
               <div style={{
                 position: 'fixed',
-                top: '150px',
-                right: '80px',
+                top: 'clamp(120px, 12vh, 200px)',
+                right: 'clamp(50px, 5vw, 100px)',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both'
               }}>
+                <div style={{ position: 'relative', display: 'inline-block' }}>
                 <img
                   src={selectedCompany.modalLogo}
                   alt="AMT Internal"
                   style={{
-                    maxWidth: 'clamp(450px, 50vw, 600px)',
-                    maxHeight: 'clamp(450px, 60vh, 600px)',
+                    maxWidth: 'var(--amt-internal-image-size, clamp(450px, 50vw, 700px))',
+                    maxHeight: 'var(--amt-internal-image-size, clamp(450px, 50vw, 700px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
                     filter: 'drop-shadow(0 6px 20px rgba(0, 0, 0, 0.3))'
                   }}
                 />
+                
+                {/* Play Button on AMT Image */}
+                {!amtVideoFullscreen && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      zIndex: 12,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer'
+                    }}
+                    onClick={async (e) => {
+                      e.stopPropagation();
+                      if (amtVideoContainerRef.current) {
+                        try {
+                          // فتح fullscreen
+                          setAmtVideoFullscreen(true);
+                          setAmtVideoPlaying(true);
+                          
+                          let fullscreenPromise;
+                          if (amtVideoContainerRef.current.requestFullscreen) {
+                            fullscreenPromise = amtVideoContainerRef.current.requestFullscreen();
+                          } else if (amtVideoContainerRef.current.webkitRequestFullscreen) {
+                            fullscreenPromise = amtVideoContainerRef.current.webkitRequestFullscreen();
+                          } else if (amtVideoContainerRef.current.msRequestFullscreen) {
+                            fullscreenPromise = amtVideoContainerRef.current.msRequestFullscreen();
+                          }
+                          
+                          // انتظار fullscreen
+                          if (fullscreenPromise) {
+                            await fullscreenPromise;
+                          }
+                        } catch (error) {
+                          console.error('Error opening fullscreen:', error);
+                        }
+                      }
+                    }}
+                  >
+                    {/* Animation Text */}
+                    <div
+                      style={{
+                        color: '#ffffff',
+                        fontSize: 'clamp(14px, 1.6vw, 22px)',
+                        fontWeight: '600',
+                        marginBottom: 'clamp(16px, 2vh, 24px)',
+                        textAlign: 'center',
+                        animation: 'pulse 2s ease-in-out infinite',
+                        textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                      }}
+                    >
+                      Click to play video
+                    </div>
+                    
+                    {/* Play Button */}
+                    <div
+                      style={{
+                        width: 'var(--amt-play-button-size, clamp(90px, 8vw, 130px))',
+                        height: 'var(--amt-play-button-size, clamp(90px, 8vw, 130px))',
+                        borderRadius: '50%',
+                        background: 'rgba(255, 75, 75, 0.9)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 20px rgba(255, 75, 75, 0.4)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 75, 75, 1)';
+                        e.currentTarget.style.transform = 'scale(1.1)';
+                        e.currentTarget.style.boxShadow = '0 6px 30px rgba(255, 75, 75, 0.6)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 75, 75, 0.9)';
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 20px rgba(255, 75, 75, 0.4)';
+                      }}
+                    >
+                      <svg
+                        width="clamp(40px, 4vw, 60px)"
+                        height="clamp(40px, 4vw, 60px)"
+                        viewBox="0 0 24 24"
+                        fill="white"
+                        style={{ marginLeft: '6px' }}
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
+                </div>
+              </div>
+
+              {/* AMT Video - Hidden for fullscreen */}
+              <div
+                ref={amtVideoContainerRef}
+                style={{
+                  position: 'fixed',
+                  right: amtVideoFullscreen ? '0' : '-9999px',
+                  top: amtVideoFullscreen ? '0' : '-9999px',
+                  width: amtVideoFullscreen ? '100vw' : '0',
+                  height: amtVideoFullscreen ? '100vh' : '0',
+                  zIndex: amtVideoFullscreen ? 9999 : -1,
+                  backgroundColor: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {amtVideoFullscreen && (
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=amt_ecx4u7&profile=cld-default"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      aspectRatio: '640 / 360',
+                      border: 'none'
+                    }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                  />
+                )}
+                {amtVideoFullscreen && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // إغلاق fullscreen يدوياً
+                      if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                      } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                      } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                      }
+                      setAmtVideoFullscreen(false);
+                      setAmtVideoPlaying(false);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      zIndex: 10000
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                    >
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                  </div>
+                )}
               </div>
 
               {/* AMT Text Content - Bottom Left */}
               <div
                 className="amt-content"
                 style={{
-                  maxWidth: '650px',
+                  maxWidth: 'var(--amt-content-max-width, clamp(600px, 50vw, 900px))',
                   color: '#ffffff',
                   direction: 'ltr',
                   textAlign: 'left'
@@ -261,9 +687,9 @@ export default function App() {
               >
                 <h1
                   style={{
-                    fontSize: 'clamp(20px, 2.8vw, 34px)',
+                    fontSize: 'var(--amt-title-size, clamp(28px, 3.8vw, 52px))',
                     fontWeight: '900',
-                    marginBottom: 'clamp(12px, 2vh, 20px)',
+                    marginBottom: 'clamp(12px, 2vh, 24px)',
                     letterSpacing: '1.6px',
                     color: '#ff4b4b',
                     textTransform: 'uppercase',
@@ -275,9 +701,9 @@ export default function App() {
 
                 <p
                   style={{
-                    fontSize: 'clamp(11px, 1.25vw, 16px)',
-                    lineHeight: 'clamp(1.5, 1.7vh, 1.7)',
-                    marginBottom: 'clamp(20px, 3vh, 28px)',
+                    fontSize: 'var(--amt-text-size, clamp(15px, 1.7vw, 24px))',
+                    lineHeight: '1.75',
+                    marginBottom: 'clamp(20px, 3vh, 32px)',
                     color: '#f9fafb',
                     animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 260ms both'
                   }}
@@ -287,28 +713,59 @@ export default function App() {
 
                 <div
                   style={{
-                    fontSize: 'clamp(11px, 1.2vw, 15px)',
-                    lineHeight: 'clamp(1.7, 1.85vh, 1.85)',
-                    color: '#f9fafb',
+                    display: 'flex',
+                    gap: 'clamp(20px, 4vw, 50px)',
+                    alignItems: 'flex-start',
                     animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 420ms both',
                     marginBottom: '8px'
                   }}
                 >
-                  <div style={{ marginBottom: 'clamp(10px, 1.5vh, 14px)' }}>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Managers:</strong>
+                  <div style={{
+                    fontSize: 'var(--amt-info-size, clamp(15px, 1.7vw, 24px))',
+                    lineHeight: '2',
+                    color: '#f9fafb',
+                    flex: '1'
+                  }}>
+                  <div style={{ marginBottom: 'clamp(10px, 1.5vh, 18px)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Managers:</strong>
                     <span>Eyad Matar</span>
                   </div>
-                  <div style={{ marginBottom: 'clamp(10px, 1.5vh, 14px)' }}>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Mobile:</strong>
+                  <div style={{ marginBottom: 'clamp(10px, 1.5vh, 18px)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Mobile:</strong>
                     <span>050 582 7033</span>
                   </div>
-                  <div style={{ marginBottom: 'clamp(10px, 1.5vh, 14px)' }}>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Email:</strong>
+                  <div style={{ marginBottom: 'clamp(10px, 1.5vh, 18px)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Email:</strong>
                     <span>eyad.matar@amt-arabia.net</span>
                   </div>
                   <div>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Website:</strong>
+                    <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Website:</strong>
                     <span>www.amt-arabia.net</span>
+                    </div>
+                  </div>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 580ms both',
+                      flexShrink: 0
+                    }}
+                  >
+                    <img
+                      src="/amtqr.jpeg"
+                      alt="AMT QR Code"
+                      style={{
+                        maxWidth: 'var(--amt-qr-size, clamp(160px, 18vw, 240px))',
+                        maxHeight: 'var(--amt-qr-size, clamp(160px, 18vw, 240px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: 'clamp(6px, 0.8vw, 12px)'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -316,9 +773,9 @@ export default function App() {
                 <button
                   onClick={() => setShowAMTLearnMore(true)}
                   style={{
-                    marginTop: 'clamp(20px, 3vh, 32px)',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'clamp(20px, 3vh, 36px)',
+                    padding: 'var(--amt-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
+                    fontSize: 'var(--amt-button-font, clamp(16px, 1.8vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: '#ff4b4b',
@@ -351,8 +808,8 @@ export default function App() {
               {/* IDC Logo - Top Left */}
               <div style={{
                 position: 'fixed',
-                top: '10px',
-                left: '40px',
+                top: 'var(--idc-logo-top, clamp(10px, 1.5vh, 30px))',
+                left: 'var(--idc-logo-left, clamp(30px, 3vw, 60px))',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
               }}>
@@ -360,8 +817,8 @@ export default function App() {
                   src={selectedCompany.modalLogo || selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: '260px',
-                    maxHeight: '260px',
+                    maxWidth: 'var(--idc-logo-size, clamp(200px, 18vw, 300px))',
+                    maxHeight: 'var(--idc-logo-size, clamp(200px, 18vw, 300px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -372,15 +829,15 @@ export default function App() {
 
               {/* IDC Content - Left */}
               <div className="idc-content" style={{
-                maxWidth: '720px',
+                maxWidth: 'var(--idc-content-max-width, 720px)',
                 color: '#0b2239',
                 direction: 'ltr',
                 textAlign: 'left'
               }}>
                 <h1 style={{
-                  fontSize: 'clamp(26px, 3.2vw, 40px)',
+                  fontSize: 'var(--idc-title-size, clamp(26px, 3.2vw, 40px))',
                   fontWeight: '900',
-                  marginBottom: '16px',
+                  marginBottom: 'var(--idc-content-gap, clamp(16px, 2vh, 24px))',
                   letterSpacing: '1.5px',
                   color: '#0b6fbf',
                   textTransform: 'uppercase',
@@ -391,9 +848,9 @@ export default function App() {
                 </h1>
 
                 <p style={{
-                  fontSize: 'clamp(13px, 1.35vw, 17px)',
+                  fontSize: 'var(--idc-text-size, clamp(13px, 1.35vw, 17px))',
                   lineHeight: '1.9',
-                  marginBottom: '22px',
+                  marginBottom: 'var(--idc-content-gap, clamp(16px, 2vh, 24px))',
                   color: '#0b2239',
                   animation: 'fadeInUp 0.8s ease-out 0.4s both'
                 }}>
@@ -401,26 +858,57 @@ export default function App() {
                 </p>
 
                 <div style={{
-                  animation: 'fadeInUp 0.8s ease-out 0.6s both',
-                  fontSize: 'clamp(13px, 1.35vw, 17px)',
-                  lineHeight: '2',
-                  color: '#0b2239'
+                  display: 'flex',
+                  gap: 'clamp(20px, 4vw, 40px)',
+                  alignItems: 'flex-start',
+                  animation: 'fadeInUp 0.8s ease-out 0.6s both'
                 }}>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Managers:</strong>
+                  <div style={{
+                  fontSize: 'var(--idc-info-size, clamp(13px, 1.35vw, 17px))',
+                  lineHeight: '2',
+                    color: '#0b2239',
+                    flex: '1'
+                }}>
+                  <div style={{ marginBottom: 'calc(var(--idc-content-gap, 16px) * 0.6)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '800' }}>Managers:</strong>
                     <span>Bassam Al Masri.</span>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Mobile:</strong>
+                  <div style={{ marginBottom: 'calc(var(--idc-content-gap, 16px) * 0.6)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '800' }}>Mobile:</strong>
                     <span>050 833 8830</span>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Email:</strong>
+                  <div style={{ marginBottom: 'calc(var(--idc-content-gap, 16px) * 0.6)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '800' }}>Email:</strong>
                     <span>bassam.almasri@idc-arabia.com</span>
                   </div>
                   <div>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Website:</strong>
+                    <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '800' }}>Website:</strong>
                     <span>www.idc-arabia.com</span>
+                    </div>
+                  </div>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'fadeInUp 0.8s ease-out 0.8s both',
+                      flexShrink: 0
+                    }}
+                  >
+                    <img
+                      src="/idcqr.jpeg"
+                      alt="IDC QR Code"
+                      style={{
+                        maxWidth: 'var(--idc-qr-size, clamp(150px, 20vw, 200px))',
+                        maxHeight: 'var(--idc-qr-size, clamp(150px, 20vw, 200px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: '8px'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -428,9 +916,9 @@ export default function App() {
                 <button
                   onClick={() => setShowIDCLearnMore(true)}
                   style={{
-                    marginTop: '24px',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'var(--idc-content-gap, clamp(24px, 2.5vh, 32px))',
+                    padding: 'var(--idc-button-padding, clamp(14px, 1.6vw, 22px) clamp(32px, 3.2vw, 48px))',
+                    fontSize: 'var(--idc-button-font, clamp(15px, 1.6vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: '#0b6fbf',
@@ -457,6 +945,182 @@ export default function App() {
                   Learn More
                 </button>
               </div>
+
+              {/* IDC Play Button - Right Side (on image) */}
+              {!idcVideoFullscreen && (
+                <div
+                  style={{
+                    position: 'fixed',
+                    right: '20%',
+                    top: '30%',
+                    transform: 'translate(50%, -50%)',
+                    zIndex: 11,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    animation: 'fadeInUp 0.8s ease-out 0.3s both'
+                  }}
+                  onClick={async () => {
+                    if (idcVideoContainerRef.current) {
+                      try {
+                        // فتح fullscreen
+                        setIdcVideoFullscreen(true);
+                        setIdcVideoPlaying(true);
+
+                        let fullscreenPromise;
+                        if (idcVideoContainerRef.current.requestFullscreen) {
+                          fullscreenPromise = idcVideoContainerRef.current.requestFullscreen();
+                        } else if (idcVideoContainerRef.current.webkitRequestFullscreen) {
+                          fullscreenPromise = idcVideoContainerRef.current.webkitRequestFullscreen();
+                        } else if (idcVideoContainerRef.current.msRequestFullscreen) {
+                          fullscreenPromise = idcVideoContainerRef.current.msRequestFullscreen();
+                        }
+
+                        if (fullscreenPromise) {
+                          await fullscreenPromise;
+                        }
+                      } catch (error) {
+                        console.error('Error opening fullscreen:', error);
+                      }
+                    }
+                  }}
+                >
+                  {/* Animation Text */}
+                  <div
+                    style={{
+                      color: '#ffffff',
+                      fontSize: 'var(--idc-play-text-size, clamp(14px, 1.5vw, 18px))',
+                      fontWeight: '600',
+                      marginBottom: '20px',
+                      textAlign: 'center',
+                      animation: 'pulse 2s ease-in-out infinite',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                    }}
+                  >
+                    Click to play video
+                  </div>
+                  
+                  {/* Play Button */}
+                  <div
+                    style={{
+                      width: 'var(--idc-play-button-size, 100px)',
+                      height: 'var(--idc-play-button-size, 100px)',
+                      borderRadius: '50%',
+                      background: 'rgba(11, 111, 191, 0.9)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 20px rgba(11, 111, 191, 0.4)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(11, 111, 191, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                      e.currentTarget.style.boxShadow = '0 6px 30px rgba(11, 111, 191, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(11, 111, 191, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(11, 111, 191, 0.4)';
+                    }}
+                  >
+                    <svg
+                      width="calc(var(--idc-play-button-size, 100px) * 0.5)"
+                      height="calc(var(--idc-play-button-size, 100px) * 0.5)"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      style={{ marginLeft: '6px' }}
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+
+              {/* IDC Video - Hidden for fullscreen (Cloudinary iframe) */}
+              <div
+                ref={idcVideoContainerRef}
+                style={{
+                  position: 'fixed',
+                  right: idcVideoFullscreen ? '0' : '-9999px',
+                  top: idcVideoFullscreen ? '0' : '-9999px',
+                  width: idcVideoFullscreen ? '100vw' : '0',
+                  height: idcVideoFullscreen ? '100vh' : '0',
+                  zIndex: idcVideoFullscreen ? 9999 : -1,
+                  backgroundColor: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {idcVideoFullscreen && (
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=idc_egyila&profile=cld-default"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      aspectRatio: '640 / 360',
+                      border: 'none'
+                    }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                  />
+                )}
+                {idcVideoFullscreen && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // إغلاق fullscreen يدوياً
+                      if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                      } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                      } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                      }
+                      setIdcVideoFullscreen(false);
+                      setIdcVideoPlaying(false);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      zIndex: 10000
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                    >
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                  </div>
+                )}
+              </div>
             </>
           ) : selectedCompany.id === 2 ? (
             <>
@@ -474,8 +1138,8 @@ export default function App() {
               {/* Antique Logo - Top Left */}
               <div style={{
                 position: 'fixed',
-                top: '40px',
-                left: '40px',
+                top: 'var(--antique-logo-top, 40px)',
+                left: 'var(--antique-logo-left, 40px)',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
               }}>
@@ -483,8 +1147,8 @@ export default function App() {
                   src={selectedCompany.modalLogo || selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: '260px',
-                    maxHeight: '260px',
+                    maxWidth: 'var(--antique-logo-size, 260px)',
+                    maxHeight: 'var(--antique-logo-size, 260px)',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -494,12 +1158,12 @@ export default function App() {
               </div>
 
               {/* Antique Content - Left */}
-              <div style={{
+              <div className="antique-content" style={{
                 position: 'fixed',
-                top: '200px',
-                left: '40px',
-                width: 'min(620px, 48vw)',
-                maxWidth: '620px',
+                top: 'var(--antique-content-top, 200px)',
+                left: 'var(--antique-content-left, 40px)',
+                width: 'min(var(--antique-content-max-width, 620px), 48vw)',
+                maxWidth: 'var(--antique-content-max-width, 620px)',
                 zIndex: 12,
                 color: '#ffffff',
                 direction: 'ltr',
@@ -507,9 +1171,9 @@ export default function App() {
                 textShadow: '0 2px 10px rgba(0,0,0,0.45)'
               }}>
                 <h1 style={{
-                  fontSize: 'clamp(22px, 2.6vw, 36px)',
+                  fontSize: 'var(--antique-title-size, clamp(22px, 2.6vw, 36px))',
                   fontWeight: '900',
-                  marginBottom: '14px',
+                  marginBottom: 'var(--antique-content-gap, 20px)',
                   letterSpacing: '1.6px',
                   color: '#f3c06b',
                   textTransform: 'uppercase',
@@ -520,9 +1184,9 @@ export default function App() {
                 </h1>
 
                 <p style={{
-                  fontSize: 'clamp(12px, 1.15vw, 15px)',
+                  fontSize: 'var(--antique-text-size, clamp(12px, 1.15vw, 15px))',
                   lineHeight: '1.75',
-                  marginBottom: '18px',
+                  marginBottom: 'var(--antique-content-gap, 20px)',
                   color: '#ffffff',
                   animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 260ms both'
                 }}>
@@ -530,33 +1194,65 @@ export default function App() {
                 </p>
 
                 <div style={{
+                  display: 'flex',
+                  gap: 'clamp(20px, 4vw, 40px)',
+                  alignItems: 'flex-start',
                   animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 420ms both',
-                  fontSize: 'clamp(12px, 1.1vw, 15px)',
-                  lineHeight: '2',
-                  color: '#ffffff'
+                  marginBottom: 'var(--antique-content-gap, 20px)'
                 }}>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Managers:</strong>
-                    <span>Mohammed Ghanem.</span>
+                  <div style={{
+                    fontSize: 'var(--antique-info-size, clamp(12px, 1.1vw, 15px))',
+                    lineHeight: '2',
+                    color: '#ffffff',
+                    flex: '1'
+                  }}>
+                    <div style={{ marginBottom: 'calc(var(--antique-content-gap, 20px) * 0.6)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '800' }}>Managers:</strong>
+                      <span>Mohammed Ghanem.</span>
+                    </div>
+                    <div style={{ marginBottom: 'calc(var(--antique-content-gap, 20px) * 0.6)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '800' }}>Mobile:</strong>
+                      <span>056 952 6806</span>
+                    </div>
+                    <div style={{ marginBottom: 'calc(var(--antique-content-gap, 20px) * 0.6)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '800' }}>Email:</strong>
+                      <span>info@acwm-sa.com</span>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '800' }}>Website:</strong>
+                      <a
+                        href="https://acwm-sa.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ color: '#ffffff', textDecoration: 'underline' }}
+                      >
+                        acwm-sa.com
+                      </a>
+                    </div>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Mobile:</strong>
-                    <span>056 952 6806</span>
-                  </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Email:</strong>
-                    <span>info@acwm-sa.com</span>
-                  </div>
-                  <div>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Website:</strong>
-                    <a
-                      href="https://acwm-sa.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ color: '#ffffff', textDecoration: 'underline' }}
-                    >
-                      acwm-sa.com
-                    </a>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 600ms both',
+                      flexShrink: 0
+                    }}
+                  >
+                    <img
+                      src="/antiqueqr.jpeg"
+                      alt="Antique QR Code"
+                      style={{
+                        maxWidth: 'var(--antique-qr-size, clamp(150px, 20vw, 200px))',
+                        maxHeight: 'var(--antique-qr-size, clamp(150px, 20vw, 200px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: '8px'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -564,9 +1260,9 @@ export default function App() {
                 <button
                   onClick={() => setShowAntiqueLearnMore(true)}
                   style={{
-                    marginTop: '24px',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'var(--antique-content-gap, 20px)',
+                    padding: 'var(--antique-button-padding, 14px 32px)',
+                    fontSize: 'var(--antique-button-font, 15px)',
                     fontWeight: '700',
                     color: '#000000',
                     background: '#f3c06b',
@@ -593,14 +1289,190 @@ export default function App() {
                   Learn More
                 </button>
               </div>
+
+              {/* Antique Play Button - Right Side (on craftsman image) */}
+              {!antiqueVideoFullscreen && (
+                <div
+                  style={{
+                    position: 'fixed',
+                    right: '20%',
+                    top: '45%',
+                    transform: 'translate(50%, -50%)',
+                    zIndex: 11,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    animation: 'fadeInUp 0.8s ease-out 0.3s both'
+                  }}
+                  onClick={async () => {
+                    if (antiqueVideoContainerRef.current) {
+                      try {
+                        // فتح fullscreen
+                        setAntiqueVideoFullscreen(true);
+                        setAntiqueVideoPlaying(true);
+
+                        let fullscreenPromise;
+                        if (antiqueVideoContainerRef.current.requestFullscreen) {
+                          fullscreenPromise = antiqueVideoContainerRef.current.requestFullscreen();
+                        } else if (antiqueVideoContainerRef.current.webkitRequestFullscreen) {
+                          fullscreenPromise = antiqueVideoContainerRef.current.webkitRequestFullscreen();
+                        } else if (antiqueVideoContainerRef.current.msRequestFullscreen) {
+                          fullscreenPromise = antiqueVideoContainerRef.current.msRequestFullscreen();
+                        }
+
+                        if (fullscreenPromise) {
+                          await fullscreenPromise;
+                        }
+                      } catch (error) {
+                        console.error('Error opening fullscreen:', error);
+                      }
+                    }
+                  }}
+                >
+                  {/* Animation Text */}
+                  <div
+                    style={{
+                      color: '#ffffff',
+                      fontSize: 'var(--antique-play-text-size, clamp(14px, 1.5vw, 18px))',
+                      fontWeight: '600',
+                      marginBottom: '20px',
+                      textAlign: 'center',
+                      animation: 'pulse 2s ease-in-out infinite',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                    }}
+                  >
+                    Click to play video
+                  </div>
+                  
+                  {/* Play Button */}
+                  <div
+                    style={{
+                      width: 'var(--antique-play-button-size, 100px)',
+                      height: 'var(--antique-play-button-size, 100px)',
+                      borderRadius: '50%',
+                      background: 'rgba(243, 192, 107, 0.9)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 20px rgba(243, 192, 107, 0.4)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(243, 192, 107, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                      e.currentTarget.style.boxShadow = '0 6px 30px rgba(243, 192, 107, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(243, 192, 107, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(243, 192, 107, 0.4)';
+                    }}
+                  >
+                    <svg
+                      width="calc(var(--antique-play-button-size, 100px) * 0.5)"
+                      height="calc(var(--antique-play-button-size, 100px) * 0.5)"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      style={{ marginLeft: '6px' }}
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+
+              {/* Antique Video - Hidden for fullscreen (Cloudinary iframe) */}
+              <div
+                ref={antiqueVideoContainerRef}
+                style={{
+                  position: 'fixed',
+                  right: antiqueVideoFullscreen ? '0' : '-9999px',
+                  top: antiqueVideoFullscreen ? '0' : '-9999px',
+                  width: antiqueVideoFullscreen ? '100vw' : '0',
+                  height: antiqueVideoFullscreen ? '100vh' : '0',
+                  zIndex: antiqueVideoFullscreen ? 9999 : -1,
+                  backgroundColor: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {antiqueVideoFullscreen && (
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=WhatsApp_Video_2026-02-04_at_11.38.28_AM_mhpll7&profile=cld-default"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      aspectRatio: '640 / 360',
+                      border: 'none'
+                    }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                  />
+                )}
+                {antiqueVideoFullscreen && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // إغلاق fullscreen يدوياً
+                      if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                      } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                      } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                      }
+                      setAntiqueVideoFullscreen(false);
+                      setAntiqueVideoPlaying(false);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      zIndex: 10000
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                    >
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                  </div>
+                )}
+              </div>
             </>
           ) : selectedCompany.id === 3 ? (
             <>
               {/* Central Medicalcare Logo - Top Left */}
               <div style={{
                 position: 'fixed',
-                top: '10px',
-                left: '40px',
+                top: 'clamp(10px, 1.5vh, 30px)',
+                left: 'clamp(30px, 3vw, 60px)',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
               }}>
@@ -608,8 +1480,8 @@ export default function App() {
                   src={selectedCompany.modalLogo || selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: '210px',
-                    maxHeight: '210px',
+                    maxWidth: 'var(--central-logo-size, clamp(180px, 14vw, 280px))',
+                    maxHeight: 'var(--central-logo-size, clamp(180px, 14vw, 280px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -620,15 +1492,15 @@ export default function App() {
 
               {/* Central Medicalcare Content - Left */}
               <div className="central-medicalcare-content" style={{
-                maxWidth: '720px',
+                maxWidth: 'var(--central-content-max-width, clamp(600px, 50vw, 900px))',
                 color: '#ffffff',
                 direction: 'ltr',
                 textAlign: 'left'
               }}>
                 <h1 style={{
-                  fontSize: 'clamp(20px, 3vw, 36px)',
+                  fontSize: 'var(--central-title-size, clamp(22px, 3.2vw, 44px))',
                   fontWeight: '900',
-                  marginBottom: 'clamp(12px, 2vh, 16px)',
+                  marginBottom: 'clamp(12px, 2vh, 20px)',
                   letterSpacing: '1.5px',
                   color: '#ffffff',
                   textTransform: 'uppercase',
@@ -639,9 +1511,9 @@ export default function App() {
                 </h1>
 
                 <p style={{
-                  fontSize: 'clamp(12px, 1.35vw, 17px)',
-                  lineHeight: 'clamp(1.6, 1.9vh, 1.9)',
-                  marginBottom: 'clamp(16px, 2.5vh, 22px)',
+                  fontSize: 'var(--central-text-size, clamp(13px, 1.5vw, 20px))',
+                  lineHeight: '1.75',
+                  marginBottom: 'clamp(16px, 2.5vh, 28px)',
                   color: '#ffffff',
                   animation: 'textReveal 1100ms cubic-bezier(0.2, 0.9, 0.2, 1) 260ms both'
                 }}>
@@ -649,26 +1521,57 @@ export default function App() {
                 </p>
 
                 <div style={{
-                  animation: 'textReveal 1100ms cubic-bezier(0.2, 0.9, 0.2, 1) 420ms both',
-                  fontSize: 'clamp(12px, 1.35vw, 17px)',
-                  lineHeight: 'clamp(1.8, 2vh, 2)',
-                  color: '#ffffff'
+                  display: 'flex',
+                  gap: 'clamp(20px, 4vw, 50px)',
+                  alignItems: 'flex-start',
+                  animation: 'textReveal 1100ms cubic-bezier(0.2, 0.9, 0.2, 1) 420ms both'
                 }}>
-                  <div style={{ marginBottom: 'clamp(8px, 1.2vh, 10px)' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Managers:</strong>
+                  <div style={{
+                  fontSize: 'var(--central-info-size, clamp(13px, 1.5vw, 20px))',
+                  lineHeight: '2',
+                    color: '#ffffff',
+                    flex: '1'
+                }}>
+                  <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 160px)', fontWeight: '800' }}>Managers:</strong>
                     <span>Dr. Atif Idress.</span>
                   </div>
-                  <div style={{ marginBottom: 'clamp(8px, 1.2vh, 10px)' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Mobile:</strong>
+                  <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 160px)', fontWeight: '800' }}>Mobile:</strong>
                     <span>050 471 5053</span>
                   </div>
-                  <div style={{ marginBottom: 'clamp(8px, 1.2vh, 10px)' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Email:</strong>
+                  <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 160px)', fontWeight: '800' }}>Email:</strong>
                     <span>hshash@centralmedicalcare.com</span>
                   </div>
                   <div>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Website:</strong>
+                    <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 160px)', fontWeight: '800' }}>Website:</strong>
                     <span>www.centralmedicalcare.com</span>
+                    </div>
+                  </div>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'textReveal 1100ms cubic-bezier(0.2, 0.9, 0.2, 1) 580ms both',
+                      flexShrink: 0
+                    }}
+                  >
+                    <img
+                      src="/centralcareqr.jpeg"
+                      alt="Central Medicalcare QR Code"
+                      style={{
+                        maxWidth: 'var(--central-qr-size, clamp(160px, 18vw, 240px))',
+                        maxHeight: 'var(--central-qr-size, clamp(160px, 18vw, 240px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: 'clamp(6px, 0.8vw, 12px)'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -676,9 +1579,9 @@ export default function App() {
                 <button
                   onClick={() => setShowCentralMedicalcareLearnMore(true)}
                   style={{
-                    marginTop: 'clamp(20px, 3vh, 24px)',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'clamp(20px, 3vh, 32px)',
+                    padding: 'var(--central-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
+                    fontSize: 'var(--central-button-font, clamp(16px, 1.8vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: '#bfa874',
@@ -705,14 +1608,190 @@ export default function App() {
                   Learn More
                 </button>
               </div>
+
+              {/* Central Medicalcare Play Button - Right Side (on dental image) */}
+              {!centralMedicalcareVideoFullscreen && (
+                <div
+                  style={{
+                    position: 'fixed',
+                    right: 'clamp(18%, 20vw, 22%)',
+                    top: '40%',
+                    transform: 'translate(50%, -50%)',
+                    zIndex: 11,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    animation: 'fadeInUp 0.8s ease-out 0.3s both'
+                  }}
+                  onClick={async () => {
+                    if (centralMedicalcareVideoContainerRef.current) {
+                      try {
+                        // فتح fullscreen
+                        setCentralMedicalcareVideoFullscreen(true);
+                        setCentralMedicalcareVideoPlaying(true);
+
+                        let fullscreenPromise;
+                        if (centralMedicalcareVideoContainerRef.current.requestFullscreen) {
+                          fullscreenPromise = centralMedicalcareVideoContainerRef.current.requestFullscreen();
+                        } else if (centralMedicalcareVideoContainerRef.current.webkitRequestFullscreen) {
+                          fullscreenPromise = centralMedicalcareVideoContainerRef.current.webkitRequestFullscreen();
+                        } else if (centralMedicalcareVideoContainerRef.current.msRequestFullscreen) {
+                          fullscreenPromise = centralMedicalcareVideoContainerRef.current.msRequestFullscreen();
+                        }
+
+                        if (fullscreenPromise) {
+                          await fullscreenPromise;
+                        }
+                      } catch (error) {
+                        console.error('Error opening fullscreen:', error);
+                      }
+                    }
+                  }}
+                >
+                  {/* Animation Text */}
+                  <div
+                    style={{
+                      color: '#ffffff',
+                      fontSize: 'clamp(14px, 1.6vw, 22px)',
+                      fontWeight: '600',
+                      marginBottom: 'clamp(16px, 2vh, 24px)',
+                      textAlign: 'center',
+                      animation: 'pulse 2s ease-in-out infinite',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                    }}
+                  >
+                    Click to play video
+                  </div>
+                  
+                  {/* Play Button */}
+                  <div
+                    style={{
+                      width: 'var(--central-play-button-size, clamp(90px, 8vw, 130px))',
+                      height: 'var(--central-play-button-size, clamp(90px, 8vw, 130px))',
+                      borderRadius: '50%',
+                      background: 'rgba(191, 168, 116, 0.9)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 20px rgba(191, 168, 116, 0.4)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(191, 168, 116, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                      e.currentTarget.style.boxShadow = '0 6px 30px rgba(191, 168, 116, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(191, 168, 116, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(191, 168, 116, 0.4)';
+                    }}
+                  >
+                    <svg
+                      width="clamp(40px, 4vw, 60px)"
+                      height="clamp(40px, 4vw, 60px)"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      style={{ marginLeft: '6px' }}
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+
+              {/* Central Medicalcare Video - Hidden for fullscreen */}
+              <div
+                ref={centralMedicalcareVideoContainerRef}
+                style={{
+                  position: 'fixed',
+                  right: centralMedicalcareVideoFullscreen ? '0' : '-9999px',
+                  top: centralMedicalcareVideoFullscreen ? '0' : '-9999px',
+                  width: centralMedicalcareVideoFullscreen ? '100vw' : '0',
+                  height: centralMedicalcareVideoFullscreen ? '100vh' : '0',
+                  zIndex: centralMedicalcareVideoFullscreen ? 9999 : -1,
+                  backgroundColor: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {centralMedicalcareVideoFullscreen && (
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=WhatsApp_Video_2026-02-03_at_4.02.50_PM_wo8g32&profile=cld-default"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      aspectRatio: '640 / 360',
+                      border: 'none'
+                    }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                  />
+                )}
+                {centralMedicalcareVideoFullscreen && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // إغلاق fullscreen يدوياً
+                      if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                      } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                      } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                      }
+                      setCentralMedicalcareVideoFullscreen(false);
+                      setCentralMedicalcareVideoPlaying(false);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      zIndex: 10000
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                    >
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                  </div>
+                )}
+              </div>
             </>
           ) : selectedCompany.id === 9 ? (
             <>
               {/* Gulf Consult Logo - Top Left */}
               <div style={{
                 position: 'fixed',
-                top: '10px',
-                left: '40px',
+                top: 'var(--gulf-logo-top, clamp(10px, 1.5vh, 30px))',
+                left: 'var(--gulf-logo-left, clamp(30px, 3vw, 60px))',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
               }}>
@@ -720,8 +1799,8 @@ export default function App() {
                   src={selectedCompany.modalLogo || selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: '210px',
-                    maxHeight: '210px',
+                    maxWidth: 'var(--gulf-logo-size, clamp(180px, 12vw, 280px))',
+                    maxHeight: 'var(--gulf-logo-size, clamp(180px, 12vw, 280px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -733,19 +1812,19 @@ export default function App() {
               {/* Gulf Consult Content - Left */}
               <div style={{
                 position: 'fixed',
-                bottom: '60px',
-                left: '40px',
-                width: 'min(620px, 48vw)',
-                maxWidth: '620px',
+                bottom: 'var(--gulf-content-bottom, clamp(40px, 5vh, 80px))',
+                left: 'var(--gulf-content-left, clamp(30px, 3vw, 60px))',
+                width: 'min(var(--gulf-content-max-width, clamp(600px, 50vw, 900px)), 48vw)',
+                maxWidth: 'var(--gulf-content-max-width, clamp(600px, 50vw, 900px))',
                 zIndex: 12,
                 color: '#16348a',
                 direction: 'ltr',
                 textAlign: 'left'
               }}>
                 <h1 style={{
-                  fontSize: 'clamp(30px, 3.6vw, 46px)',
+                  fontSize: 'var(--gulf-title-size, clamp(32px, 4vw, 56px))',
                   fontWeight: '900',
-                  marginBottom: '6px',
+                  marginBottom: 'calc(var(--gulf-content-gap, 18px) * 0.4)',
                   letterSpacing: '1.5px',
                   color: '#16348a',
                   textTransform: 'uppercase',
@@ -756,9 +1835,9 @@ export default function App() {
                 </h1>
 
                 <div style={{
-                  fontSize: 'clamp(13px, 1.3vw, 16px)',
+                  fontSize: 'var(--gulf-subtitle-size, clamp(13px, 1.3vw, 20px))',
                   fontWeight: '800',
-                  marginBottom: '14px',
+                  marginBottom: 'calc(var(--gulf-content-gap, 18px) * 0.6)',
                   color: '#16348a',
                   letterSpacing: '0.4px',
                   animation: 'fadeInUp 0.8s ease-out 0.3s both'
@@ -767,9 +1846,9 @@ export default function App() {
                 </div>
 
                 <p style={{
-                  fontSize: 'clamp(12px, 1.15vw, 15px)',
+                  fontSize: 'var(--gulf-text-size, clamp(14px, 1.6vw, 22px))',
                   lineHeight: '1.75',
-                  marginBottom: '22px',
+                  marginBottom: 'var(--gulf-content-gap, clamp(18px, 2.5vh, 28px))',
                   color: '#16348a',
                   animation: 'fadeInUp 0.8s ease-out 0.4s both'
                 }}>
@@ -777,25 +1856,31 @@ export default function App() {
                 </p>
 
                 <div style={{
-                  animation: 'fadeInUp 0.8s ease-out 0.6s both',
-                  fontSize: 'clamp(13px, 1.35vw, 17px)',
-                  lineHeight: '2',
-                  color: '#16348a'
+                  display: 'flex',
+                  gap: 'clamp(20px, 4vw, 50px)',
+                  alignItems: 'flex-start',
+                  animation: 'fadeInUp 0.8s ease-out 0.6s both'
                 }}>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Managers:</strong>
+                  <div style={{
+                  fontSize: 'var(--gulf-info-size, clamp(15px, 1.7vw, 24px))',
+                  lineHeight: '2',
+                    color: '#16348a',
+                    flex: '1'
+                }}>
+                  <div style={{ marginBottom: 'calc(var(--gulf-content-gap, 18px) * 0.5)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Managers:</strong>
                     <span>Eng. Abdullah Maqboul.</span>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Mobile:</strong>
+                  <div style={{ marginBottom: 'calc(var(--gulf-content-gap, 18px) * 0.5)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Mobile:</strong>
                     <span>055 518 7280</span>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Email:</strong>
+                  <div style={{ marginBottom: 'calc(var(--gulf-content-gap, 18px) * 0.5)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Email:</strong>
                     <span>abdullah@gc-eng.com</span>
                   </div>
                   <div>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Website:</strong>
+                    <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Website:</strong>
                     <a
                       href="https://www.gc-eng.com"
                       target="_blank"
@@ -804,6 +1889,31 @@ export default function App() {
                     >
                       gc-eng.com
                     </a>
+                    </div>
+                  </div>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'fadeInUp 0.8s ease-out 0.8s both',
+                      flexShrink: 0
+                    }}
+                  >
+                    <img
+                      src="/gcqr.jpeg"
+                      alt="Gulf Consult QR Code"
+                      style={{
+                        maxWidth: 'var(--gulf-qr-size, clamp(160px, 18vw, 240px))',
+                        maxHeight: 'var(--gulf-qr-size, clamp(160px, 18vw, 240px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: 'clamp(6px, 0.8vw, 12px)'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -811,9 +1921,9 @@ export default function App() {
                 <button
                   onClick={() => setShowGulfConsultLearnMore(true)}
                   style={{
-                    marginTop: '24px',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'var(--gulf-content-gap, clamp(20px, 2.5vh, 32px))',
+                    padding: 'var(--gulf-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
+                    fontSize: 'var(--gulf-button-font, clamp(16px, 1.8vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: '#16348a',
@@ -840,6 +1950,182 @@ export default function App() {
                   Learn More
                 </button>
               </div>
+
+              {/* Gulf Consult Architects Play Button - Right Side (on architectural sketch) */}
+              {!gulfConsultArchVideoFullscreen && (
+                <div
+                  style={{
+                    position: 'fixed',
+                    right: '20%',
+                    top: '40%',
+                    transform: 'translate(50%, -50%)',
+                    zIndex: 11,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    animation: 'fadeInUp 0.8s ease-out 0.3s both'
+                  }}
+                  onClick={async () => {
+                    if (gulfConsultArchVideoContainerRef.current) {
+                      try {
+                        // فتح fullscreen
+                        setGulfConsultArchVideoFullscreen(true);
+                        setGulfConsultArchVideoPlaying(true);
+
+                        let fullscreenPromise;
+                        if (gulfConsultArchVideoContainerRef.current.requestFullscreen) {
+                          fullscreenPromise = gulfConsultArchVideoContainerRef.current.requestFullscreen();
+                        } else if (gulfConsultArchVideoContainerRef.current.webkitRequestFullscreen) {
+                          fullscreenPromise = gulfConsultArchVideoContainerRef.current.webkitRequestFullscreen();
+                        } else if (gulfConsultArchVideoContainerRef.current.msRequestFullscreen) {
+                          fullscreenPromise = gulfConsultArchVideoContainerRef.current.msRequestFullscreen();
+                        }
+
+                        if (fullscreenPromise) {
+                          await fullscreenPromise;
+                        }
+                      } catch (error) {
+                        console.error('Error opening fullscreen:', error);
+                      }
+                    }
+                  }}
+                >
+                  {/* Animation Text */}
+                  <div
+                    style={{
+                      color: '#ffffff',
+                      fontSize: 'var(--gulf-play-text-size, clamp(14px, 1.5vw, 18px))',
+                      fontWeight: '600',
+                      marginBottom: '20px',
+                      textAlign: 'center',
+                      animation: 'pulse 2s ease-in-out infinite',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                    }}
+                  >
+                    Click to play video
+                  </div>
+                  
+                  {/* Play Button */}
+                  <div
+                    style={{
+                      width: 'var(--gulf-play-button-size, 100px)',
+                      height: 'var(--gulf-play-button-size, 100px)',
+                      borderRadius: '50%',
+                      background: 'rgba(22, 52, 138, 0.9)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 20px rgba(22, 52, 138, 0.4)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(22, 52, 138, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                      e.currentTarget.style.boxShadow = '0 6px 30px rgba(22, 52, 138, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(22, 52, 138, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(22, 52, 138, 0.4)';
+                    }}
+                  >
+                    <svg
+                      width="calc(var(--gulf-play-button-size, 100px) * 0.5)"
+                      height="calc(var(--gulf-play-button-size, 100px) * 0.5)"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      style={{ marginLeft: '6px' }}
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+
+              {/* Gulf Consult Architects Video - Hidden for fullscreen */}
+              <div
+                ref={gulfConsultArchVideoContainerRef}
+                style={{
+                  position: 'fixed',
+                  right: gulfConsultArchVideoFullscreen ? '0' : '-9999px',
+                  top: gulfConsultArchVideoFullscreen ? '0' : '-9999px',
+                  width: gulfConsultArchVideoFullscreen ? '100vw' : '0',
+                  height: gulfConsultArchVideoFullscreen ? '100vh' : '0',
+                  zIndex: gulfConsultArchVideoFullscreen ? 9999 : -1,
+                  backgroundColor: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {gulfConsultArchVideoFullscreen && (
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=WhatsApp_Video_2026-02-03_at_4.03.03_PM_h59upq&profile=cld-default"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      aspectRatio: '640 / 360',
+                      border: 'none'
+                    }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                  />
+                )}
+                {gulfConsultArchVideoFullscreen && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // إغلاق fullscreen يدوياً
+                      if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                      } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                      } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                      }
+                      setGulfConsultArchVideoFullscreen(false);
+                      setGulfConsultArchVideoPlaying(false);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      zIndex: 10000
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                    >
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                  </div>
+                )}
+              </div>
             </>
           ) : selectedCompany.id === 7 ? (
             <>
@@ -847,9 +2133,9 @@ export default function App() {
               <div
                 style={{
                   position: 'fixed',
-                  top: '30px',
-                  left: '40px',
-                  maxWidth: '680px',
+                  top: 'clamp(20px, 3vh, 50px)',
+                  left: 'clamp(30px, 3vw, 60px)',
+                  maxWidth: 'var(--dorrah-content-max-width, clamp(600px, 50vw, 850px))',
                   zIndex: 12,
                   color: '#ffffff',
                   direction: 'ltr',
@@ -859,7 +2145,7 @@ export default function App() {
                 {/* Logo */}
                 <div
                   style={{
-                    marginBottom: '20px',
+                    marginBottom: 'clamp(16px, 2vh, 28px)',
                     animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
                   }}
                 >
@@ -867,8 +2153,8 @@ export default function App() {
                     src={selectedCompany.modalLogo || selectedCompany.logo}
                     alt={selectedCompany.name}
                     style={{
-                      maxWidth: '260px',
-                      maxHeight: '260px',
+                      maxWidth: 'var(--dorrah-logo-size, clamp(220px, 18vw, 320px))',
+                      maxHeight: 'var(--dorrah-logo-size, clamp(220px, 18vw, 320px))',
                       width: 'auto',
                       height: 'auto',
                       objectFit: 'contain',
@@ -879,9 +2165,9 @@ export default function App() {
 
                 {/* Title under logo */}
                 <h1 style={{
-                  fontSize: 'clamp(22px, 2.6vw, 32px)',
+                  fontSize: 'var(--dorrah-title-size, clamp(24px, 3vw, 40px))',
                   fontWeight: '900',
-                  marginBottom: '6px',
+                  marginBottom: 'clamp(6px, 1vh, 10px)',
                   letterSpacing: '1.5px',
                   color: '#33d18f',
                   textTransform: 'uppercase',
@@ -890,9 +2176,9 @@ export default function App() {
                   GULF DORRAH REAL
                 </h1>
                 <h1 style={{
-                  fontSize: 'clamp(22px, 2.6vw, 32px)',
+                  fontSize: 'var(--dorrah-title-size, clamp(24px, 3vw, 40px))',
                   fontWeight: '900',
-                  marginBottom: '14px',
+                  marginBottom: 'clamp(12px, 2vh, 20px)',
                   letterSpacing: '1.5px',
                   color: '#29a4ff',
                   textTransform: 'uppercase',
@@ -902,9 +2188,9 @@ export default function App() {
                 </h1>
 
                 <p style={{
-                  fontSize: 'clamp(12px, 1.2vw, 15px)',
-                  lineHeight: '1.6',
-                  marginBottom: '14px',
+                  fontSize: 'var(--dorrah-text-size, clamp(13px, 1.5vw, 20px))',
+                  lineHeight: '1.75',
+                  marginBottom: 'clamp(14px, 2vh, 22px)',
                   color: '#e5f8ff',
                   animation: 'fadeInUp 0.8s ease-out 0.4s both'
                 }}>
@@ -912,26 +2198,57 @@ export default function App() {
                 </p>
 
                 <div style={{
-                  animation: 'fadeInUp 0.8s ease-out 0.6s both',
-                  fontSize: 'clamp(12px, 1.2vw, 15px)',
-                  lineHeight: '1.8',
-                  color: '#ffffff'
+                  display: 'flex',
+                  gap: 'clamp(20px, 4vw, 40px)',
+                  alignItems: 'flex-start',
+                  animation: 'fadeInUp 0.8s ease-out 0.6s both'
                 }}>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Managers:</strong>
-                    <span>Fadel Muhialdeen.</span>
+                  <div style={{
+                    fontSize: 'var(--dorrah-info-size, clamp(13px, 1.5vw, 20px))',
+                    lineHeight: '2',
+                    color: '#ffffff',
+                    flex: '1'
+                  }}>
+                    <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Managers:</strong>
+                      <span>Fadel Muhialdeen.</span>
+                    </div>
+                    <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Mobile:</strong>
+                      <span>050 084 0440</span>
+                    </div>
+                    <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Email:</strong>
+                      <span>adel@gulfdorrah.com</span>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Website:</strong>
+                      <span>https://dorrah.topacademy.website/#</span>
+                    </div>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Mobile:</strong>
-                    <span>050 084 0440</span>
-                  </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Email:</strong>
-                    <span>adel@gulfdorrah.com</span>
-                  </div>
-                  <div>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Website:</strong>
-                    <span>https://dorrah.topacademy.website/#</span>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'fadeInUp 0.8s ease-out 0.8s both',
+                      flexShrink: 0
+                    }}
+                  >
+                    <img
+                      src="/dorrahqr.jpeg"
+                      alt="Gulf Dorrah QR Code"
+                      style={{
+                        maxWidth: 'var(--dorrah-qr-size, clamp(150px, 20vw, 200px))',
+                        maxHeight: 'var(--dorrah-qr-size, clamp(150px, 20vw, 200px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: '8px'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -939,9 +2256,9 @@ export default function App() {
                 <button
                   onClick={() => setShowGulfDorrahLearnMore(true)}
                   style={{
-                    marginTop: '24px',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'clamp(20px, 3vh, 32px)',
+                    padding: 'var(--dorrah-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
+                    fontSize: 'var(--dorrah-button-font, clamp(16px, 1.8vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: 'linear-gradient(135deg, #33d18f 0%, #29a4ff 100%)',
@@ -968,14 +2285,192 @@ export default function App() {
                   Learn More
                 </button>
               </div>
+
+              {/* Al Dorrah Video - Right Side */}
+              {/* Hidden video element for fullscreen */}
+              <div
+                ref={dorrahVideoContainerRef}
+                style={{
+                  position: 'fixed',
+                  right: dorrahVideoFullscreen ? '0' : '-9999px',
+                  top: dorrahVideoFullscreen ? '0' : '-9999px',
+                  width: dorrahVideoFullscreen ? '100vw' : '0',
+                  height: dorrahVideoFullscreen ? '100vh' : '0',
+                  zIndex: dorrahVideoFullscreen ? 9999 : -1,
+                  backgroundColor: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {dorrahVideoFullscreen && (
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=dorrah_ei9ijx&profile=cld-default"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      aspectRatio: '640 / 360',
+                      border: 'none'
+                    }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                  />
+                )}
+                {dorrahVideoFullscreen && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // إغلاق fullscreen يدوياً
+                      if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                      } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                      } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                      }
+                      setDorrahVideoFullscreen(false);
+                      setDorrahVideoPlaying(false);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      zIndex: 10000
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                    >
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+
+              {/* Play Button - Right Side (Center of 3D Building Image) */}
+              {!dorrahVideoFullscreen && (
+                <div
+                  style={{
+                    position: 'fixed',
+                    right: 'clamp(20%, 24vw, 28%)',
+                    top: '40%',
+                    transform: 'translate(50%, -50%)',
+                    zIndex: 11,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    animation: 'fadeInUp 0.8s ease-out 0.3s both'
+                  }}
+                  onClick={async () => {
+                    if (dorrahVideoContainerRef.current) {
+                      try {
+                        // فتح fullscreen
+                        setDorrahVideoFullscreen(true);
+                        setDorrahVideoPlaying(true);
+                        
+                        let fullscreenPromise;
+                        if (dorrahVideoContainerRef.current.requestFullscreen) {
+                          fullscreenPromise = dorrahVideoContainerRef.current.requestFullscreen();
+                        } else if (dorrahVideoContainerRef.current.webkitRequestFullscreen) {
+                          fullscreenPromise = dorrahVideoContainerRef.current.webkitRequestFullscreen();
+                        } else if (dorrahVideoContainerRef.current.msRequestFullscreen) {
+                          fullscreenPromise = dorrahVideoContainerRef.current.msRequestFullscreen();
+                        }
+                        
+                        // انتظار fullscreen
+                        if (fullscreenPromise) {
+                          await fullscreenPromise;
+                        }
+                      } catch (error) {
+                        console.error('Error opening fullscreen:', error);
+                      }
+                    }
+                  }}
+                >
+                  {/* Animation Text */}
+                  <div
+                    style={{
+                      color: '#ffffff',
+                      fontSize: 'clamp(14px, 1.6vw, 22px)',
+                      fontWeight: '600',
+                      marginBottom: 'clamp(16px, 2vh, 24px)',
+                      textAlign: 'center',
+                      animation: 'pulse 2s ease-in-out infinite',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)'
+                    }}
+                  >
+                    Click to play video
+                  </div>
+                  
+                  {/* Play Button */}
+                  <div
+                    style={{
+                      width: 'var(--dorrah-play-button-size, clamp(90px, 8vw, 130px))',
+                      height: 'var(--dorrah-play-button-size, clamp(90px, 8vw, 130px))',
+                      borderRadius: '50%',
+                      background: 'rgba(51, 209, 143, 0.9)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 20px rgba(51, 209, 143, 0.4)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(51, 209, 143, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                      e.currentTarget.style.boxShadow = '0 6px 30px rgba(51, 209, 143, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(51, 209, 143, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(51, 209, 143, 0.4)';
+                    }}
+                  >
+                    <svg
+                      width="clamp(40px, 4vw, 60px)"
+                      height="clamp(40px, 4vw, 60px)"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      style={{ marginLeft: '6px' }}
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
             </>
           ) : selectedCompany.id === 4 ? (
             <>
               {/* Logo - Top Left with fly-in animation */}
               <div style={{
                 position: 'fixed',
-                top: '10px',
-                left: '40px',
+                top: 'var(--gta-logo-top, clamp(10px, 1.5vh, 30px))',
+                left: 'var(--gta-logo-left, clamp(30px, 3vw, 60px))',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
               }}>
@@ -983,8 +2478,8 @@ export default function App() {
                   src={selectedCompany.modalLogo || selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: '250px',
-                    maxHeight: '250px',
+                    maxWidth: 'var(--gta-logo-size, clamp(200px, 18vw, 300px))',
+                    maxHeight: 'var(--gta-logo-size, clamp(200px, 18vw, 300px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -1024,16 +2519,16 @@ export default function App() {
 
               {/* GTA Content - Bottom Left */}
               <div className="gta-content" style={{
-                maxWidth: '650px',
+                maxWidth: 'var(--gta-content-max-width, 650px)',
                 color: '#000000',
                 direction: 'ltr',
                 textAlign: 'left'
               }}>
                 {/* Title */}
                 <h1 style={{
-                  fontSize: 'clamp(24px, 3vw, 36px)',
+                  fontSize: 'var(--gta-title-size, clamp(24px, 3vw, 36px))',
                   fontWeight: '900',
-                  marginBottom: '15px',
+                  marginBottom: 'var(--gta-content-gap, clamp(15px, 2vh, 25px))',
                   letterSpacing: '2px',
                   color: '#dc2626',
                   textTransform: 'uppercase',
@@ -1045,18 +2540,18 @@ export default function App() {
 
                 {/* Description */}
                 <p style={{
-                  fontSize: 'clamp(13px, 1.4vw, 17px)',
+                  fontSize: 'var(--gta-text-size, clamp(13px, 1.4vw, 17px))',
                   lineHeight: '1.8',
-                  marginBottom: '18px',
+                  marginBottom: 'var(--gta-content-gap, clamp(15px, 2vh, 25px))',
                   color: '#000000',
                   animation: 'fadeInUp 0.8s ease-out 0.4s both'
                 }}>
                   German Technology Auto Services Company is one of the leading maintenance companies in the Eastern Region, which includes German car services under one roof.
                 </p>
                 <p style={{
-                  fontSize: 'clamp(13px, 1.4vw, 17px)',
+                  fontSize: 'var(--gta-text-size, clamp(13px, 1.4vw, 17px))',
                   lineHeight: '1.8',
-                  marginBottom: '25px',
+                  marginBottom: 'var(--gta-content-gap, clamp(15px, 2vh, 25px))',
                   color: '#000000',
                   animation: 'fadeInUp 0.8s ease-out 0.5s both'
                 }}>
@@ -1065,26 +2560,57 @@ export default function App() {
 
                 {/* Contact Info */}
                 <div style={{
-                  animation: 'fadeInUp 0.8s ease-out 0.6s both',
-                  fontSize: 'clamp(13px, 1.4vw, 17px)',
-                  lineHeight: '2',
-                  color: '#000000'
+                  display: 'flex',
+                  gap: 'clamp(20px, 4vw, 40px)',
+                  alignItems: 'flex-start',
+                  animation: 'fadeInUp 0.8s ease-out 0.6s both'
                 }}>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '700' }}>Managers:</strong>
+                  <div style={{
+                  fontSize: 'var(--gta-info-size, clamp(13px, 1.4vw, 17px))',
+                  lineHeight: '2',
+                    color: '#000000',
+                    flex: '1'
+                }}>
+                  <div style={{ marginBottom: 'calc(var(--gta-content-gap, 15px) * 0.6)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '700' }}>Managers:</strong>
                     <span>Mr. Tamam Hussain.</span>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '700' }}>Mobile:</strong>
+                  <div style={{ marginBottom: 'calc(var(--gta-content-gap, 15px) * 0.6)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '700' }}>Mobile:</strong>
                     <span>053 240 4666</span>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '700' }}>Email:</strong>
+                  <div style={{ marginBottom: 'calc(var(--gta-content-gap, 15px) * 0.6)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '700' }}>Email:</strong>
                     <span>tammam.hussein@yahoo.com</span>
                   </div>
                   <div>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '700' }}>Website:</strong>
+                    <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: '700' }}>Website:</strong>
                     <span>https://www.gtaksa.com</span>
+                    </div>
+                  </div>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'fadeInUp 0.8s ease-out 0.8s both',
+                      flexShrink: 0
+                    }}
+                  >
+                    <img
+                      src="/gtaqr.jpeg"
+                      alt="GTA QR Code"
+                      style={{
+                        maxWidth: 'var(--gta-qr-size, clamp(150px, 20vw, 200px))',
+                        maxHeight: 'var(--gta-qr-size, clamp(150px, 20vw, 200px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: '8px'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -1092,9 +2618,9 @@ export default function App() {
                 <button
                   onClick={() => setShowGTALearnMore(true)}
                   style={{
-                    marginTop: '24px',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'var(--gta-content-gap, clamp(24px, 2.5vh, 32px))',
+                    padding: 'var(--gta-button-padding, clamp(14px, 1.6vw, 22px) clamp(32px, 3.2vw, 48px))',
+                    fontSize: 'var(--gta-button-font, clamp(15px, 1.6vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: '#dc2626',
@@ -1128,8 +2654,8 @@ export default function App() {
               <div
                 style={{
                   position: 'fixed',
-                  top: '40px',
-                  left: '40px',
+                  top: 'clamp(30px, 3vh, 60px)',
+                  left: 'clamp(30px, 3vw, 60px)',
                   zIndex: 11,
                   animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}
@@ -1138,8 +2664,8 @@ export default function App() {
                   src={selectedCompany.modalLogo || selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: '260px',
-                    maxHeight: '160px',
+                    maxWidth: 'var(--tlco-logo-width, clamp(220px, 18vw, 320px))',
+                    maxHeight: 'var(--tlco-logo-height, clamp(130px, 10vw, 200px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -1152,9 +2678,9 @@ export default function App() {
               <div
                 style={{
                   position: 'fixed',  
-                  bottom: '60px',
-                  left: '40px',
-                  maxWidth: '650px',
+                  bottom: 'clamp(40px, 5vh, 80px)',
+                  left: 'clamp(30px, 3vw, 60px)',
+                  maxWidth: 'var(--tlco-content-max-width, clamp(600px, 50vw, 850px))',
                   zIndex: 12,
                   color: '#0b3b25',
                   direction: 'ltr',
@@ -1163,9 +2689,9 @@ export default function App() {
               >
                 <h1
                   style={{
-                    fontSize: 'clamp(24px, 3vw, 36px)',
+                    fontSize: 'var(--tlco-title-size, clamp(26px, 3.5vw, 44px))',
                     fontWeight: '900',
-                    marginBottom: '16px',
+                    marginBottom: 'clamp(12px, 2vh, 20px)',
                     letterSpacing: '1.4px',
                     color: '#008c4a',
                     textTransform: 'uppercase',
@@ -1177,9 +2703,9 @@ export default function App() {
 
                 <p
                   style={{
-                    fontSize: 'clamp(12px, 1.2vw, 15px)',
-                    lineHeight: '1.7',
-                    marginBottom: '16px',
+                    fontSize: 'var(--tlco-text-size, clamp(13px, 1.5vw, 20px))',
+                    lineHeight: '1.75',
+                    marginBottom: 'clamp(14px, 2vh, 22px)',
                     color: '#0b3b25',
                     animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 260ms both'
                   }}
@@ -1192,27 +2718,59 @@ export default function App() {
 
                 <div
                   style={{
-                    fontSize: 'clamp(12px, 1.2vw, 15px)',
-                    lineHeight: '1.9',
-                    color: '#0b3b25',
+                    display: 'flex',
+                    gap: 'clamp(20px, 4vw, 40px)',
+                    alignItems: 'flex-start',
                     animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 420ms both'
                   }}
                 >
-                  <div style={{ marginBottom: '8px' }}>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Managers:</strong>
+                  <div style={{
+                    fontSize: 'var(--tlco-info-size, clamp(13px, 1.5vw, 20px))',
+                    lineHeight: '2',
+                    color: '#0b3b25',
+                    flex: '1'
+                  }}>
+                  <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Managers:</strong>
                     <span>Mr.elyas Othman.</span>
                   </div>
-                  <div style={{ marginBottom: '8px' }}>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Mobile:</strong>
+                  <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Mobile:</strong>
                     <span>053 927 5739</span>
                   </div>
-                  <div style={{ marginBottom: '8px' }}>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Email:</strong>
+                  <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                    <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Email:</strong>
                     <span>G.M@etlco.com.sa</span>
                   </div>
                   <div>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Website:</strong>
+                    <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Website:</strong>
                     <span>https://www.etlco.com.sa</span>
+                    </div>
+                  </div>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 580ms both',
+                      flexShrink: 0,
+                      marginLeft: '-6px'
+                    }}
+                  >
+                    <img
+                      src="/tlcoqr.jpeg"
+                      alt="ETLCO QR Code"
+                      style={{
+                        maxWidth: 'var(--tlco-qr-size, clamp(160px, 18vw, 240px))',
+                        maxHeight: 'var(--tlco-qr-size, clamp(160px, 18vw, 240px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: 'clamp(6px, 0.8vw, 12px)'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -1220,9 +2778,9 @@ export default function App() {
                 <button
                   onClick={() => setShowPartners(true)}
                   style={{
-                    marginTop: '24px',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'clamp(20px, 3vh, 32px)',
+                    padding: 'var(--tlco-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
+                    fontSize: 'var(--tlco-button-font, clamp(16px, 1.8vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: '#008c4a',
@@ -1254,11 +2812,11 @@ export default function App() {
               <div
                 style={{
                   position: 'fixed',
-                  right: '7%',
-                  top: '25%',
+                  right: 'clamp(5%, 7vw, 9%)',
+                  top: 'clamp(20%, 25vh, 30%)',
                   transform: 'translateY(-50%)',
                   zIndex: 11,
-                  width: 'min(540px, 46vw)',
+                  width: 'var(--tlco-internal-image-size, clamp(480px, 46vw, 650px))',
                   height: 'auto',
                   overflow: 'visible',
                   boxShadow: 'none',
@@ -1268,6 +2826,7 @@ export default function App() {
                   animation: 'slideInScale 900ms cubic-bezier(0.2, 0.9, 0.2, 1) 160ms both'
                 }}
               >
+                <div style={{ position: 'relative', display: 'inline-block' }}>
                 <img
                   src="/tlco-internal1.png"
                   alt="TLCO Internal"
@@ -1280,6 +2839,185 @@ export default function App() {
                       'slideInScale 900ms cubic-bezier(0.2, 0.9, 0.2, 1) 160ms both, tlcoFloat 4s ease-in-out 1200ms infinite'
                   }}
                 />
+                  
+                  {/* Play Button on TLCO Image */}
+                  {!tlcoVideoFullscreen && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        zIndex: 12,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer'
+                      }}
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        if (tlcoVideoContainerRef.current) {
+                          try {
+                            // فتح fullscreen
+                            setTlcoVideoFullscreen(true);
+                            setTlcoVideoPlaying(true);
+                            
+                            let fullscreenPromise;
+                            if (tlcoVideoContainerRef.current.requestFullscreen) {
+                              fullscreenPromise = tlcoVideoContainerRef.current.requestFullscreen();
+                            } else if (tlcoVideoContainerRef.current.webkitRequestFullscreen) {
+                              fullscreenPromise = tlcoVideoContainerRef.current.webkitRequestFullscreen();
+                            } else if (tlcoVideoContainerRef.current.msRequestFullscreen) {
+                              fullscreenPromise = tlcoVideoContainerRef.current.msRequestFullscreen();
+                            }
+                            
+                            // انتظار fullscreen
+                            if (fullscreenPromise) {
+                              await fullscreenPromise;
+                            }
+                          } catch (error) {
+                            console.error('Error opening fullscreen:', error);
+                          }
+                        }
+                      }}
+                    >
+                      {/* Animation Text */}
+                      <div
+                        style={{
+                          color: '#ffffff',
+                          fontSize: 'clamp(14px, 1.6vw, 22px)',
+                          fontWeight: '600',
+                          marginBottom: 'clamp(16px, 2vh, 24px)',
+                          textAlign: 'center',
+                          animation: 'pulse 2s ease-in-out infinite',
+                          textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                        }}
+                      >
+                        Click to play video
+                      </div>
+                      
+                      {/* Play Button */}
+                      <div
+                        style={{
+                          width: 'var(--tlco-play-button-size, clamp(90px, 8vw, 130px))',
+                          height: 'var(--tlco-play-button-size, clamp(90px, 8vw, 130px))',
+                          borderRadius: '50%',
+                          background: 'rgba(0, 140, 74, 0.9)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          boxShadow: '0 4px 20px rgba(0, 140, 74, 0.4)'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = 'rgba(0, 140, 74, 1)';
+                          e.currentTarget.style.transform = 'scale(1.1)';
+                          e.currentTarget.style.boxShadow = '0 6px 30px rgba(0, 140, 74, 0.6)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'rgba(0, 140, 74, 0.9)';
+                          e.currentTarget.style.transform = 'scale(1)';
+                          e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 140, 74, 0.4)';
+                        }}
+                      >
+                        <svg
+                          width="clamp(40px, 4vw, 60px)"
+                          height="clamp(40px, 4vw, 60px)"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          style={{ marginLeft: '6px' }}
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* TLCO Video - Hidden for fullscreen */}
+              <div
+                ref={tlcoVideoContainerRef}
+                style={{
+                  position: 'fixed',
+                  right: tlcoVideoFullscreen ? '0' : '-9999px',
+                  top: tlcoVideoFullscreen ? '0' : '-9999px',
+                  width: tlcoVideoFullscreen ? '100vw' : '0',
+                  height: tlcoVideoFullscreen ? '100vh' : '0',
+                  zIndex: tlcoVideoFullscreen ? 9999 : -1,
+                  backgroundColor: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {tlcoVideoFullscreen && (
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=tlco_onczo4&profile=cld-default"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      aspectRatio: '640 / 360',
+                      border: 'none'
+                    }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                  />
+                )}
+                {tlcoVideoFullscreen && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // إغلاق fullscreen يدوياً
+                      if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                      } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                      } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                      }
+                      setTlcoVideoFullscreen(false);
+                      setTlcoVideoPlaying(false);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      zIndex: 10000
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                    >
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                  </div>
+                )}
               </div>
             </>
           ) : selectedCompany.id === 11 ? (
@@ -1288,8 +3026,8 @@ export default function App() {
               <div
                 style={{
                   position: 'fixed',
-                  top: '10px',
-                  left: '40px',
+                  top: 'clamp(10px, 1.5vh, 30px)',
+                  left: 'clamp(30px, 3vw, 60px)',
                   zIndex: 11,
                   animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}
@@ -1298,8 +3036,8 @@ export default function App() {
                   src={selectedCompany.modalLogo || selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: '250px',
-                    maxHeight: '250px',
+                    maxWidth: 'var(--gsg-logo-size, clamp(200px, 15vw, 320px))',
+                    maxHeight: 'var(--gsg-logo-size, clamp(200px, 15vw, 320px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -1312,7 +3050,7 @@ export default function App() {
               <div
                 className="gsg-content"
                 style={{
-                  maxWidth: '650px',
+                  maxWidth: 'var(--gsg-content-max-width, clamp(600px, 50vw, 900px))',
                   color: '#07373c',
                   direction: 'ltr',
                   textAlign: 'left'
@@ -1320,9 +3058,9 @@ export default function App() {
               >
                 <h1
                   style={{
-                    fontSize: 'clamp(20px, 3vw, 36px)',
+                    fontSize: 'var(--gsg-title-size, clamp(26px, 3.5vw, 48px))',
                     fontWeight: '900',
-                    marginBottom: 'clamp(6px, 1vh, 8px)',
+                    marginBottom: 'clamp(6px, 1vh, 12px)',
                     letterSpacing: '1.4px',
                     color: '#07373c',
                     textTransform: 'uppercase',
@@ -1334,9 +3072,9 @@ export default function App() {
                 </h1>
                 <h1
                   style={{
-                    fontSize: 'clamp(20px, 3vw, 36px)',
+                    fontSize: 'var(--gsg-title-size, clamp(26px, 3.5vw, 48px))',
                     fontWeight: '900',
-                    marginBottom: 'clamp(12px, 2vh, 16px)',
+                    marginBottom: 'clamp(12px, 2vh, 20px)',
                     letterSpacing: '1.4px',
                     color: '#07373c',
                     textTransform: 'uppercase',
@@ -1349,9 +3087,9 @@ export default function App() {
 
                 <p
                   style={{
-                    fontSize: 'clamp(11px, 1.2vw, 15px)',
-                    lineHeight: 'clamp(1.5, 1.7vh, 1.7)',
-                    marginBottom: 'clamp(12px, 2vh, 16px)',
+                    fontSize: 'var(--gsg-text-size, clamp(14px, 1.6vw, 22px))',
+                    lineHeight: '1.75',
+                    marginBottom: 'clamp(14px, 2vh, 22px)',
                     color: '#07373c',
                     animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 260ms both'
                   }}
@@ -1360,9 +3098,9 @@ export default function App() {
                 </p>
                 <p
                   style={{
-                    fontSize: 'clamp(11px, 1.2vw, 15px)',
-                    lineHeight: 'clamp(1.5, 1.7vh, 1.7)',
-                    marginBottom: 'clamp(16px, 2.5vh, 20px)',
+                    fontSize: 'var(--gsg-text-size, clamp(14px, 1.6vw, 22px))',
+                    lineHeight: '1.75',
+                    marginBottom: 'clamp(18px, 2.5vh, 28px)',
                     color: '#07373c',
                     fontWeight: '600',
                     animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 380ms both'
@@ -1373,27 +3111,71 @@ export default function App() {
 
                 <div
                   style={{
-                    fontSize: 'clamp(11px, 1.2vw, 15px)',
-                    lineHeight: 'clamp(1.7, 1.9vh, 1.9)',
-                    color: '#07373c',
-                    animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 500ms both'
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: 'clamp(20px, 4vw, 40px)',
+                    alignItems: 'flex-start',
+                    animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 500ms both',
+                    marginBottom: '8px',
+                    position: 'relative',
+                    zIndex: 13
                   }}
                 >
-                  <div style={{ marginBottom: 'clamp(6px, 1vh, 8px)' }}>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Managers:</strong>
-                    <span>Eng. Rabah Yehya.</span>
+                  <div
+                    style={{
+                      fontSize: 'var(--gsg-info-size, clamp(14px, 1.6vw, 22px))',
+                      lineHeight: '2',
+                      color: '#07373c',
+                      flex: '1'
+                    }}
+                  >
+                    <div style={{ marginBottom: 'clamp(8px, 1.2vh, 12px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Managers:</strong>
+                      <span>Eng. Rabah Yehya.</span>
+                    </div>
+                    <div style={{ marginBottom: 'clamp(8px, 1.2vh, 12px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Mobile:</strong>
+                      <span>055 584 6667</span>
+                    </div>
+                    <div style={{ marginBottom: 'clamp(8px, 1.2vh, 12px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Email:</strong>
+                      <span>faisal@gulfconsult.com &amp; rabah@gulfconsult.com</span>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'inline-block', width: 'clamp(110px, 11vw, 150px)', fontWeight: 800 }}>Website:</strong>
+                      <span>https://www.gulfconsult.com</span>
+                    </div>
                   </div>
-                  <div style={{ marginBottom: 'clamp(6px, 1vh, 8px)' }}>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Mobile:</strong>
-                    <span>055 584 6667</span>
-                  </div>
-                  <div style={{ marginBottom: 'clamp(6px, 1vh, 8px)' }}>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Email:</strong>
-                    <span>faisal@gulfconsult.com &amp; rabah@gulfconsult.com</span>
-                  </div>
-                  <div>
-                    <strong style={{ display: 'inline-block', width: '120px', fontWeight: 800 }}>Website:</strong>
-                    <span>https://www.gulfconsult.com</span>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 700ms both',
+                      flexShrink: 0,
+                      marginTop: '0',
+                      alignSelf: 'flex-start',
+                      zIndex: 13,
+                      position: 'relative',
+                      minWidth: 'clamp(140px, 16vw, 220px)',
+                      maxWidth: 'clamp(140px, 16vw, 220px)'
+                    }}
+                  >
+                    <img
+                      src="/gsgqr.jpeg"
+                      alt="GSG QR Code"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        maxWidth: 'clamp(140px, 16vw, 220px)',
+                        maxHeight: 'clamp(140px, 16vw, 220px)',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: '8px',
+                        display: 'block'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -1401,9 +3183,9 @@ export default function App() {
                 <button
                   onClick={() => setShowGSGLearnMore(true)}
                   style={{
-                    marginTop: 'clamp(16px, 2.5vh, 24px)',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'clamp(16px, 2.5vh, 28px)',
+                    padding: 'var(--gsg-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
+                    fontSize: 'var(--gsg-button-font, clamp(16px, 1.8vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: '#00bcd4',
@@ -1414,7 +3196,9 @@ export default function App() {
                     transition: 'all 0.3s ease',
                     letterSpacing: '0.5px',
                     textTransform: 'uppercase',
-                    animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 620ms both'
+                    animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 620ms both',
+                    position: 'relative',
+                    zIndex: 13
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
@@ -1435,11 +3219,11 @@ export default function App() {
               <div
                 style={{
                   position: 'fixed',
-                  right: '6%',
-                  top: '15%',
+                  right: 'clamp(4%, 6vw, 8%)',
+                  top: 'clamp(12%, 15vh, 18%)',
                   transform: 'translateY(-50%)',
                   zIndex: 11,
-                  width: 'min(520px, 45vw)',
+                  width: 'var(--gsg-internal-image-size, clamp(450px, 45vw, 650px))',
                   height: 'auto',
                   overflow: 'visible',
                   background: 'transparent',
@@ -1463,8 +3247,8 @@ export default function App() {
               {/* Logo - Top Left with fly-in animation */}
               <div style={{
                 position: 'fixed',
-                top: '-20px',
-                left: '-30px',
+                top: 'clamp(-20px, -2vh, 0px)',
+                left: 'clamp(-30px, -2vw, 0px)',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
               }}>
@@ -1472,8 +3256,8 @@ export default function App() {
                   src={selectedCompany.modalLogo || selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: 'clamp(250px, 40vw, 400px)',
-                    maxHeight: 'clamp(350px, 40vh, 500px)',
+                    maxWidth: 'var(--rk-logo-width, clamp(250px, 35vw, 450px))',
+                    maxHeight: 'var(--rk-logo-height, clamp(350px, 35vh, 550px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -1484,25 +3268,25 @@ export default function App() {
 
               {/* RK Content - Bottom Left */}
               <div className="rk-content" style={{
-                maxWidth: '650px',
+                maxWidth: 'var(--rk-content-max-width, clamp(600px, 50vw, 850px))',
                 color: '#000000',
                 direction: 'ltr',
                 textAlign: 'left'
               }}>
                 {/* Description */}
                 <p style={{
-                  fontSize: 'clamp(13px, 1.4vw, 17px)',
-                  lineHeight: '1.8',
-                  marginBottom: '18px',
+                  fontSize: 'var(--rk-text-size, clamp(14px, 1.6vw, 22px))',
+                  lineHeight: '1.75',
+                  marginBottom: 'clamp(14px, 2vh, 22px)',
                   color: '#000000',
                   animation: 'fadeInUp 0.8s ease-out 0.4s both'
                 }}>
                   Al-Rakaez Technical Co. Ltd. (RK) is a Saudi based company that specializes in Civil, Finishing, Mechanical, Electrical and Plumbing (MEP) building services.
                 </p>
                 <p style={{
-                  fontSize: 'clamp(13px, 1.4vw, 17px)',
-                  lineHeight: '1.8',
-                  marginBottom: '25px',
+                  fontSize: 'var(--rk-text-size, clamp(14px, 1.6vw, 22px))',
+                  lineHeight: '1.75',
+                  marginBottom: 'clamp(20px, 3vh, 30px)',
                   color: '#000000',
                   animation: 'fadeInUp 0.8s ease-out 0.5s both'
                 }}>
@@ -1511,26 +3295,57 @@ export default function App() {
 
                 {/* Contact Info */}
                 <div style={{
-                  animation: 'fadeInUp 0.8s ease-out 0.6s both',
-                  fontSize: 'clamp(13px, 1.4vw, 17px)',
-                  lineHeight: '2',
-                  color: '#000000'
+                  display: 'flex',
+                  gap: 'clamp(20px, 4vw, 40px)',
+                  alignItems: 'flex-start',
+                  animation: 'fadeInUp 0.8s ease-out 0.6s both'
                 }}>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '700' }}>Managers:</strong>
-                    <span>Jaffar Al Sayori.</span>
+                  <div style={{
+                    fontSize: 'var(--rk-info-size, clamp(14px, 1.6vw, 22px))',
+                    lineHeight: '2',
+                    color: '#000000',
+                    flex: '1'
+                  }}>
+                    <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '700' }}>Managers:</strong>
+                      <span>Jaffar Al Sayori.</span>
+                    </div>
+                    <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '700' }}>Mobile:</strong>
+                      <span>054 989 5927</span>
+                    </div>
+                    <div style={{ marginBottom: 'clamp(8px, 1.2vh, 14px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '700' }}>Email:</strong>
+                      <span>jafar.syouri@rk-arabia.com</span>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '700' }}>Website:</strong>
+                      <span>https://www.rk-arabia.com</span>
+                    </div>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '700' }}>Mobile:</strong>
-                    <span>054 989 5927</span>
-                  </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '700' }}>Email:</strong>
-                    <span>jafar.syouri@rk-arabia.com</span>
-                  </div>
-                  <div>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '700' }}>Website:</strong>
-                    <span>https://www.rk-arabia.com</span>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'fadeInUp 0.8s ease-out 0.8s both',
+                      flexShrink: 0
+                    }}
+                  >
+                    <img
+                      src="/rkqr.jpeg"
+                      alt="RK QR Code"
+                      style={{
+                        maxWidth: 'var(--rk-qr-size, clamp(150px, 20vw, 200px))',
+                        maxHeight: 'var(--rk-qr-size, clamp(150px, 20vw, 200px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: '8px'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -1538,9 +3353,9 @@ export default function App() {
                 <button
                   onClick={() => setShowRKLearnMore(true)}
                   style={{
-                    marginTop: '24px',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'clamp(20px, 3vh, 32px)',
+                    padding: 'var(--rk-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
+                    fontSize: 'var(--rk-button-font, clamp(16px, 1.8vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: '#000000',
@@ -1571,8 +3386,8 @@ export default function App() {
               {/* RK Internal Image - Right Side */}
               <div style={{
                 position: 'fixed',
-                top: '14%',
-                right: '60px',
+                top: 'clamp(12%, 14vh, 16%)',
+                right: 'clamp(40px, 5vw, 80px)',
                 transform: 'translateY(-50%)',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both'
@@ -1581,8 +3396,8 @@ export default function App() {
                   src="/rk-internal.png"
                   alt="RK Internal"
                   style={{
-                    maxWidth: '500px',
-                    maxHeight: '600px',
+                    maxWidth: 'var(--rk-internal-image-width, clamp(450px, 40vw, 650px))',
+                    maxHeight: 'var(--rk-internal-image-height, clamp(540px, 50vh, 750px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -1598,8 +3413,8 @@ export default function App() {
               <div
                 style={{
                   position: 'fixed',
-                  top: '30px',
-                  left: '40px',
+                  top: 'var(--ah-logo-top, clamp(30px, 3vh, 50px))',
+                  left: 'var(--ah-logo-left, clamp(30px, 3vw, 60px))',
                   zIndex: 11,
                   animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}
@@ -1608,8 +3423,8 @@ export default function App() {
                   src={selectedCompany.modalLogo || selectedCompany.logo}
                   alt={selectedCompany.name}
                   style={{
-                    maxWidth: '260px',
-                    maxHeight: '200px',
+                    maxWidth: 'var(--ah-logo-size, clamp(200px, 18vw, 300px))',
+                    maxHeight: 'var(--ah-logo-height, clamp(150px, 14vw, 220px))',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
@@ -1622,7 +3437,7 @@ export default function App() {
               <div
                 className="ah-environmental-content"
                 style={{
-                  maxWidth: '580px',
+                  maxWidth: 'var(--ah-content-max-width, 580px)',
                   color: '#ffffff',
                   direction: 'ltr',
                   textAlign: 'left'
@@ -1630,9 +3445,9 @@ export default function App() {
               >
                 <h1
                   style={{
-                    fontSize: 'clamp(24px, 3vw, 36px)',
+                    fontSize: 'var(--ah-title-size, clamp(24px, 3vw, 36px))',
                     fontWeight: '900',
-                    marginBottom: '4px',
+                    marginBottom: 'calc(var(--ah-content-gap, 10px) * 0.4)',
                     letterSpacing: '1px',
                     color: '#ffffff',
                     textTransform: 'uppercase',
@@ -1644,9 +3459,9 @@ export default function App() {
                 </h1>
                 <h1
                   style={{
-                    fontSize: 'clamp(24px, 3vw, 36px)',
+                    fontSize: 'var(--ah-title-size, clamp(24px, 3vw, 36px))',
                     fontWeight: '900',
-                    marginBottom: '10px',
+                    marginBottom: 'var(--ah-content-gap, clamp(10px, 1.5vh, 18px))',
                     letterSpacing: '1px',
                     color: '#ffffff',
                     textTransform: 'uppercase',
@@ -1659,9 +3474,9 @@ export default function App() {
 
                 <p
                   style={{
-                    fontSize: 'clamp(13px, 1.4vw, 17px)',
+                    fontSize: 'var(--ah-text-size, clamp(13px, 1.4vw, 17px))',
                     lineHeight: '1.6',
-                    marginBottom: '14px',
+                    marginBottom: 'var(--ah-content-gap, clamp(10px, 1.5vh, 18px))',
                     color: '#ffffff',
                     animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 260ms both'
                   }}
@@ -1671,27 +3486,71 @@ export default function App() {
 
                 <div
                   style={{
-                    fontSize: 'clamp(13px, 1.4vw, 17px)',
-                    lineHeight: '1.8',
-                    color: '#ffffff',
-                    animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 420ms both'
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: 'clamp(20px, 4vw, 40px)',
+                    alignItems: 'flex-start',
+                    animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 420ms both',
+                    marginBottom: 'var(--ah-content-gap, clamp(10px, 1.5vh, 18px))',
+                    position: 'relative',
+                    zIndex: 13
                   }}
                 >
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: 800 }}>Managers:</strong>
-                    <span>Ennacer Besghaier.</span>
+                  <div
+                    style={{
+                      fontSize: 'var(--ah-info-size, clamp(13px, 1.4vw, 17px))',
+                      lineHeight: '1.8',
+                      color: '#ffffff',
+                      flex: '1'
+                    }}
+                  >
+                    <div style={{ marginBottom: 'calc(var(--ah-content-gap, 10px) * 0.8)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: 800 }}>Managers:</strong>
+                      <span>Ennacer Besghaier.</span>
+                    </div>
+                    <div style={{ marginBottom: 'calc(var(--ah-content-gap, 10px) * 0.8)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: 800 }}>Mobile:</strong>
+                      <span>054 292 9702</span>
+                    </div>
+                    <div style={{ marginBottom: 'calc(var(--ah-content-gap, 10px) * 0.8)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: 800 }}>Email:</strong>
+                      <span>g.m@ahenviro.com</span>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'inline-block', width: 'clamp(130px, 12vw, 180px)', fontWeight: 800 }}>Website:</strong>
+                      <span>https://www.ahenviro.com</span>
+                    </div>
                   </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: 800 }}>Mobile:</strong>
-                    <span>054 292 9702</span>
-                  </div>
-                  <div style={{ marginBottom: '10px' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: 800 }}>Email:</strong>
-                    <span>g.m@ahenviro.com</span>
-                  </div>
-                  <div>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: 800 }}>Website:</strong>
-                    <span>https://www.ahenviro.com</span>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 600ms both',
+                      flexShrink: 0,
+                      marginTop: '0',
+                      alignSelf: 'flex-start',
+                      zIndex: 13,
+                      position: 'relative',
+                      minWidth: 'clamp(140px, 16vw, 220px)',
+                      maxWidth: 'clamp(140px, 16vw, 220px)'
+                    }}
+                  >
+                    <img
+                      src="/ahqr.jpeg"
+                      alt="AH Environmental QR Code"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        maxWidth: 'clamp(140px, 16vw, 220px)',
+                        maxHeight: 'clamp(140px, 16vw, 220px)',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: '8px',
+                        display: 'block'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -1699,9 +3558,9 @@ export default function App() {
                 <button
                   onClick={() => setShowAHEnvironmentalLearnMore(true)}
                   style={{
-                    marginTop: '20px',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'var(--ah-content-gap, clamp(20px, 2vh, 28px))',
+                    padding: 'var(--ah-button-padding, clamp(14px, 1.6vw, 22px) clamp(32px, 3.2vw, 48px))',
+                    fontSize: 'var(--ah-button-font, clamp(15px, 1.6vw, 22px))',
                     fontWeight: '700',
                     color: '#040075',
                     background: '#ffffff',
@@ -1712,7 +3571,9 @@ export default function App() {
                     transition: 'all 0.3s ease',
                     letterSpacing: '0.5px',
                     textTransform: 'uppercase',
-                    animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 540ms both'
+                    animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 540ms both',
+                    position: 'relative',
+                    zIndex: 13
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
@@ -1755,15 +3616,15 @@ export default function App() {
 
               {/* Gulf Consult Content - Left */}
               <div className="gulf-consult-content" style={{
-                maxWidth: '720px',
+                maxWidth: 'var(--gulf-content-max-width, clamp(600px, 50vw, 900px))',
                 color: '#ffffff',
                 direction: 'ltr',
                 textAlign: 'left'
               }}>
                 <h1 style={{
-                  fontSize: 'clamp(22px, 3vw, 40px)',
+                  fontSize: 'var(--gulf-title-size, clamp(32px, 4vw, 56px))',
                   fontWeight: '900',
-                  marginBottom: 'clamp(12px, 2vh, 20px)',
+                  marginBottom: 'clamp(12px, 2vh, 24px)',
                   letterSpacing: '1.5px',
                   color: '#ffffff',
                   textTransform: 'uppercase',
@@ -1774,9 +3635,9 @@ export default function App() {
                 </h1>
 
                 <p style={{
-                  fontSize: 'clamp(12px, 1.3vw, 17px)',
-                  lineHeight: 'clamp(1.6, 1.9vh, 1.9)',
-                  marginBottom: 'clamp(20px, 3vh, 32px)',
+                  fontSize: 'var(--gulf-text-size, clamp(14px, 1.6vw, 22px))',
+                  lineHeight: '1.75',
+                  marginBottom: 'clamp(20px, 3vh, 36px)',
                   color: '#ffffff',
                   animation: 'fadeInUp 0.8s ease-out 0.4s both'
                 }}>
@@ -1784,34 +3645,67 @@ export default function App() {
                 </p>
 
                 <div style={{
+                  display: 'flex',
+                  gap: 'clamp(20px, 4vw, 40px)',
+                  alignItems: 'flex-start',
                   animation: 'fadeInUp 0.8s ease-out 0.6s both',
-                  fontSize: 'clamp(12px, 1.3vw, 17px)',
-                  lineHeight: 'clamp(1.8, 2vh, 2)',
-                  color: '#ffffff',
                   marginBottom: '8px'
                 }}>
-                  <div style={{ marginBottom: 'clamp(10px, 1.5vh, 16px)' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Managers:</strong>
-                    <span>Eng. Faisal Sir AlHarbi - CEO, and Eng. Rabah Yehya - GM.</span>
+                  <div style={{
+                    fontSize: 'var(--gulf-info-size, clamp(15px, 1.7vw, 24px))',
+                    lineHeight: '2',
+                    color: '#ffffff',
+                    flex: '1'
+                  }}>
+                    <div style={{ marginBottom: 'clamp(10px, 1.5vh, 18px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Managers:</strong>
+                      <span>Eng. Faisal Sir AlHarbi - CEO, and Eng. Rabah Yehya - GM.</span>
+                    </div>
+                    <div style={{ marginBottom: 'clamp(10px, 1.5vh, 18px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Mobile:</strong>
+                      <span>055 584 6667</span>
+                    </div>
+                    <div style={{ marginBottom: 'clamp(10px, 1.5vh, 18px)' }}>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Email:</strong>
+                      <span>faisal@gulfconsult.com &amp; rabah@gulfconsult.com</span>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'inline-block', width: 'clamp(120px, 12vw, 180px)', fontWeight: '800' }}>Website:</strong>
+                      <a
+                        href="https://www.gulfconsult.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ color: '#ffffff', textDecoration: 'underline', fontWeight: 700 }}
+                      >
+                        www.gulfconsult.com
+                      </a>
+                    </div>
                   </div>
-                  <div style={{ marginBottom: 'clamp(10px, 1.5vh, 16px)' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Mobile:</strong>
-                    <span>055 584 6667</span>
-                  </div>
-                  <div style={{ marginBottom: 'clamp(10px, 1.5vh, 16px)' }}>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Email:</strong>
-                    <span>faisal@gulfconsult.com &amp; rabah@gulfconsult.com</span>
-                  </div>
-                  <div>
-                    <strong style={{ display: 'inline-block', width: '130px', fontWeight: '800' }}>Website:</strong>
-                    <a
-                      href="https://www.gulfconsult.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ color: '#ffffff', textDecoration: 'underline', fontWeight: 700 }}
-                    >
-                      www.gulfconsult.com
-                    </a>
+
+                  {/* QR Code */}
+                  <div
+                    style={{
+                      animation: 'fadeInUp 0.8s ease-out 0.8s both',
+                      flexShrink: 0,
+                      marginTop: 'clamp(110px, 4vh, 150px)',
+                      alignSelf: 'flex-start'
+                    }}
+                  >
+                    <img
+                      src="/gulfconsultqr.jpeg"
+                      alt="Gulf Consult QR Code"
+                      style={{
+                        maxWidth: 'var(--gulf-qr-size, clamp(160px, 18vw, 240px))',
+                        maxHeight: 'var(--gulf-qr-size, clamp(160px, 18vw, 240px))',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+                        backgroundColor: '#ffffff',
+                        padding: '8px'
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -1819,9 +3713,9 @@ export default function App() {
                 <button
                   onClick={() => setShowGulfConsult2LearnMore(true)}
                   style={{
-                    marginTop: 'clamp(20px, 3vh, 32px)',
-                    padding: '14px 32px',
-                    fontSize: '15px',
+                    marginTop: 'clamp(20px, 3vh, 36px)',
+                    padding: 'var(--gulf-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
+                    fontSize: 'var(--gulf-button-font, clamp(16px, 1.8vw, 22px))',
                     fontWeight: '700',
                     color: '#ffffff',
                     background: '#16348a',
@@ -1847,6 +3741,182 @@ export default function App() {
                 >
                   Learn More
                 </button>
+              </div>
+
+              {/* Gulf Logo Play Button - Right Side (on diamond images) */}
+              {!gulfLogoVideoFullscreen && (
+                <div
+                  style={{
+                    position: 'fixed',
+                    right: '15%',
+                    top: '40%',
+                    transform: 'translate(50%, -50%)',
+                    zIndex: 11,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    animation: 'fadeInUp 0.8s ease-out 0.3s both'
+                  }}
+                  onClick={async () => {
+                    if (gulfLogoVideoContainerRef.current) {
+                      try {
+                        // فتح fullscreen
+                        setGulfLogoVideoFullscreen(true);
+                        setGulfLogoVideoPlaying(true);
+
+                        let fullscreenPromise;
+                        if (gulfLogoVideoContainerRef.current.requestFullscreen) {
+                          fullscreenPromise = gulfLogoVideoContainerRef.current.requestFullscreen();
+                        } else if (gulfLogoVideoContainerRef.current.webkitRequestFullscreen) {
+                          fullscreenPromise = gulfLogoVideoContainerRef.current.webkitRequestFullscreen();
+                        } else if (gulfLogoVideoContainerRef.current.msRequestFullscreen) {
+                          fullscreenPromise = gulfLogoVideoContainerRef.current.msRequestFullscreen();
+                        }
+
+                        if (fullscreenPromise) {
+                          await fullscreenPromise;
+                        }
+                      } catch (error) {
+                        console.error('Error opening fullscreen:', error);
+                      }
+                    }
+                  }}
+                >
+                  {/* Animation Text */}
+                  <div
+                    style={{
+                      color: '#ffffff',
+                      fontSize: 'clamp(14px, 1.6vw, 22px)',
+                      fontWeight: '600',
+                      marginBottom: 'clamp(16px, 2vh, 24px)',
+                      textAlign: 'center',
+                      animation: 'pulse 2s ease-in-out infinite',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                    }}
+                  >
+                    Click to play video
+                  </div>
+                  
+                  {/* Play Button */}
+                  <div
+                    style={{
+                      width: 'var(--gulf-play-button-size, clamp(90px, 8vw, 130px))',
+                      height: 'var(--gulf-play-button-size, clamp(90px, 8vw, 130px))',
+                      borderRadius: '50%',
+                      background: 'rgba(22, 52, 138, 0.9)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 20px rgba(22, 52, 138, 0.4)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(22, 52, 138, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                      e.currentTarget.style.boxShadow = '0 6px 30px rgba(22, 52, 138, 0.6)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(22, 52, 138, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(22, 52, 138, 0.4)';
+                    }}
+                  >
+                    <svg
+                      width="clamp(40px, 4vw, 60px)"
+                      height="clamp(40px, 4vw, 60px)"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      style={{ marginLeft: '6px' }}
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+
+              {/* Gulf Logo Video - Hidden for fullscreen (Cloudinary iframe) */}
+              <div
+                ref={gulfLogoVideoContainerRef}
+                style={{
+                  position: 'fixed',
+                  right: gulfLogoVideoFullscreen ? '0' : '-9999px',
+                  top: gulfLogoVideoFullscreen ? '0' : '-9999px',
+                  width: gulfLogoVideoFullscreen ? '100vw' : '0',
+                  height: gulfLogoVideoFullscreen ? '100vh' : '0',
+                  zIndex: gulfLogoVideoFullscreen ? 9999 : -1,
+                  backgroundColor: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {gulfLogoVideoFullscreen && (
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=gulfconsult_pjinhc&profile=cld-default"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      aspectRatio: '640 / 360',
+                      border: 'none'
+                    }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                  />
+                )}
+                {gulfLogoVideoFullscreen && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // إغلاق fullscreen يدوياً
+                      if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                      } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                      } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                      }
+                      setGulfLogoVideoFullscreen(false);
+                      setGulfLogoVideoPlaying(false);
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      zIndex: 10000
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                    >
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                  </div>
+                )}
               </div>
             </>
           ) : (
@@ -2997,28 +5067,482 @@ export default function App() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            color: '#ffffff'
+            justifyContent: 'flex-start',
+            color: '#ffffff',
+            paddingTop: '80px'
           }}>
-            <h1 style={{
-              fontSize: 'clamp(28px, 3.5vw, 42px)',
-              fontWeight: '900',
-              marginBottom: '30px',
-              color: '#ff4b4b',
-              textTransform: 'uppercase',
-              letterSpacing: '2px'
+            {/* Tabs Navigation */}
+            <div style={{
+              display: 'flex',
+              gap: '10px',
+              marginBottom: '40px',
+              zIndex: 10
             }}>
-              ADVANCED MICRO TECHNOLOGIES
-            </h1>
-            <p style={{
-              fontSize: 'clamp(16px, 1.5vw, 20px)',
-              lineHeight: '1.8',
-              maxWidth: '800px',
-              textAlign: 'center',
-              marginBottom: '40px'
-            }}>
-              More information about AMT will be available here.
-            </p>
+              <button
+                onClick={() => setAmtActiveTab('tab3')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: amtActiveTab === 'tab3' ? '#ffffff' : '#ff4b4b',
+                  background: amtActiveTab === 'tab3' ? '#ff4b4b' : 'rgba(255, 255, 255, 0.2)',
+                  border: '2px solid #ff4b4b',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px'
+                }}
+                onMouseEnter={(e) => {
+                  if (amtActiveTab !== 'tab3') {
+                    e.currentTarget.style.background = 'rgba(255, 75, 75, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (amtActiveTab !== 'tab3') {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+                  }
+                }}
+              >
+                OUR PARTNERS
+              </button>
+              <button
+                onClick={() => setAmtActiveTab('tab2')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: amtActiveTab === 'tab2' ? '#ffffff' : '#ff4b4b',
+                  background: amtActiveTab === 'tab2' ? '#ff4b4b' : 'rgba(255, 255, 255, 0.2)',
+                  border: '2px solid #ff4b4b',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px'
+                }}
+                onMouseEnter={(e) => {
+                  if (amtActiveTab !== 'tab2') {
+                    e.currentTarget.style.background = 'rgba(255, 75, 75, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (amtActiveTab !== 'tab2') {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+                  }
+                }}
+              >
+                Our TEAM
+              </button>
+              <button
+                onClick={() => setAmtActiveTab('tab1')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: amtActiveTab === 'tab1' ? '#ffffff' : '#ff4b4b',
+                  background: amtActiveTab === 'tab1' ? '#ff4b4b' : 'rgba(255, 255, 255, 0.2)',
+                  border: '2px solid #ff4b4b',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px'
+                }}
+                onMouseEnter={(e) => {
+                  if (amtActiveTab !== 'tab1') {
+                    e.currentTarget.style.background = 'rgba(255, 75, 75, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (amtActiveTab !== 'tab1') {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+                  }
+                }}
+              >
+                Our PROJECTS
+              </button>
+            </div>
+
+            {/* Tab Content */}
+            {amtActiveTab === 'tab1' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1200px',
+                textAlign: 'center',
+                color: '#ffffff',
+                padding: '20px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#ff4b4b',
+                  marginBottom: '30px',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase'
+                }}>
+                  Our PROJECTS
+                </h1>
+                <p style={{
+                  fontSize: 'clamp(16px, 1.5vw, 20px)',
+                  lineHeight: '1.8',
+                  color: '#ffffff'
+                }}>
+                  Our projects showcase our expertise in advanced micro technologies and innovative solutions.
+                </p>
+              </div>
+            )}
+
+            {amtActiveTab === 'tab2' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1200px',
+                textAlign: 'center',
+                color: '#ffffff',
+                padding: '20px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#ff4b4b',
+                  marginBottom: '30px',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase'
+                }}>
+                  Our TEAM
+                </h1>
+                <p style={{
+                  fontSize: 'clamp(16px, 1.5vw, 20px)',
+                  lineHeight: '1.8',
+                  color: '#ffffff'
+                }}>
+                  Our dedicated team of experts brings years of experience in advanced micro technologies and innovation.
+                </p>
+              </div>
+            )}
+
+            {amtActiveTab === 'tab3' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1200px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '20px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#ff4b4b',
+                  marginBottom: 'clamp(20px, 3vh, 30px)',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase',
+                  textAlign: 'center'
+                }}>
+                  OUR PARTNERS
+                </h1>
+                
+                {/* Partners Grid */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'clamp(15px, 2vh, 20px)',
+                  width: '100%',
+                  maxWidth: '1000px',
+                  alignItems: 'center',
+                  marginLeft: 'clamp(20px, 3vw, 40px)'
+                }}>
+                  {/* Row 1: 5 logos */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(5, 1fr)',
+                    gap: 'clamp(15px, 2vw, 25px)',
+                    width: '100%'
+                  }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 82.png"
+                      alt="Kingdom of Saudi Arabia"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 83.png"
+                      alt="Imam Abdulrahman Bin Faisal University"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 84.png"
+                      alt="Ma'aden"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 85.png"
+                      alt="King Faisal University"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 86.png"
+                      alt="Marafiq"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  </div>
+                  
+                  {/* Row 2: 5 logos */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(5, 1fr)',
+                    gap: 'clamp(15px, 2vw, 25px)',
+                    width: '100%'
+                  }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 87.png"
+                      alt="Saudi Arabia"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 90.png"
+                      alt="Ministry of Health"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 91.png"
+                      alt="Ministry of Finance"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 92.png"
+                      alt="King Saud University"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 95.png"
+                      alt="Aramco"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <button
             onClick={() => setShowAMTLearnMore(false)}
@@ -3066,7 +5590,7 @@ export default function App() {
           bottom: 0,
           width: '100vw',
           height: '100vh',
-          backgroundImage: 'url(/gulf-internal.jpeg)',
+          backgroundImage: 'url(/gulfconsultbg.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -3081,28 +5605,516 @@ export default function App() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            color: '#ffffff'
+            justifyContent: 'flex-start',
+            color: '#ffffff',
+            paddingTop: '80px'
           }}>
-            <h1 style={{
-              fontSize: 'clamp(28px, 3.5vw, 42px)',
-              fontWeight: '900',
-              marginBottom: '30px',
-              color: '#ffffff',
-              textTransform: 'uppercase',
-              letterSpacing: '2px'
+            {/* Tabs Navigation */}
+            <div style={{
+              display: 'flex',
+              gap: '10px',
+              marginBottom: '40px',
+              zIndex: 10
             }}>
-              GULF CONSULT
-            </h1>
-            <p style={{
-              fontSize: 'clamp(16px, 1.5vw, 20px)',
-              lineHeight: '1.8',
-              maxWidth: '800px',
-              textAlign: 'center',
-              marginBottom: '40px'
-            }}>
-              More information about Gulf Consult will be available here.
-            </p>
+              <button
+                onClick={() => setGulfConsult2ActiveTab('tab3')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: gulfConsult2ActiveTab === 'tab3' ? '#ffffff' : '#ffffff',
+                  background: gulfConsult2ActiveTab === 'tab3' ? 'rgba(33, 150, 243, 0.9)' : 'rgba(255, 255, 255, 0.2)',
+                  border: '2px solid rgba(33, 150, 243, 0.8)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px'
+                }}
+                onMouseEnter={(e) => {
+                  if (gulfConsult2ActiveTab !== 'tab3') {
+                    e.currentTarget.style.background = 'rgba(33, 150, 243, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (gulfConsult2ActiveTab !== 'tab3') {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+                  }
+                }}
+              >
+                OUR PARTNERS
+              </button>
+              <button
+                onClick={() => setGulfConsult2ActiveTab('tab2')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: gulfConsult2ActiveTab === 'tab2' ? '#ffffff' : '#ffffff',
+                  background: gulfConsult2ActiveTab === 'tab2' ? 'rgba(33, 150, 243, 0.9)' : 'rgba(255, 255, 255, 0.2)',
+                  border: '2px solid rgba(33, 150, 243, 0.8)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px'
+                }}
+                onMouseEnter={(e) => {
+                  if (gulfConsult2ActiveTab !== 'tab2') {
+                    e.currentTarget.style.background = 'rgba(33, 150, 243, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (gulfConsult2ActiveTab !== 'tab2') {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+                  }
+                }}
+              >
+                Our TEAM
+              </button>
+              <button
+                onClick={() => setGulfConsult2ActiveTab('tab1')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: gulfConsult2ActiveTab === 'tab1' ? '#ffffff' : '#ffffff',
+                  background: gulfConsult2ActiveTab === 'tab1' ? 'rgba(33, 150, 243, 0.9)' : 'rgba(255, 255, 255, 0.2)',
+                  border: '2px solid rgba(33, 150, 243, 0.8)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px'
+                }}
+                onMouseEnter={(e) => {
+                  if (gulfConsult2ActiveTab !== 'tab1') {
+                    e.currentTarget.style.background = 'rgba(33, 150, 243, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (gulfConsult2ActiveTab !== 'tab1') {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+                  }
+                }}
+              >
+                Our PROJECTS
+              </button>
+            </div>
+
+            {/* Tab Content */}
+            {gulfConsult2ActiveTab === 'tab1' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1400px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#ffffff',
+                padding: 'clamp(5px, 1vh, 10px)'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(20px, 2.2vw, 32px)',
+                  fontWeight: '900',
+                  color: '#ffffff',
+                  marginBottom: 'clamp(10px, 1.5vh, 15px)',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase',
+                  textAlign: 'center'
+                }}>
+                  OUR PROJECTS
+                </h1>
+                
+                {/* Project Image */}
+                <div style={{
+                  width: '100%',
+                  marginBottom: 'clamp(20px, 3vh, 30px)',
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}>
+                  <img
+                    src="/image 65.png"
+                    alt="Our Projects - Geotechnical Investigation"
+                    style={{
+                      width: '100%',
+                      maxWidth: 'clamp(450px, 55vw, 700px)',
+                      maxHeight: 'clamp(250px, 30vh, 350px)',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      borderRadius: '8px',
+                      boxShadow: 'none',
+                      background: 'transparent'
+                    }}
+                  />
+                </div>
+                
+                {/* Project Description */}
+                <div style={{
+                  width: '100%',
+                  maxWidth: 'clamp(450px, 55vw, 700px)',
+                  textAlign: 'left',
+                  padding: '0 20px',
+                  marginTop: 'clamp(15px, 2vh, 25px)'
+                }}>
+                  <p style={{
+                    fontSize: 'clamp(12px, 1.1vw, 16px)',
+                    lineHeight: '1.6',
+                    color: '#ffffff',
+                    marginBottom: '10px',
+                    fontFamily: 'Arial, sans-serif',
+                    fontWeight: 'normal',
+                    textTransform: 'lowercase'
+                  }}>
+                    gulf consult has recently completed an extensive geotechnical investigation for amiral project pre-feed/feed - block 15 and other areas; at jubail
+                  </p>
+                  <p style={{
+                    fontSize: 'clamp(12px, 1.1vw, 16px)',
+                    lineHeight: '1.6',
+                    color: '#ffffff',
+                    marginBottom: '10px',
+                    fontFamily: 'Arial, sans-serif',
+                    fontWeight: 'normal',
+                    textTransform: 'lowercase'
+                  }}>
+                    our scope of work includes drilling and sampling of over 900 boreholes and cross hole seismic test, soil electrical resistivity, plate load test, surface seismic refraction test
+                  </p>
+                  <p style={{
+                    fontSize: 'clamp(12px, 1.1vw, 16px)',
+                    lineHeight: '1.6',
+                    color: '#ffffff',
+                    fontFamily: 'Arial, sans-serif',
+                    fontWeight: 'normal',
+                    textTransform: 'lowercase'
+                  }}>
+                    the client for this project is worley parsons
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {gulfConsult2ActiveTab === 'tab2' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1200px',
+                textAlign: 'center',
+                color: '#ffffff',
+                padding: '20px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#ffffff',
+                  marginBottom: '30px',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase'
+                }}>
+                  Our TEAM
+                </h1>
+                <p style={{
+                  fontSize: 'clamp(16px, 1.5vw, 20px)',
+                  lineHeight: '1.8',
+                  color: '#ffffff'
+                }}>
+                  Our dedicated team brings over 42 years of combined experience in providing high-quality engineering and environmental services.
+                </p>
+              </div>
+            )}
+
+            {gulfConsult2ActiveTab === 'tab3' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1200px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 'clamp(10px, 2vh, 20px)'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#ffffff',
+                  marginBottom: 'clamp(20px, 3vh, 30px)',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase',
+                  textAlign: 'center'
+                }}>
+                  OUR PARTNERS
+                </h1>
+                
+                {/* Partners Grid */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'clamp(15px, 2vh, 20px)',
+                  width: '100%',
+                  maxWidth: '1000px',
+                  alignItems: 'center'
+                }}>
+                  {/* Row 1: 4 logos */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(4, 1fr)',
+                    gap: 'clamp(15px, 2vw, 25px)',
+                    width: '100%'
+                  }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 61.png"
+                      alt="Al-Watania Poultry"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 60.png"
+                      alt="United Global Contractors"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 59.png"
+                      alt="HUTA HEGERFELD"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 58.png"
+                      alt="Saudi Aramco"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  </div>
+                  
+                  {/* Row 2: 5 logos */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(5, 1fr)',
+                    gap: 'clamp(15px, 2vw, 25px)',
+                    width: '100%'
+                  }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 53.png"
+                      alt="Saudi Electricity Company"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 54.png"
+                      alt="Samsung Engineering"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 55.png"
+                      alt="KBR"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 56.png"
+                      alt="C.A.T. GROUP"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    background: 'transparent',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <img
+                      src="/Group 57.png"
+                      alt="ARCHIRODON"
+                      style={{
+                        width: 'clamp(140px, 18vw, 200px)',
+                        height: 'auto',
+                        maxHeight: 'clamp(140px, 18vw, 200px)',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <button
             onClick={() => setShowGulfConsult2LearnMore(false)}
@@ -3151,7 +6163,7 @@ export default function App() {
           width: '100vw',
           height: '100vh',
           backgroundColor: '#e0f7fa',
-          backgroundImage: 'url(/gcg-gif.gif)',
+          backgroundImage: 'url(/gsg-ourpartnersbg.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -3166,29 +6178,229 @@ export default function App() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            color: '#07373c'
+            justifyContent: 'flex-start',
+            color: '#07373c',
+            paddingTop: '80px'
           }}>
-            <h1 style={{
-              fontSize: 'clamp(28px, 3.5vw, 42px)',
-              fontWeight: '900',
-              marginBottom: '30px',
-              color: '#07373c',
-              textTransform: 'uppercase',
-              letterSpacing: '2px'
-            }}>
-              GROUND SYSTEMS GEOPHYSICAL (GSG)
-            </h1>
-            <p style={{
-              fontSize: 'clamp(16px, 1.5vw, 20px)',
-              lineHeight: '1.8',
-              maxWidth: '800px',
-              textAlign: 'center',
+            {/* Tabs Navigation */}
+            <div style={{
+              display: 'flex',
+              gap: '10px',
               marginBottom: '40px',
-              color: '#07373c'
+              zIndex: 10
             }}>
-              More information about GSG will be available here.
-            </p>
+              <button
+                onClick={() => setGsgActiveTab('tab1')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: gsgActiveTab === 'tab1' ? '#ffffff' : '#07373c',
+                  background: gsgActiveTab === 'tab1' ? '#07373c' : 'rgba(255, 255, 255, 0.9)',
+                  border: '2px solid #07373c',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px'
+                }}
+                onMouseEnter={(e) => {
+                  if (gsgActiveTab !== 'tab1') {
+                    e.currentTarget.style.background = 'rgba(7, 55, 60, 0.1)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (gsgActiveTab !== 'tab1') {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                  }
+                }}
+              >
+                Our PROJECTS
+              </button>
+              <button
+                onClick={() => setGsgActiveTab('tab2')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: gsgActiveTab === 'tab2' ? '#ffffff' : '#07373c',
+                  background: gsgActiveTab === 'tab2' ? '#07373c' : 'rgba(255, 255, 255, 0.9)',
+                  border: '2px solid #07373c',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px'
+                }}
+                onMouseEnter={(e) => {
+                  if (gsgActiveTab !== 'tab2') {
+                    e.currentTarget.style.background = 'rgba(7, 55, 60, 0.1)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (gsgActiveTab !== 'tab2') {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                  }
+                }}
+              >
+                Our TEAM
+              </button>
+              <button
+                onClick={() => setGsgActiveTab('tab3')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: gsgActiveTab === 'tab3' ? '#ffffff' : '#07373c',
+                  background: gsgActiveTab === 'tab3' ? '#07373c' : 'rgba(255, 255, 255, 0.9)',
+                  border: '2px solid #07373c',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px'
+                }}
+                onMouseEnter={(e) => {
+                  if (gsgActiveTab !== 'tab3') {
+                    e.currentTarget.style.background = 'rgba(7, 55, 60, 0.1)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (gsgActiveTab !== 'tab3') {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                  }
+                }}
+              >
+                OUR PARTNERS
+              </button>
+            </div>
+
+            {/* Tab Content */}
+            {gsgActiveTab === 'tab1' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1200px',
+                textAlign: 'center',
+                color: '#07373c',
+                padding: '20px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#07373c',
+                  marginBottom: '30px',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase'
+                }}>
+                  Our PROJECTS
+                </h1>
+                <p style={{
+                  fontSize: 'clamp(16px, 1.5vw, 20px)',
+                  lineHeight: '1.8',
+                  color: '#07373c'
+                }}>
+                  Our projects showcase our expertise in geophysical, geological, environmental, and engineering solutions across various industries.
+                </p>
+              </div>
+            )}
+
+            {gsgActiveTab === 'tab2' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1200px',
+                textAlign: 'center',
+                color: '#07373c',
+                padding: '20px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#07373c',
+                  marginBottom: '30px',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase'
+                }}>
+                  Our TEAM
+                </h1>
+                <p style={{
+                  fontSize: 'clamp(16px, 1.5vw, 20px)',
+                  lineHeight: '1.8',
+                  color: '#07373c'
+                }}>
+                  Our dedicated team of scientists, engineers, and experts brings decades of combined experience to deliver innovative solutions for your projects.
+                </p>
+              </div>
+            )}
+
+            {gsgActiveTab === 'tab3' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1200px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '20px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#07373c',
+                  marginBottom: '60px',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase',
+                  textAlign: 'center'
+                }}>
+                  OUR PARTNERS
+                </h1>
+                
+                {/* Partner Logos */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: 'clamp(30px, 5vw, 60px)',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  marginTop: '20px',
+                  marginBottom: '40px'
+                }}>
+                  <img
+                    src="/gcgpartner3 (3).png"
+                    alt="GCG Partner"
+                    style={{
+                      width: 'clamp(200px, 20vw, 280px)',
+                      height: 'auto',
+                      maxHeight: '200px',
+                      objectFit: 'contain',
+                      filter: 'drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2))'
+                    }}
+                  />
+                  <img
+                    src="/gcgpartner3 (2).png"
+                    alt="GeoPRO Partner"
+                    style={{
+                      width: 'clamp(200px, 20vw, 280px)',
+                      height: 'auto',
+                      maxHeight: '200px',
+                      objectFit: 'contain',
+                      filter: 'drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2))'
+                    }}
+                  />
+                  <img
+                    src="/gcgpartner3 (1).png"
+                    alt="DMT Partner"
+                    style={{
+                      width: 'clamp(200px, 20vw, 280px)',
+                      height: 'auto',
+                      maxHeight: '200px',
+                      objectFit: 'contain',
+                      filter: 'drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2))'
+                    }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
           <button
             onClick={() => setShowGSGLearnMore(false)}
@@ -3504,14 +6716,17 @@ export default function App() {
           bottom: 0,
           width: '100vw',
           height: '100vh',
-          backgroundColor: '#0a2e1f',
-          backgroundImage: 'url(/ah-gif.gif)',
-          backgroundSize: 'cover',
+          margin: 0,
+          padding: 0,
+          backgroundColor: ahEnvironmentalActiveTab === 'tab1' ? '#ffffff' : '#283152',
+          backgroundImage: ahEnvironmentalActiveTab === 'tab1' ? 'none' : (ahEnvironmentalActiveTab === 'tab3' ? 'url(/bgourproject.png)' : 'url(/bgforah.png)'),
+          backgroundSize: '100% 100%',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           zIndex: 2000,
           animation: 'fadeIn 0.6s ease-in-out',
-          overflow: 'auto'
+          overflow: 'auto',
+          boxSizing: 'border-box'
         }}>
           <div style={{
             width: '100%',
@@ -3520,29 +6735,341 @@ export default function App() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            color: '#ffffff'
+            justifyContent: 'flex-start',
+            color: '#ffffff',
+            paddingTop: '80px'
           }}>
-            <h1 style={{
-              fontSize: 'clamp(28px, 3.5vw, 42px)',
-              fontWeight: '900',
-              marginBottom: '30px',
-              color: '#ffffff',
-              textTransform: 'uppercase',
-              letterSpacing: '2px'
-            }}>
-              AH ENVIRONMENTAL CONSULTING
-            </h1>
-            <p style={{
-              fontSize: 'clamp(16px, 1.5vw, 20px)',
-              lineHeight: '1.8',
-              maxWidth: '800px',
-              textAlign: 'center',
+            {/* Tabs Navigation */}
+            <div style={{
+              display: 'flex',
+              gap: '10px',
               marginBottom: '40px',
-              color: '#ffffff'
+              zIndex: 10
             }}>
-              More information about AH Environmental Consulting will be available here.
-            </p>
+              <button
+                onClick={() => setAhEnvironmentalActiveTab('tab1')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: ahEnvironmentalActiveTab === 'tab1' ? '#ffffff' : '#283152',
+                  background: ahEnvironmentalActiveTab === 'tab1' ? 'rgba(40, 60, 100, 0.9)' : 'rgba(255, 255, 255, 0.8)',
+                  border: '2px solid rgba(40, 60, 100, 0.8)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px',
+                  whiteSpace: 'nowrap',
+                  overflow: 'visible',
+                  textOverflow: 'clip'
+                }}
+                onMouseEnter={(e) => {
+                  if (ahEnvironmentalActiveTab !== 'tab1') {
+                    e.currentTarget.style.background = 'rgba(40, 60, 100, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                    if (ahEnvironmentalActiveTab !== 'tab1') {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                    }
+                }}
+              >
+                OUR PARTNERS
+              </button>
+              <button
+                onClick={() => setAhEnvironmentalActiveTab('tab2')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: ahEnvironmentalActiveTab === 'tab2' ? '#ffffff' : '#283152',
+                  background: ahEnvironmentalActiveTab === 'tab2' ? 'rgba(40, 60, 100, 0.9)' : 'rgba(255, 255, 255, 0.8)',
+                  border: '2px solid rgba(40, 60, 100, 0.8)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px',
+                  whiteSpace: 'nowrap',
+                  overflow: 'visible',
+                  textOverflow: 'clip'
+                }}
+                onMouseEnter={(e) => {
+                  if (ahEnvironmentalActiveTab !== 'tab2') {
+                    e.currentTarget.style.background = 'rgba(40, 60, 100, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                    if (ahEnvironmentalActiveTab !== 'tab2') {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                    }
+                }}
+              >
+                Our TEAM
+              </button>
+              <button
+                onClick={() => setAhEnvironmentalActiveTab('tab3')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: ahEnvironmentalActiveTab === 'tab3' ? '#ffffff' : '#283152',
+                  background: ahEnvironmentalActiveTab === 'tab3' ? 'rgba(40, 60, 100, 0.9)' : 'rgba(255, 255, 255, 0.8)',
+                  border: '2px solid rgba(40, 60, 100, 0.8)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px',
+                  whiteSpace: 'nowrap',
+                  overflow: 'visible',
+                  textOverflow: 'clip'
+                }}
+                onMouseEnter={(e) => {
+                  if (ahEnvironmentalActiveTab !== 'tab3') {
+                    e.currentTarget.style.background = 'rgba(40, 60, 100, 0.3)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                    if (ahEnvironmentalActiveTab !== 'tab3') {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                    }
+                }}
+              >
+                Our PROJECTS
+              </button>
+            </div>
+
+            {/* Tab Content */}
+            {ahEnvironmentalActiveTab === 'tab1' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1400px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '40px',
+                backgroundColor: 'transparent',
+                minHeight: '600px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#283152',
+                  marginBottom: 'clamp(30px, 4vh, 50px)',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase',
+                  textAlign: 'center'
+                }}>
+                  OUR PARTNERS
+                </h1>
+                
+                {/* Partners Grid - 12 logos in 2 rows of 6 */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'clamp(20px, 3vh, 30px)',
+                  width: '100%',
+                  alignItems: 'center'
+                }}>
+                  {/* Row 1: 6 logos */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(6, 1fr)',
+                    gap: 'clamp(15px, 2vw, 25px)',
+                    width: '100%',
+                    maxWidth: '1200px'
+                  }}>
+                  {[67, 70, 71, 72, 73, 74].map((num) => (
+                    <div key={num} style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '15px',
+                      background: 'transparent',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                    >
+                      <img
+                        src={`/Group ${num}.png`}
+                        alt={`Partner ${num}`}
+                        style={{
+                          width: 'clamp(100px, 12vw, 150px)',
+                          height: 'auto',
+                          maxHeight: 'clamp(100px, 12vw, 150px)',
+                          objectFit: 'contain'
+                        }}
+                      />
+                    </div>
+                  ))}
+                  </div>
+                  
+                  {/* Row 2: 6 logos */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(6, 1fr)',
+                    gap: 'clamp(15px, 2vw, 25px)',
+                    width: '100%',
+                    maxWidth: '1200px'
+                  }}>
+                  {[75, 76, 77, 78, 79, 80].map((num) => (
+                    <div key={num} style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '15px',
+                      background: 'transparent',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                    >
+                      <img
+                        src={`/Group ${num}.png`}
+                        alt={`Partner ${num}`}
+                        style={{
+                          width: 'clamp(100px, 12vw, 150px)',
+                          height: 'auto',
+                          maxHeight: 'clamp(100px, 12vw, 150px)',
+                          objectFit: 'contain'
+                        }}
+                      />
+                    </div>
+                  ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {ahEnvironmentalActiveTab === 'tab2' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1400px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '40px',
+                backgroundColor: 'transparent'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  color: '#ffffff',
+                  marginBottom: '30px',
+                  letterSpacing: '1.5px',
+                  textTransform: 'uppercase',
+                  textAlign: 'center',
+                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)'
+                }}>
+                  Our TEAM
+                </h1>
+                <img
+                  src="/ahourteam.png"
+                  alt="Our Team"
+                  style={{
+                    width: '100%',
+                    maxWidth: 'clamp(800px, 80vw, 1000px)',
+                    maxHeight: 'clamp(400px, 50vh, 500px)',
+                    height: 'auto',
+                    objectFit: 'contain',
+                    borderRadius: '12px'
+                  }}
+                />
+              </div>
+            )}
+
+            {ahEnvironmentalActiveTab === 'tab3' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1400px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                padding: '40px',
+                backgroundColor: 'transparent',
+                minHeight: '500px'
+              }}>
+                 {/* Title at Top Center */}
+                 <h1 style={{
+                   fontSize: 'clamp(24px, 2.5vw, 36px)',
+                   fontWeight: '900',
+                   color: '#7b1fa2',
+                   marginBottom: '30px',
+                   letterSpacing: '1.5px',
+                   textTransform: 'uppercase',
+                   textAlign: 'center',
+                   textShadow: '0 2px 8px rgba(123, 31, 162, 0.4)'
+                 }}>
+                   Our PROJECTS
+                 </h1>
+                
+                {/* Content Row: Text and Image */}
+                <div style={{
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'flex-start',
+                  justifyContent: 'center',
+                  gap: 'clamp(30px, 4vw, 50px)'
+                }}>
+                  {/* Left Side - Text Content */}
+                  <div style={{
+                    flex: '1',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    justifyContent: 'flex-start',
+                    paddingTop: '20px'
+                  }}>
+                  <p style={{
+                    fontSize: 'clamp(14px, 1.3vw, 18px)',
+                    lineHeight: '1.8',
+                    color: '#ffffff',
+                    textAlign: 'left',
+                    marginBottom: '0',
+                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)'
+                  }}>
+                    finovate offerings for industries at finovate, we go beyond one-size-fits-all solutions by offering customized bpm services designed to meet the unique needs of diverse industries. our digital business process management services, combined with expert consulting, seamless technology integration, and proven customer experience strategies, drive significant productivity and cost-efficiency gains. we don't just optimize processes—we transform them to elevate your industry.
+                  </p>
+                  </div>
+                  
+                  {/* Right Side - Image */}
+                  <div style={{
+                    flex: '1',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <img
+                      src="/photo66.png"
+                      alt="Projects Chart"
+                      style={{
+                        width: '100%',
+                        maxWidth: '400px',
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <button
             onClick={() => setShowAHEnvironmentalLearnMore(false)}

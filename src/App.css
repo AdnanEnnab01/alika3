@@ -9,6 +9,168 @@
   position: relative;
 }
 
+/* CSS Variables for 16:9 responsive design */
+:root {
+  --main-logo-size: clamp(280px, 32vw, 550px);
+  --grid-item-size: clamp(110px, 10vw, 170px);
+  --grid-gap: clamp(18px, 1.8vw, 30px);
+  --left-panel-width: clamp(30%, 35vw, 40%);
+  --right-panel-width: clamp(60%, 65vw, 70%);
+  --main-padding: clamp(20px, 3vw, 60px);
+  
+  /* Gulf Consult specific variables */
+  --gulf-logo-size: clamp(180px, 12vw, 280px);
+  --gulf-logo-top: clamp(10px, 1.5vh, 30px);
+  --gulf-logo-left: clamp(30px, 3vw, 60px);
+  --gulf-content-bottom: clamp(40px, 5vh, 80px);
+  --gulf-content-left: clamp(30px, 3vw, 60px);
+  --gulf-content-max-width: clamp(600px, 50vw, 900px);
+  --gulf-title-size: clamp(32px, 4vw, 56px);
+  --gulf-subtitle-size: clamp(13px, 1.3vw, 20px);
+  --gulf-text-size: clamp(14px, 1.6vw, 22px);
+  --gulf-info-size: clamp(15px, 1.7vw, 24px);
+  --gulf-button-padding: clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px);
+  --gulf-button-font: clamp(16px, 1.8vw, 22px);
+  --gulf-qr-size: clamp(160px, 18vw, 240px);
+  --gulf-play-button-size: clamp(90px, 8vw, 130px);
+  --gulf-play-text-size: clamp(14px, 1.5vw, 18px);
+  --gulf-content-gap: clamp(18px, 2.5vh, 28px);
+  
+  /* AMT specific variables */
+  --amt-logo-size: clamp(300px, 25vw, 500px);
+  --amt-logo-height: clamp(150px, 12vw, 250px);
+  --amt-internal-image-size: clamp(450px, 50vw, 700px);
+  --amt-title-size: clamp(28px, 3.8vw, 52px);
+  --amt-text-size: clamp(15px, 1.7vw, 24px);
+  --amt-info-size: clamp(15px, 1.7vw, 24px);
+  --amt-button-padding: clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px);
+  --amt-button-font: clamp(16px, 1.8vw, 22px);
+  --amt-qr-size: clamp(160px, 18vw, 240px);
+  --amt-play-button-size: clamp(90px, 8vw, 130px);
+  --amt-content-max-width: clamp(600px, 50vw, 900px);
+  
+  /* GSG specific variables */
+  --gsg-logo-size: clamp(200px, 15vw, 320px);
+  --gsg-title-size: clamp(26px, 3.5vw, 48px);
+  --gsg-text-size: clamp(14px, 1.6vw, 22px);
+  --gsg-info-size: clamp(14px, 1.6vw, 22px);
+  --gsg-button-padding: clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px);
+  --gsg-button-font: clamp(16px, 1.8vw, 22px);
+  --gsg-internal-image-size: clamp(450px, 45vw, 650px);
+  --gsg-content-max-width: clamp(600px, 50vw, 900px);
+  
+  /* Dorrah specific variables */
+  --dorrah-logo-size: clamp(220px, 18vw, 320px);
+  --dorrah-title-size: clamp(24px, 3vw, 40px);
+  --dorrah-text-size: clamp(13px, 1.5vw, 20px);
+  --dorrah-info-size: clamp(13px, 1.5vw, 20px);
+  --dorrah-button-padding: clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px);
+  --dorrah-button-font: clamp(16px, 1.8vw, 22px);
+  --dorrah-play-button-size: clamp(90px, 8vw, 130px);
+  --dorrah-qr-size: clamp(150px, 20vw, 200px);
+  --dorrah-content-max-width: clamp(600px, 50vw, 850px);
+  
+  /* Central Medicalcare specific variables */
+  --central-logo-size: clamp(180px, 14vw, 280px);
+  --central-title-size: clamp(22px, 3.2vw, 44px);
+  --central-text-size: clamp(13px, 1.5vw, 20px);
+  --central-info-size: clamp(13px, 1.5vw, 20px);
+  --central-button-padding: clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px);
+  --central-button-font: clamp(16px, 1.8vw, 22px);
+  --central-qr-size: clamp(160px, 18vw, 240px);
+  --central-play-button-size: clamp(90px, 8vw, 130px);
+  --central-content-max-width: clamp(600px, 50vw, 900px);
+  
+  /* ETLCO (TLCO) specific variables */
+  --tlco-logo-width: clamp(220px, 18vw, 320px);
+  --tlco-logo-height: clamp(130px, 10vw, 200px);
+  --tlco-title-size: clamp(26px, 3.5vw, 44px);
+  --tlco-text-size: clamp(13px, 1.5vw, 20px);
+  --tlco-info-size: clamp(13px, 1.5vw, 20px);
+  --tlco-button-padding: clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px);
+  --tlco-button-font: clamp(16px, 1.8vw, 22px);
+  --tlco-qr-size: clamp(160px, 18vw, 240px);
+  --tlco-play-button-size: clamp(90px, 8vw, 130px);
+  --tlco-internal-image-size: clamp(480px, 46vw, 650px);
+  --tlco-content-max-width: clamp(600px, 50vw, 850px);
+  
+  /* RK specific variables */
+  --rk-logo-width: clamp(250px, 35vw, 450px);
+  --rk-logo-height: clamp(350px, 35vh, 550px);
+  --rk-text-size: clamp(16px, 2vw, 28px);
+  --rk-info-size: clamp(16px, 2vw, 28px);
+  --rk-button-padding: clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px);
+  --rk-button-font: clamp(16px, 1.8vw, 22px);
+  --rk-internal-image-width: clamp(450px, 40vw, 650px);
+  --rk-internal-image-height: clamp(540px, 50vh, 750px);
+  --rk-content-max-width: clamp(600px, 50vw, 850px);
+  --rk-qr-size: clamp(150px, 20vw, 200px);
+  
+  /* Antique specific variables */
+  --antique-logo-size: clamp(200px, 18vw, 300px);
+  --antique-logo-top: clamp(30px, 3vh, 60px);
+  --antique-logo-left: clamp(30px, 3vw, 60px);
+  --antique-content-top: clamp(220px, 25vh, 320px);
+  --antique-content-left: clamp(30px, 3vw, 60px);
+  --antique-content-max-width: clamp(650px, 52vw, 850px);
+  --antique-title-size: clamp(28px, 3.2vw, 52px);
+  --antique-text-size: clamp(16px, 1.8vw, 24px);
+  --antique-info-size: clamp(16px, 1.8vw, 24px);
+  --antique-button-padding: clamp(18px, 2vw, 26px) clamp(40px, 4vw, 56px);
+  --antique-button-font: clamp(18px, 1.9vw, 26px);
+  --antique-play-button-size: clamp(90px, 8vw, 140px);
+  --antique-play-text-size: clamp(16px, 1.8vw, 24px);
+  --antique-qr-size: clamp(150px, 20vw, 200px);
+  --antique-content-gap: clamp(20px, 2.5vh, 32px);
+  
+  /* AH Environmental specific variables */
+  --ah-logo-size: clamp(200px, 18vw, 300px);
+  --ah-logo-height: clamp(150px, 14vw, 220px);
+  --ah-logo-top: clamp(30px, 3vh, 50px);
+  --ah-logo-left: clamp(30px, 3vw, 60px);
+  --ah-content-top: clamp(250px, 30vh, 350px);
+  --ah-content-left: clamp(30px, 3vw, 60px);
+  --ah-content-max-width: clamp(580px, 48vw, 750px);
+  --ah-title-size: clamp(24px, 3vw, 44px);
+  --ah-text-size: clamp(13px, 1.4vw, 20px);
+  --ah-info-size: clamp(13px, 1.4vw, 20px);
+  --ah-button-padding: clamp(14px, 1.6vw, 22px) clamp(32px, 3.2vw, 48px);
+  --ah-button-font: clamp(15px, 1.6vw, 22px);
+  --ah-content-gap: clamp(10px, 1.5vh, 18px);
+  
+  /* IDC specific variables */
+  --idc-logo-size: clamp(200px, 18vw, 300px);
+  --idc-logo-top: clamp(10px, 1.5vh, 30px);
+  --idc-logo-left: clamp(30px, 3vw, 60px);
+  --idc-content-top: clamp(280px, 32vh, 380px);
+  --idc-content-left: clamp(30px, 3vw, 60px);
+  --idc-content-max-width: clamp(680px, 50vw, 850px);
+  --idc-title-size: clamp(26px, 3.2vw, 48px);
+  --idc-text-size: clamp(13px, 1.35vw, 20px);
+  --idc-info-size: clamp(13px, 1.35vw, 20px);
+  --idc-button-padding: clamp(14px, 1.6vw, 22px) clamp(32px, 3.2vw, 48px);
+  --idc-button-font: clamp(15px, 1.6vw, 22px);
+  --idc-qr-size: clamp(150px, 20vw, 220px);
+  --idc-play-button-size: clamp(90px, 8vw, 130px);
+  --idc-play-text-size: clamp(14px, 1.5vw, 18px);
+  --idc-content-gap: clamp(16px, 2vh, 24px);
+  
+  /* GTA specific variables */
+  --gta-logo-size: clamp(200px, 18vw, 300px);
+  --gta-logo-top: clamp(10px, 1.5vh, 30px);
+  --gta-logo-left: clamp(30px, 3vw, 60px);
+  --gta-content-top: clamp(280px, 32vh, 380px);
+  --gta-content-left: clamp(30px, 3vw, 60px);
+  --gta-content-max-width: clamp(600px, 50vw, 800px);
+  --gta-title-size: clamp(24px, 3vw, 44px);
+  --gta-text-size: clamp(13px, 1.4vw, 20px);
+  --gta-info-size: clamp(13px, 1.4vw, 20px);
+  --gta-button-padding: clamp(14px, 1.6vw, 22px) clamp(32px, 3.2vw, 48px);
+  --gta-button-font: clamp(15px, 1.6vw, 22px);
+  --gta-qr-size: clamp(150px, 20vw, 220px);
+  --gta-content-gap: clamp(15px, 2vh, 25px);
+}
+
 /* تخصيص شريط التمرير ليكون أقل وضوحاً */
 .left-scroll-container::-webkit-scrollbar,
 .right-scroll-container::-webkit-scrollbar {
@@ -83,8 +245,11 @@
 }
 
 .left-hero-item--alika {
-  max-width: 400px;
+  max-width: var(--main-logo-size, 400px);
+  width: 100%;
+  height: auto;
   filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.25));
+  object-fit: contain;
 }
 
 @keyframes alikaOut {
@@ -1411,9 +1576,9 @@
 /* Gulf Consult responsive content spacing */
 .gulf-consult-content {
   position: fixed;
-  bottom: 60px;
-  left: 40px;
-  max-width: 720px;
+  top: clamp(240px, 28vh, 300px);
+  left: clamp(30px, 3vw, 60px);
+  max-width: var(--gulf-content-max-width, 720px);
   z-index: 12;
   color: #ffffff;
   direction: ltr;
@@ -1421,25 +1586,156 @@
   overflow: visible;
 }
 
+/* 16:9 specific adjustments for Gulf Consult */
+@media (min-width: 1920px) and (max-width: 2559px) and (min-height: 1080px) and (max-height: 1439px) {
+  .gulf-consult-content {
+    bottom: clamp(50px, 5vh, 90px);
+    left: clamp(50px, 4vw, 80px);
+    max-width: 850px;
+  }
+  
+  :root {
+    --gulf-logo-size: 260px;
+    --gulf-logo-top: 30px;
+    --gulf-logo-left: 50px;
+    --gulf-content-bottom: 60px;
+    --gulf-content-left: 50px;
+    --gulf-title-size: 52px;
+    --gulf-subtitle-size: 18px;
+    --gulf-text-size: 20px;
+    --gulf-info-size: 22px;
+    --gulf-button-padding: 20px 44px;
+    --gulf-button-font: 20px;
+    --gulf-qr-size: 220px;
+    --gulf-play-button-size: 120px;
+    --gulf-play-text-size: 18px;
+    --gulf-content-gap: 24px;
+  }
+}
+
+@media (min-width: 2560px) and (max-width: 3839px) and (min-height: 1440px) and (max-height: 2159px) {
+  .gulf-consult-content {
+    bottom: clamp(70px, 6vh, 110px);
+    left: clamp(60px, 5vw, 100px);
+    max-width: 1000px;
+  }
+  
+  :root {
+    --gulf-logo-size: 320px;
+    --gulf-logo-top: 40px;
+    --gulf-logo-left: 60px;
+    --gulf-content-bottom: 80px;
+    --gulf-content-left: 60px;
+    --gulf-title-size: 64px;
+    --gulf-subtitle-size: 22px;
+    --gulf-text-size: 24px;
+    --gulf-info-size: 26px;
+    --gulf-button-padding: 24px 52px;
+    --gulf-button-font: 24px;
+    --gulf-qr-size: 280px;
+    --gulf-play-button-size: 150px;
+    --gulf-play-text-size: 22px;
+    --gulf-content-gap: 28px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .gulf-consult-content {
+    bottom: clamp(100px, 7vh, 140px);
+    left: clamp(80px, 6vw, 120px);
+    max-width: 1200px;
+  }
+  
+  :root {
+    --gulf-logo-size: 420px;
+    --gulf-logo-top: 60px;
+    --gulf-logo-left: 80px;
+    --gulf-content-bottom: 120px;
+    --gulf-content-left: 80px;
+    --gulf-title-size: 84px;
+    --gulf-subtitle-size: 28px;
+    --gulf-text-size: 32px;
+    --gulf-info-size: 34px;
+    --gulf-button-padding: 32px 68px;
+    --gulf-button-font: 32px;
+    --gulf-qr-size: 360px;
+    --gulf-play-button-size: 200px;
+    --gulf-play-text-size: 28px;
+    --gulf-content-gap: 36px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .gulf-consult-content {
+    bottom: clamp(35px, 4vh, 60px);
+    left: clamp(35px, 2.5vw, 50px);
+    max-width: 680px;
+  }
+  
+  :root {
+    --gulf-logo-size: 200px;
+    --gulf-logo-top: 20px;
+    --gulf-logo-left: 40px;
+    --gulf-content-bottom: 45px;
+    --gulf-content-left: 40px;
+    --gulf-title-size: 40px;
+    --gulf-subtitle-size: 15px;
+    --gulf-text-size: 17px;
+    --gulf-info-size: 18px;
+    --gulf-button-padding: 16px 36px;
+    --gulf-button-font: 17px;
+    --gulf-qr-size: 180px;
+    --gulf-play-button-size: 100px;
+    --gulf-play-text-size: 16px;
+    --gulf-content-gap: 20px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) and (min-height: 720px) and (max-height: 767px) {
+  .gulf-consult-content {
+    bottom: clamp(30px, 3.5vh, 50px);
+    left: clamp(30px, 2.5vw, 45px);
+    max-width: 620px;
+  }
+  
+  :root {
+    --gulf-logo-size: 180px;
+    --gulf-logo-top: 15px;
+    --gulf-logo-left: 35px;
+    --gulf-content-bottom: 40px;
+    --gulf-content-left: 35px;
+    --gulf-title-size: 36px;
+    --gulf-subtitle-size: 14px;
+    --gulf-text-size: 15px;
+    --gulf-info-size: 16px;
+    --gulf-button-padding: 14px 32px;
+    --gulf-button-font: 15px;
+    --gulf-qr-size: 160px;
+    --gulf-play-button-size: 90px;
+    --gulf-play-text-size: 14px;
+    --gulf-content-gap: 18px;
+  }
+}
+
 @media (max-height: 800px) {
   .gulf-consult-content {
-    top: 240px;
-    bottom: auto;
+    bottom: clamp(30px, 3.5vh, 50px) !important;
+    top: auto !important;
   }
   
   .gulf-consult-content h1 {
     margin-bottom: 12px !important;
-    font-size: clamp(22px, 2.8vw, 36px) !important;
+    font-size: clamp(26px, 3.2vw, 42px) !important;
   }
   
   .gulf-consult-content p {
     margin-bottom: 20px !important;
-    font-size: clamp(12px, 1.2vw, 15px) !important;
-    line-height: 1.6 !important;
+    font-size: clamp(14px, 1.4vw, 18px) !important;
+    line-height: 1.7 !important;
   }
   
   .gulf-consult-content > div {
-    font-size: clamp(12px, 1.2vw, 15px) !important;
+    font-size: clamp(14px, 1.4vw, 18px) !important;
   }
   
   .gulf-consult-content > div > div {
@@ -1455,17 +1751,16 @@
 
 @media (min-height: 801px) {
   .gulf-consult-content {
-    top: auto;
-    bottom: 60px;
+    top: clamp(240px, 28vh, 300px);
   }
 }
 
 /* AMT responsive content spacing */
 .amt-content {
   position: fixed;
-  bottom: 60px;
-  left: 60px;
-  max-width: 650px;
+  top: clamp(260px, 30vh, 320px);
+  left: clamp(40px, 4vw, 80px);
+  max-width: var(--amt-content-max-width, 650px);
   z-index: 12;
   color: #ffffff;
   direction: ltr;
@@ -1473,25 +1768,109 @@
   overflow: visible;
 }
 
+/* 16:9 specific adjustments for AMT */
+@media (min-width: 1920px) and (min-height: 1080px) {
+  .amt-content {
+    top: clamp(300px, 32vh, 380px);
+    left: clamp(60px, 5vw, 100px);
+    max-width: 800px;
+  }
+  
+  :root {
+    --amt-logo-size: 480px;
+    --amt-logo-height: 240px;
+    --amt-internal-image-size: 650px;
+    --amt-title-size: 48px;
+    --amt-text-size: 22px;
+    --amt-info-size: 22px;
+    --amt-button-padding: 20px 44px;
+    --amt-button-font: 20px;
+    --amt-qr-size: 220px;
+    --amt-play-button-size: 120px;
+  }
+}
+
+@media (min-width: 2560px) and (min-height: 1440px) {
+  .amt-content {
+    top: clamp(360px, 35vh, 450px);
+    left: clamp(80px, 6vw, 120px);
+    max-width: 950px;
+  }
+  
+  :root {
+    --amt-logo-size: 600px;
+    --amt-logo-height: 300px;
+    --amt-internal-image-size: 800px;
+    --amt-title-size: 60px;
+    --amt-text-size: 28px;
+    --amt-info-size: 28px;
+    --amt-button-padding: 24px 52px;
+    --amt-button-font: 24px;
+    --amt-qr-size: 280px;
+    --amt-play-button-size: 150px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .amt-content {
+    top: clamp(450px, 38vh, 550px);
+    left: clamp(100px, 7vw, 150px);
+    max-width: 1200px;
+  }
+  
+  :root {
+    --amt-logo-size: 800px;
+    --amt-logo-height: 400px;
+    --amt-internal-image-size: 1100px;
+    --amt-title-size: 80px;
+    --amt-text-size: 36px;
+    --amt-info-size: 36px;
+    --amt-button-padding: 32px 68px;
+    --amt-button-font: 32px;
+    --amt-qr-size: 360px;
+    --amt-play-button-size: 200px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .amt-content {
+    top: clamp(240px, 28vh, 300px);
+    left: clamp(50px, 3.5vw, 70px);
+    max-width: 680px;
+  }
+  
+  :root {
+    --amt-logo-size: 360px;
+    --amt-logo-height: 180px;
+    --amt-internal-image-size: 520px;
+    --amt-title-size: 38px;
+    --amt-text-size: 18px;
+    --amt-info-size: 18px;
+    --amt-button-padding: 16px 36px;
+    --amt-button-font: 17px;
+    --amt-qr-size: 180px;
+    --amt-play-button-size: 100px;
+  }
+}
+
 @media (max-height: 800px) {
   .amt-content {
-    top: 280px;
-    bottom: auto;
+    top: clamp(240px, 28vh, 300px);
   }
   
   .amt-content h1 {
     margin-bottom: 12px !important;
-    font-size: clamp(20px, 2.5vw, 32px) !important;
+    font-size: clamp(26px, 3.2vw, 38px) !important;
   }
   
   .amt-content p {
     margin-bottom: 20px !important;
-    font-size: clamp(11px, 1.15vw, 14px) !important;
-    line-height: 1.5 !important;
+    font-size: clamp(14px, 1.4vw, 18px) !important;
+    line-height: 1.6 !important;
   }
   
   .amt-content > div {
-    font-size: clamp(11px, 1.15vw, 14px) !important;
+    font-size: clamp(14px, 1.4vw, 18px) !important;
   }
   
   .amt-content > div > div {
@@ -1507,17 +1886,16 @@
 
 @media (min-height: 801px) {
   .amt-content {
-    top: auto;
-    bottom: 60px;
+    top: clamp(260px, 30vh, 320px);
   }
 }
 
 /* GSG responsive content spacing */
 .gsg-content {
   position: fixed;
-  bottom: 60px;
-  left: 40px;
-  max-width: 650px;
+  top: clamp(280px, 32vh, 360px);
+  left: clamp(30px, 3vw, 60px);
+  max-width: var(--gsg-content-max-width, clamp(700px, 60vw, 1000px));
   z-index: 12;
   color: #07373c;
   direction: ltr;
@@ -1525,25 +1903,97 @@
   overflow: visible;
 }
 
+/* 16:9 specific adjustments for GSG */
+@media (min-width: 1920px) and (min-height: 1080px) {
+  .gsg-content {
+    top: clamp(320px, 34vh, 400px);
+    left: clamp(50px, 4vw, 80px);
+    max-width: 800px;
+  }
+  
+  :root {
+    --gsg-logo-size: 300px;
+    --gsg-title-size: 44px;
+    --gsg-text-size: 20px;
+    --gsg-info-size: 20px;
+    --gsg-button-padding: 20px 44px;
+    --gsg-button-font: 20px;
+    --gsg-internal-image-size: 600px;
+  }
+}
+
+@media (min-width: 2560px) and (min-height: 1440px) {
+  .gsg-content {
+    top: clamp(380px, 36vh, 480px);
+    left: clamp(60px, 5vw, 100px);
+    max-width: 950px;
+  }
+  
+  :root {
+    --gsg-logo-size: 380px;
+    --gsg-title-size: 56px;
+    --gsg-text-size: 26px;
+    --gsg-info-size: 26px;
+    --gsg-button-padding: 24px 52px;
+    --gsg-button-font: 24px;
+    --gsg-internal-image-size: 750px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .gsg-content {
+    top: clamp(480px, 40vh, 600px);
+    left: clamp(80px, 6vw, 120px);
+    max-width: 1200px;
+  }
+  
+  :root {
+    --gsg-logo-size: 500px;
+    --gsg-title-size: 76px;
+    --gsg-text-size: 34px;
+    --gsg-info-size: 34px;
+    --gsg-button-padding: 32px 68px;
+    --gsg-button-font: 32px;
+    --gsg-internal-image-size: 1000px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .gsg-content {
+    top: clamp(260px, 30vh, 320px);
+    left: clamp(35px, 2.5vw, 50px);
+    max-width: 680px;
+  }
+  
+  :root {
+    --gsg-logo-size: 240px;
+    --gsg-title-size: 36px;
+    --gsg-text-size: 17px;
+    --gsg-info-size: 17px;
+    --gsg-button-padding: 16px 36px;
+    --gsg-button-font: 17px;
+    --gsg-internal-image-size: 520px;
+  }
+}
+
 @media (max-height: 800px) {
   .gsg-content {
-    top: 280px;
-    bottom: auto;
+    top: clamp(260px, 30vh, 320px);
   }
   
   .gsg-content h1 {
     margin-bottom: 6px !important;
-    font-size: clamp(20px, 2.5vw, 32px) !important;
+    font-size: clamp(22px, 2.8vw, 34px) !important;
   }
   
   .gsg-content p {
     margin-bottom: 12px !important;
-    font-size: clamp(11px, 1.15vw, 14px) !important;
-    line-height: 1.5 !important;
+    font-size: clamp(12px, 1.3vw, 16px) !important;
+    line-height: 1.6 !important;
   }
   
   .gsg-content > div {
-    font-size: clamp(11px, 1.15vw, 14px) !important;
+    font-size: clamp(12px, 1.3vw, 16px) !important;
   }
   
   .gsg-content > div > div {
@@ -1559,17 +2009,88 @@
 
 @media (min-height: 801px) {
   .gsg-content {
-    top: auto;
-    bottom: 60px;
+    top: clamp(280px, 32vh, 360px);
+  }
+}
+
+/* Dorrah responsive content spacing */
+/* 16:9 specific adjustments for Dorrah */
+@media (min-width: 1920px) and (max-width: 2559px) and (min-height: 1080px) and (max-height: 1439px) {
+  :root {
+    --dorrah-logo-size: 300px;
+    --dorrah-title-size: 36px;
+    --dorrah-text-size: 18px;
+    --dorrah-info-size: 18px;
+    --dorrah-button-padding: 20px 44px;
+    --dorrah-button-font: 20px;
+    --dorrah-play-button-size: 120px;
+    --dorrah-qr-size: 200px;
+    --dorrah-content-max-width: 800px;
+  }
+}
+
+@media (min-width: 2560px) and (max-width: 3839px) and (min-height: 1440px) and (max-height: 2159px) {
+  :root {
+    --dorrah-logo-size: 380px;
+    --dorrah-title-size: 48px;
+    --dorrah-text-size: 24px;
+    --dorrah-info-size: 24px;
+    --dorrah-button-padding: 24px 52px;
+    --dorrah-button-font: 24px;
+    --dorrah-play-button-size: 150px;
+    --dorrah-qr-size: 240px;
+    --dorrah-content-max-width: 950px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  :root {
+    --dorrah-logo-size: 500px;
+    --dorrah-title-size: 64px;
+    --dorrah-text-size: 32px;
+    --dorrah-info-size: 32px;
+    --dorrah-button-padding: 32px 68px;
+    --dorrah-button-font: 32px;
+    --dorrah-play-button-size: 200px;
+    --dorrah-qr-size: 320px;
+    --dorrah-content-max-width: 1200px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  :root {
+    --dorrah-logo-size: 260px;
+    --dorrah-title-size: 30px;
+    --dorrah-text-size: 16px;
+    --dorrah-info-size: 16px;
+    --dorrah-button-padding: 16px 36px;
+    --dorrah-button-font: 17px;
+    --dorrah-play-button-size: 100px;
+    --dorrah-qr-size: 180px;
+    --dorrah-content-max-width: 680px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) and (min-height: 720px) and (max-height: 767px) {
+  :root {
+    --dorrah-logo-size: 240px;
+    --dorrah-title-size: 28px;
+    --dorrah-text-size: 14px;
+    --dorrah-info-size: 14px;
+    --dorrah-button-padding: 14px 32px;
+    --dorrah-button-font: 15px;
+    --dorrah-play-button-size: 90px;
+    --dorrah-qr-size: 160px;
+    --dorrah-content-max-width: 620px;
   }
 }
 
 /* Central Medicalcare responsive content spacing */
 .central-medicalcare-content {
   position: fixed;
-  bottom: 60px;
-  left: 40px;
-  max-width: 720px;
+  bottom: clamp(40px, 5vh, 80px);
+  left: clamp(30px, 3vw, 60px);
+  max-width: var(--central-content-max-width, 720px);
   z-index: 12;
   color: #ffffff;
   direction: ltr;
@@ -1577,9 +2098,152 @@
   overflow: visible;
 }
 
+/* 16:9 specific adjustments for Central Medicalcare */
+@media (min-width: 1920px) and (min-height: 1080px) {
+  .central-medicalcare-content {
+    bottom: clamp(60px, 6vh, 100px);
+    left: clamp(50px, 4vw, 80px);
+    max-width: 850px;
+  }
+  
+  :root {
+    --central-logo-size: 260px;
+    --central-title-size: 40px;
+    --central-text-size: 18px;
+    --central-info-size: 18px;
+    --central-button-padding: 20px 44px;
+    --central-button-font: 20px;
+    --central-qr-size: 220px;
+    --central-play-button-size: 120px;
+  }
+}
+
+@media (min-width: 2560px) and (min-height: 1440px) {
+  .central-medicalcare-content {
+    bottom: clamp(80px, 7vh, 120px);
+    left: clamp(60px, 5vw, 100px);
+    max-width: 1000px;
+  }
+  
+  :root {
+    --central-logo-size: 340px;
+    --central-title-size: 52px;
+    --central-text-size: 24px;
+    --central-info-size: 24px;
+    --central-button-padding: 24px 52px;
+    --central-button-font: 24px;
+    --central-qr-size: 280px;
+    --central-play-button-size: 150px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .central-medicalcare-content {
+    bottom: clamp(100px, 8vh, 150px);
+    left: clamp(80px, 6vw, 120px);
+    max-width: 1200px;
+  }
+  
+  :root {
+    --central-logo-size: 450px;
+    --central-title-size: 70px;
+    --central-text-size: 32px;
+    --central-info-size: 32px;
+    --central-button-padding: 32px 68px;
+    --central-button-font: 32px;
+    --central-qr-size: 360px;
+    --central-play-button-size: 200px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .central-medicalcare-content {
+    bottom: clamp(50px, 4vh, 70px);
+    left: clamp(35px, 2.5vw, 50px);
+    max-width: 680px;
+  }
+  
+  :root {
+    --central-logo-size: 220px;
+    --central-title-size: 32px;
+    --central-text-size: 16px;
+    --central-info-size: 16px;
+    --central-button-padding: 16px 36px;
+    --central-button-font: 17px;
+    --central-qr-size: 180px;
+    --central-play-button-size: 100px;
+  }
+}
+
+/* ETLCO (TLCO) responsive content spacing */
+/* 16:9 specific adjustments for ETLCO */
+@media (min-width: 1920px) and (min-height: 1080px) {
+  :root {
+    --tlco-logo-width: 300px;
+    --tlco-logo-height: 180px;
+    --tlco-title-size: 40px;
+    --tlco-text-size: 18px;
+    --tlco-info-size: 18px;
+    --tlco-button-padding: 20px 44px;
+    --tlco-button-font: 20px;
+    --tlco-qr-size: 220px;
+    --tlco-play-button-size: 120px;
+    --tlco-internal-image-size: 600px;
+    --tlco-content-max-width: 800px;
+  }
+}
+
+@media (min-width: 2560px) and (min-height: 1440px) {
+  :root {
+    --tlco-logo-width: 380px;
+    --tlco-logo-height: 230px;
+    --tlco-title-size: 52px;
+    --tlco-text-size: 24px;
+    --tlco-info-size: 24px;
+    --tlco-button-padding: 24px 52px;
+    --tlco-button-font: 24px;
+    --tlco-qr-size: 280px;
+    --tlco-play-button-size: 150px;
+    --tlco-internal-image-size: 750px;
+    --tlco-content-max-width: 950px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  :root {
+    --tlco-logo-width: 500px;
+    --tlco-logo-height: 300px;
+    --tlco-title-size: 70px;
+    --tlco-text-size: 32px;
+    --tlco-info-size: 32px;
+    --tlco-button-padding: 32px 68px;
+    --tlco-button-font: 32px;
+    --tlco-qr-size: 360px;
+    --tlco-play-button-size: 200px;
+    --tlco-internal-image-size: 1000px;
+    --tlco-content-max-width: 1200px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  :root {
+    --tlco-logo-width: 260px;
+    --tlco-logo-height: 150px;
+    --tlco-title-size: 32px;
+    --tlco-text-size: 16px;
+    --tlco-info-size: 16px;
+    --tlco-button-padding: 16px 36px;
+    --tlco-button-font: 17px;
+    --tlco-qr-size: 180px;
+    --tlco-play-button-size: 100px;
+    --tlco-internal-image-size: 520px;
+    --tlco-content-max-width: 680px;
+  }
+}
+
 @media (max-height: 800px) {
   .central-medicalcare-content {
-    top: 280px;
+    top: clamp(240px, 28vh, 300px);
     bottom: auto;
   }
   
@@ -1612,16 +2276,16 @@
 @media (min-height: 801px) {
   .central-medicalcare-content {
     top: auto;
-    bottom: 60px;
+    bottom: clamp(40px, 5vh, 80px);
   }
 }
 
 /* RK responsive content spacing */
 .rk-content {
   position: fixed;
-  top: clamp(240px, 28vh, 320px);
-  left: 40px;
-  max-width: 650px;
+  bottom: clamp(40px, 5vh, 80px);
+  left: clamp(30px, 3vw, 60px);
+  max-width: var(--rk-content-max-width, 650px);
   z-index: 12;
   color: #000000;
   direction: ltr;
@@ -1629,9 +2293,111 @@
   overflow: visible;
 }
 
+/* 16:9 specific adjustments for RK */
+@media (min-width: 1920px) and (min-height: 1080px) {
+  .rk-content {
+    bottom: clamp(60px, 6vh, 100px);
+    left: clamp(50px, 4vw, 80px);
+    max-width: 800px;
+  }
+  
+  :root {
+    --rk-logo-width: 400px;
+    --rk-logo-height: 500px;
+    --rk-text-size: 24px;
+    --rk-info-size: 24px;
+    --rk-button-padding: 20px 44px;
+    --rk-button-font: 20px;
+    --rk-internal-image-width: 600px;
+    --rk-internal-image-height: 700px;
+    --rk-qr-size: 200px;
+  }
+}
+
+@media (min-width: 2560px) and (min-height: 1440px) {
+  .rk-content {
+    bottom: clamp(80px, 7vh, 120px);
+    left: clamp(60px, 5vw, 100px);
+    max-width: 950px;
+  }
+  
+  :root {
+    --rk-logo-width: 500px;
+    --rk-logo-height: 650px;
+    --rk-text-size: 32px;
+    --rk-info-size: 32px;
+    --rk-button-padding: 24px 52px;
+    --rk-button-font: 24px;
+    --rk-internal-image-width: 750px;
+    --rk-internal-image-height: 900px;
+    --rk-qr-size: 240px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .rk-content {
+    bottom: clamp(100px, 8vh, 150px);
+    left: clamp(80px, 6vw, 120px);
+    max-width: 1200px;
+  }
+  
+  :root {
+    --rk-logo-width: 700px;
+    --rk-logo-height: 900px;
+    --rk-text-size: 44px;
+    --rk-info-size: 44px;
+    --rk-button-padding: 32px 68px;
+    --rk-button-font: 32px;
+    --rk-internal-image-width: 1000px;
+    --rk-internal-image-height: 1200px;
+    --rk-qr-size: 320px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .rk-content {
+    bottom: clamp(50px, 4vh, 70px);
+    left: clamp(35px, 2.5vw, 50px);
+    max-width: 680px;
+  }
+  
+  :root {
+    --rk-logo-width: 300px;
+    --rk-logo-height: 400px;
+    --rk-text-size: 20px;
+    --rk-info-size: 20px;
+    --rk-button-padding: 16px 36px;
+    --rk-button-font: 17px;
+    --rk-internal-image-width: 520px;
+    --rk-internal-image-height: 620px;
+    --rk-qr-size: 180px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) and (min-height: 720px) and (max-height: 767px) {
+  .rk-content {
+    bottom: clamp(40px, 3.5vh, 60px);
+    left: clamp(30px, 2.5vw, 45px);
+    max-width: 620px;
+  }
+  
+  :root {
+    --rk-logo-width: 280px;
+    --rk-logo-height: 360px;
+    --rk-text-size: 18px;
+    --rk-info-size: 18px;
+    --rk-button-padding: 14px 32px;
+    --rk-button-font: 16px;
+    --rk-internal-image-width: 480px;
+    --rk-internal-image-height: 580px;
+    --rk-qr-size: 160px;
+  }
+}
+
 @media (max-height: 800px) {
   .rk-content {
     top: clamp(220px, 26vh, 280px);
+    bottom: auto;
   }
   
   .rk-content p {
@@ -1657,16 +2423,17 @@
 
 @media (min-height: 801px) {
   .rk-content {
-    top: clamp(240px, 28vh, 320px);
+    top: auto;
+    bottom: clamp(40px, 5vh, 80px);
   }
 }
 
 /* AH Environmental responsive content spacing */
 .ah-environmental-content {
   position: fixed;
-  top: clamp(250px, 30vh, 320px);
-  left: 40px;
-  max-width: 580px;
+  top: var(--ah-content-top, clamp(250px, 30vh, 320px));
+  left: var(--ah-content-left, 40px);
+  max-width: var(--ah-content-max-width, 580px);
   z-index: 12;
   color: #ffffff;
   direction: ltr;
@@ -1674,9 +2441,114 @@
   overflow: visible;
 }
 
+@media (min-width: 1920px) and (max-width: 2559px) and (min-height: 1080px) and (max-height: 1439px) {
+  .ah-environmental-content {
+    top: var(--ah-content-top, 300px);
+    left: var(--ah-content-left, 50px);
+    max-width: 680px;
+  }
+  
+  :root {
+    --ah-logo-size: 280px;
+    --ah-logo-height: 200px;
+    --ah-logo-top: 40px;
+    --ah-logo-left: 50px;
+    --ah-title-size: 40px;
+    --ah-text-size: 18px;
+    --ah-info-size: 18px;
+    --ah-button-padding: 18px 42px;
+    --ah-button-font: 18px;
+    --ah-content-gap: 14px;
+  }
+}
+
+@media (min-width: 2560px) and (max-width: 3839px) and (min-height: 1440px) and (max-height: 2159px) {
+  .ah-environmental-content {
+    top: var(--ah-content-top, 340px);
+    left: var(--ah-content-left, 60px);
+    max-width: 750px;
+  }
+  
+  :root {
+    --ah-logo-size: 320px;
+    --ah-logo-height: 240px;
+    --ah-logo-top: 50px;
+    --ah-logo-left: 60px;
+    --ah-title-size: 48px;
+    --ah-text-size: 22px;
+    --ah-info-size: 22px;
+    --ah-button-padding: 22px 48px;
+    --ah-button-font: 22px;
+    --ah-content-gap: 18px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .ah-environmental-content {
+    top: var(--ah-content-top, 400px);
+    left: var(--ah-content-left, 80px);
+    max-width: 950px;
+  }
+  
+  :root {
+    --ah-logo-size: 420px;
+    --ah-logo-height: 320px;
+    --ah-logo-top: 70px;
+    --ah-logo-left: 80px;
+    --ah-title-size: 64px;
+    --ah-text-size: 30px;
+    --ah-info-size: 30px;
+    --ah-button-padding: 30px 64px;
+    --ah-button-font: 30px;
+    --ah-content-gap: 24px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .ah-environmental-content {
+    top: var(--ah-content-top, 260px);
+    left: var(--ah-content-left, 35px);
+    max-width: 620px;
+  }
+  
+  :root {
+    --ah-logo-size: 240px;
+    --ah-logo-height: 180px;
+    --ah-logo-top: 30px;
+    --ah-logo-left: 40px;
+    --ah-title-size: 32px;
+    --ah-text-size: 15px;
+    --ah-info-size: 15px;
+    --ah-button-padding: 14px 36px;
+    --ah-button-font: 15px;
+    --ah-content-gap: 12px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) and (min-height: 720px) and (max-height: 767px) {
+  .ah-environmental-content {
+    top: var(--ah-content-top, 240px);
+    left: var(--ah-content-left, 30px);
+    max-width: 580px;
+  }
+  
+  :root {
+    --ah-logo-size: 220px;
+    --ah-logo-height: 160px;
+    --ah-logo-top: 25px;
+    --ah-logo-left: 35px;
+    --ah-title-size: 28px;
+    --ah-text-size: 13px;
+    --ah-info-size: 13px;
+    --ah-button-padding: 12px 32px;
+    --ah-button-font: 14px;
+    --ah-content-gap: 10px;
+  }
+}
+
 @media (max-height: 800px) {
   .ah-environmental-content {
-    top: clamp(230px, 28vh, 300px);
+    top: clamp(230px, 28vh, 300px) !important;
   }
   
   .ah-environmental-content h1 {
@@ -1705,18 +2577,12 @@
   }
 }
 
-@media (min-height: 801px) {
-  .ah-environmental-content {
-    top: clamp(250px, 30vh, 320px);
-  }
-}
-
 /* IDC responsive content spacing */
 .idc-content {
   position: fixed;
-  top: clamp(280px, 32vh, 360px);
-  left: 40px;
-  max-width: 720px;
+  top: var(--idc-content-top, clamp(280px, 32vh, 360px));
+  left: var(--idc-content-left, 40px);
+  max-width: var(--idc-content-max-width, 720px);
   z-index: 12;
   color: #0b2239;
   direction: ltr;
@@ -1724,9 +2590,124 @@
   overflow: visible;
 }
 
+@media (min-width: 1920px) and (max-width: 2559px) and (min-height: 1080px) and (max-height: 1439px) {
+  .idc-content {
+    top: var(--idc-content-top, 320px);
+    left: var(--idc-content-left, 50px);
+    max-width: 800px;
+  }
+  
+  :root {
+    --idc-logo-size: 280px;
+    --idc-logo-top: 20px;
+    --idc-logo-left: 50px;
+    --idc-title-size: 40px;
+    --idc-text-size: 18px;
+    --idc-info-size: 18px;
+    --idc-button-padding: 18px 42px;
+    --idc-button-font: 18px;
+    --idc-qr-size: 200px;
+    --idc-play-button-size: 120px;
+    --idc-play-text-size: 18px;
+    --idc-content-gap: 20px;
+  }
+}
+
+@media (min-width: 2560px) and (max-width: 3839px) and (min-height: 1440px) and (max-height: 2159px) {
+  .idc-content {
+    top: var(--idc-content-top, 360px);
+    left: var(--idc-content-left, 60px);
+    max-width: 950px;
+  }
+  
+  :root {
+    --idc-logo-size: 320px;
+    --idc-logo-top: 30px;
+    --idc-logo-left: 60px;
+    --idc-title-size: 48px;
+    --idc-text-size: 22px;
+    --idc-info-size: 22px;
+    --idc-button-padding: 22px 48px;
+    --idc-button-font: 22px;
+    --idc-qr-size: 240px;
+    --idc-play-button-size: 150px;
+    --idc-play-text-size: 22px;
+    --idc-content-gap: 24px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .idc-content {
+    top: var(--idc-content-top, 420px);
+    left: var(--idc-content-left, 80px);
+    max-width: 1200px;
+  }
+  
+  :root {
+    --idc-logo-size: 420px;
+    --idc-logo-top: 50px;
+    --idc-logo-left: 80px;
+    --idc-title-size: 64px;
+    --idc-text-size: 30px;
+    --idc-info-size: 30px;
+    --idc-button-padding: 30px 64px;
+    --idc-button-font: 30px;
+    --idc-qr-size: 320px;
+    --idc-play-button-size: 200px;
+    --idc-play-text-size: 30px;
+    --idc-content-gap: 32px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .idc-content {
+    top: var(--idc-content-top, 280px);
+    left: var(--idc-content-left, 35px);
+    max-width: 700px;
+  }
+  
+  :root {
+    --idc-logo-size: 240px;
+    --idc-logo-top: 15px;
+    --idc-logo-left: 40px;
+    --idc-title-size: 34px;
+    --idc-text-size: 15px;
+    --idc-info-size: 15px;
+    --idc-button-padding: 14px 36px;
+    --idc-button-font: 15px;
+    --idc-qr-size: 180px;
+    --idc-play-button-size: 100px;
+    --idc-play-text-size: 16px;
+    --idc-content-gap: 18px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) and (min-height: 720px) and (max-height: 767px) {
+  .idc-content {
+    top: var(--idc-content-top, 260px);
+    left: var(--idc-content-left, 30px);
+    max-width: 650px;
+  }
+  
+  :root {
+    --idc-logo-size: 220px;
+    --idc-logo-top: 10px;
+    --idc-logo-left: 35px;
+    --idc-title-size: 30px;
+    --idc-text-size: 13px;
+    --idc-info-size: 13px;
+    --idc-button-padding: 12px 32px;
+    --idc-button-font: 14px;
+    --idc-qr-size: 160px;
+    --idc-play-button-size: 90px;
+    --idc-play-text-size: 14px;
+    --idc-content-gap: 16px;
+  }
+}
+
 @media (max-height: 800px) {
   .idc-content {
-    top: clamp(260px, 30vh, 320px);
+    top: clamp(260px, 30vh, 320px) !important;
   }
   
   .idc-content h1 {
@@ -1755,18 +2736,12 @@
   }
 }
 
-@media (min-height: 801px) {
-  .idc-content {
-    top: clamp(280px, 32vh, 360px);
-  }
-}
-
 /* GTA responsive content spacing */
 .gta-content {
   position: fixed;
-  top: clamp(280px, 32vh, 360px);
-  left: 40px;
-  max-width: 650px;
+  top: var(--gta-content-top, clamp(280px, 32vh, 360px));
+  left: var(--gta-content-left, 40px);
+  max-width: var(--gta-content-max-width, 650px);
   z-index: 12;
   color: #000000;
   direction: ltr;
@@ -1774,9 +2749,114 @@
   overflow: visible;
 }
 
+@media (min-width: 1920px) and (max-width: 2559px) and (min-height: 1080px) and (max-height: 1439px) {
+  .gta-content {
+    top: var(--gta-content-top, 320px);
+    left: var(--gta-content-left, 50px);
+    max-width: 750px;
+  }
+  
+  :root {
+    --gta-logo-size: 280px;
+    --gta-logo-top: 20px;
+    --gta-logo-left: 50px;
+    --gta-title-size: 40px;
+    --gta-text-size: 18px;
+    --gta-info-size: 18px;
+    --gta-button-padding: 18px 42px;
+    --gta-button-font: 18px;
+    --gta-qr-size: 200px;
+    --gta-content-gap: 20px;
+  }
+}
+
+@media (min-width: 2560px) and (max-width: 3839px) and (min-height: 1440px) and (max-height: 2159px) {
+  .gta-content {
+    top: var(--gta-content-top, 360px);
+    left: var(--gta-content-left, 60px);
+    max-width: 850px;
+  }
+  
+  :root {
+    --gta-logo-size: 320px;
+    --gta-logo-top: 30px;
+    --gta-logo-left: 60px;
+    --gta-title-size: 48px;
+    --gta-text-size: 22px;
+    --gta-info-size: 22px;
+    --gta-button-padding: 22px 48px;
+    --gta-button-font: 22px;
+    --gta-qr-size: 240px;
+    --gta-content-gap: 24px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .gta-content {
+    top: var(--gta-content-top, 420px);
+    left: var(--gta-content-left, 80px);
+    max-width: 1100px;
+  }
+  
+  :root {
+    --gta-logo-size: 420px;
+    --gta-logo-top: 50px;
+    --gta-logo-left: 80px;
+    --gta-title-size: 64px;
+    --gta-text-size: 30px;
+    --gta-info-size: 30px;
+    --gta-button-padding: 30px 64px;
+    --gta-button-font: 30px;
+    --gta-qr-size: 320px;
+    --gta-content-gap: 32px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .gta-content {
+    top: var(--gta-content-top, 280px);
+    left: var(--gta-content-left, 35px);
+    max-width: 680px;
+  }
+  
+  :root {
+    --gta-logo-size: 240px;
+    --gta-logo-top: 15px;
+    --gta-logo-left: 40px;
+    --gta-title-size: 32px;
+    --gta-text-size: 15px;
+    --gta-info-size: 15px;
+    --gta-button-padding: 14px 36px;
+    --gta-button-font: 15px;
+    --gta-qr-size: 180px;
+    --gta-content-gap: 18px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) and (min-height: 720px) and (max-height: 767px) {
+  .gta-content {
+    top: var(--gta-content-top, 260px);
+    left: var(--gta-content-left, 30px);
+    max-width: 620px;
+  }
+  
+  :root {
+    --gta-logo-size: 220px;
+    --gta-logo-top: 10px;
+    --gta-logo-left: 35px;
+    --gta-title-size: 28px;
+    --gta-text-size: 13px;
+    --gta-info-size: 13px;
+    --gta-button-padding: 12px 32px;
+    --gta-button-font: 14px;
+    --gta-qr-size: 160px;
+    --gta-content-gap: 15px;
+  }
+}
+
 @media (max-height: 800px) {
   .gta-content {
-    top: clamp(260px, 30vh, 320px);
+    top: clamp(260px, 30vh, 320px) !important;
   }
   
   .gta-content h1 {
@@ -1805,8 +2885,222 @@
   }
 }
 
-@media (min-height: 801px) {
-  .gta-content {
-    top: clamp(280px, 32vh, 360px);
+/* Pulse animation for video play button text */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive design for 16:9 aspect ratio */
+/* Common 16:9 resolutions: 1920x1080, 1366x768, 2560x1440, 3840x2160 */
+
+/* For 1920x1080 (Full HD) - Most common 16:9 */
+@media (min-width: 1920px) and (min-height: 1080px) {
+  :root {
+    --main-logo-size: 520px;
+    --grid-item-size: 160px;
+    --grid-gap: 26px;
+  }
+}
+
+/* For 2560x1440 (2K/QHD) - 16:9 */
+@media (min-width: 2560px) and (min-height: 1440px) {
+  :root {
+    --main-logo-size: 650px;
+    --grid-item-size: 190px;
+    --grid-gap: 32px;
+  }
+}
+
+/* For 3840x2160 (4K/UHD) - 16:9 */
+@media (min-width: 3840px) and (min-height: 2160px) {
+  :root {
+    --main-logo-size: 850px;
+    --grid-item-size: 240px;
+    --grid-gap: 40px;
+  }
+}
+
+/* For 1366x768 (HD) - 16:9 */
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  :root {
+    --main-logo-size: 380px;
+    --grid-item-size: 130px;
+    --grid-gap: 20px;
+  }
+}
+
+/* For 1280x720 (HD) - 16:9 */
+@media (min-width: 1280px) and (max-width: 1365px) and (min-height: 720px) and (max-height: 767px) {
+  :root {
+    --main-logo-size: 320px;
+    --grid-item-size: 115px;
+    --grid-gap: 18px;
+  }
+}
+
+/* Responsive adjustments for main page */
+@media (min-aspect-ratio: 16/9) {
+  /* Wider than 16:9 - adjust spacing */
+  .left-hero-item--alika {
+    max-width: min(400px, 25vw) !important;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  /* Taller than 16:9 - adjust vertical spacing */
+  .left-hero-item--alika {
+    max-width: min(350px, 30vw) !important;
+  }
+}
+
+/* Responsive grid adjustments for company logos */
+@media (max-width: 1600px) {
+  /* Slightly smaller screens */
+  :root {
+    --grid-item-size: clamp(120px, 9vw, 150px);
+    --main-logo-size: clamp(320px, 28vw, 480px);
+  }
+}
+
+@media (max-width: 1280px) {
+  /* Smaller laptops */
+  :root {
+    --grid-item-size: clamp(100px, 8vw, 130px);
+    --main-logo-size: clamp(260px, 24vw, 380px);
+  }
+}
+
+/* Antique responsive content spacing */
+.antique-content {
+  position: fixed;
+  top: var(--antique-content-top, 200px);
+  left: var(--antique-content-left, 40px);
+  max-width: var(--antique-content-max-width, 620px);
+  z-index: 12;
+  color: #ffffff;
+  direction: ltr;
+  text-align: left;
+  overflow: visible;
+}
+
+@media (min-width: 1920px) and (max-width: 2559px) and (min-height: 1080px) and (max-height: 1439px) {
+  .antique-content {
+    top: var(--antique-content-top, 280px);
+    left: var(--antique-content-left, 50px);
+    max-width: 750px;
+  }
+  
+  :root {
+    --antique-logo-size: 260px;
+    --antique-logo-top: 50px;
+    --antique-logo-left: 50px;
+    --antique-title-size: 44px;
+    --antique-text-size: 20px;
+    --antique-info-size: 20px;
+    --antique-button-padding: 20px 48px;
+    --antique-button-font: 20px;
+    --antique-play-button-size: 120px;
+    --antique-play-text-size: 20px;
+    --antique-qr-size: 200px;
+    --antique-content-gap: 24px;
+  }
+}
+
+@media (min-width: 2560px) and (max-width: 3839px) and (min-height: 1440px) and (max-height: 2159px) {
+  .antique-content {
+    top: var(--antique-content-top, 320px);
+    left: var(--antique-content-left, 60px);
+    max-width: 850px;
+  }
+  
+  :root {
+    --antique-logo-size: 320px;
+    --antique-logo-top: 60px;
+    --antique-logo-left: 60px;
+    --antique-title-size: 56px;
+    --antique-text-size: 24px;
+    --antique-info-size: 24px;
+    --antique-button-padding: 24px 56px;
+    --antique-button-font: 24px;
+    --antique-play-button-size: 140px;
+    --antique-play-text-size: 24px;
+    --antique-qr-size: 240px;
+    --antique-content-gap: 28px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .antique-content {
+    top: var(--antique-content-top, 400px);
+    left: var(--antique-content-left, 80px);
+    max-width: 1100px;
+  }
+  
+  :root {
+    --antique-logo-size: 420px;
+    --antique-logo-top: 80px;
+    --antique-logo-left: 80px;
+    --antique-title-size: 72px;
+    --antique-text-size: 32px;
+    --antique-info-size: 32px;
+    --antique-button-padding: 32px 72px;
+    --antique-button-font: 32px;
+    --antique-play-button-size: 180px;
+    --antique-play-text-size: 32px;
+    --antique-qr-size: 320px;
+    --antique-content-gap: 36px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .antique-content {
+    top: var(--antique-content-top, 240px);
+    left: var(--antique-content-left, 35px);
+    max-width: 650px;
+  }
+  
+  :root {
+    --antique-logo-size: 220px;
+    --antique-logo-top: 40px;
+    --antique-logo-left: 40px;
+    --antique-title-size: 36px;
+    --antique-text-size: 17px;
+    --antique-info-size: 17px;
+    --antique-button-padding: 16px 40px;
+    --antique-button-font: 17px;
+    --antique-play-button-size: 100px;
+    --antique-play-text-size: 17px;
+    --antique-qr-size: 180px;
+    --antique-content-gap: 20px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) and (min-height: 720px) and (max-height: 767px) {
+  .antique-content {
+    top: var(--antique-content-top, 200px);
+    left: var(--antique-content-left, 30px);
+    max-width: 600px;
+  }
+  
+  :root {
+    --antique-logo-size: 200px;
+    --antique-logo-top: 35px;
+    --antique-logo-left: 35px;
+    --antique-title-size: 32px;
+    --antique-text-size: 15px;
+    --antique-info-size: 15px;
+    --antique-button-padding: 14px 36px;
+    --antique-button-font: 15px;
+    --antique-play-button-size: 90px;
+    --antique-play-text-size: 15px;
+    --antique-qr-size: 160px;
+    --antique-content-gap: 18px;
   }
 }
