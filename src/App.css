@@ -9,6 +9,775 @@
   position: relative;
 }
 
+/* ================= Home (main page) sound + reveal ================= */
+.home-sound-btn {
+  position: fixed;
+  right: clamp(24px, 3vw, 48px);
+  bottom: clamp(24px, 3vh, 40px);
+  z-index: 50;
+  padding: 14px 22px;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a2e;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.home-sound-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+.home-back-btn {
+  position: fixed;
+  left: clamp(16px, 2vw, 28px);
+  bottom: clamp(16px, 2vw, 28px);
+  z-index: 50;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.home-back-btn:hover {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.home-chairman-btn {
+  position: fixed;
+  right: calc(clamp(24px, 3vw, 48px) + clamp(120px, 13vw, 160px));
+  bottom: clamp(24px, 3vh, 40px);
+  z-index: 50;
+  padding: 14px 22px;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a2e;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.home-chairman-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+.home-chairman-btn.active {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(85, 169, 230, 0.8);
+  box-shadow: 0 8px 32px rgba(85, 169, 230, 0.3), 0 0 0 2px rgba(85, 169, 230, 0.5) inset;
+}
+
+.home-about-btn {
+  position: fixed;
+  right: calc(clamp(24px, 3vw, 48px) + clamp(120px, 13vw, 160px) + clamp(8px, 1vw, 12px) + clamp(200px, 22vw, 260px) + clamp(2px, 0.3vw, 4px));
+  bottom: clamp(24px, 3vh, 40px);
+  z-index: 50;
+  padding: 14px 22px;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a2e;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.home-about-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+.home-about-btn.active {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(85, 169, 230, 0.8);
+  box-shadow: 0 8px 32px rgba(85, 169, 230, 0.3), 0 0 0 2px rgba(85, 169, 230, 0.5) inset;
+}
+
+.home-chairman-back-btn {
+  position: fixed;
+  left: clamp(16px, 2vw, 28px);
+  bottom: calc(clamp(16px, 2vw, 28px) + 56px);
+  z-index: 50;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 800;
+  letter-spacing: 0.35px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.home-chairman-back-btn:hover {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.home-root.is-reveal .home-foreground {
+  pointer-events: none;
+}
+
+.home-root.is-reveal .home-left {
+  animation: homeLeftExit 700ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+.home-root.is-reveal .home-right {
+  animation: homeRightExit 700ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+.home-root.is-return .home-foreground {
+  pointer-events: auto;
+}
+
+.home-root.is-return .home-left {
+  animation: homeLeftEnter 700ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+.home-root.is-return .home-right {
+  animation: homeRightEnter 700ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+@keyframes homeLeftExit {
+  from { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+  to { opacity: 0; transform: translateX(-36px) scale(0.98); filter: blur(10px); }
+}
+
+@keyframes homeRightExit {
+  from { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+  to { opacity: 0; transform: translateX(36px) scale(0.98); filter: blur(10px); }
+}
+
+@keyframes homeLeftEnter {
+  from { opacity: 0; transform: translateX(-36px) scale(0.98); filter: blur(10px); }
+  to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+
+@keyframes homeRightEnter {
+  from { opacity: 0; transform: translateX(36px) scale(0.98); filter: blur(10px); }
+  to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+
+/* ===== Chairman card (left panel) ===== */
+.chairman-card {
+  width: min(1050px, 92%);
+  max-width: clamp(750px, 52vw, 1200px);
+  border-radius: 22px;
+  padding: clamp(24px, 2.5vw, 36px);
+  /* darker background for better readability on bright video frames */
+  background: rgba(0, 0, 0, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+  animation: chairmanCardIn 820ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  transform-origin: 30% 40%;
+  direction: ltr;
+}
+
+.chairman-card-top {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 20px);
+  margin-bottom: clamp(14px, 1.6vw, 20px);
+}
+
+.chairman-portrait-wrap {
+  width: clamp(140px, 9vw, 180px);
+  height: clamp(140px, 9vw, 180px);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
+  background: rgba(0, 0, 0, 0.18);
+  flex: 0 0 auto;
+  order: 2;
+}
+
+.chairman-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+}
+
+.chairman-kicker {
+  font-size: clamp(12px, 1.2vw, 16px);
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 6px;
+}
+
+.chairman-heading {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: 1;
+}
+
+.chairman-name {
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  font-size: clamp(16px, 1.4vw, 22px);
+  color: rgba(255, 255, 255, 0.94);
+  line-height: 1.3;
+  word-break: keep-all;
+}
+
+.chairman-message {
+  font-size: clamp(14px, 1.4vw, 20px);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.94);
+  margin-top: clamp(16px, 1.8vw, 22px);
+  animation: chairmanTextReveal 900ms ease-out 160ms both;
+  text-align: left;
+  direction: ltr;
+}
+
+/* Removed .chairman-signature - no longer needed */
+
+.chairman-back-btn {
+  margin-top: clamp(14px, 1.6vw, 20px);
+  align-self: flex-start;
+  padding: clamp(10px, 1.2vw, 14px) clamp(14px, 1.6vw, 20px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 800;
+  letter-spacing: 0.35px;
+  font-size: clamp(13px, 1.2vw, 16px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.chairman-back-btn:hover {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Chairman card responsive for 16:9 screens */
+@media (min-width: 1920px) and (min-height: 1080px) {
+  .chairman-card {
+    width: min(780px, 82%);
+    padding: 36px;
+  }
+  
+  .chairman-portrait-wrap {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .chairman-name {
+    font-size: 22px;
+  }
+  
+  .chairman-message {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 2560px) and (min-height: 1440px) {
+  .chairman-card {
+    width: min(880px, 82%);
+    padding: 40px;
+  }
+  
+  .chairman-portrait-wrap {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .chairman-name {
+    font-size: 24px;
+  }
+  
+  .chairman-message {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 3840px) and (min-height: 2160px) {
+  .chairman-card {
+    width: min(1400px, 96%);
+    padding: 64px;
+  }
+  
+  .chairman-portrait-wrap {
+    width: 320px;
+    height: 320px;
+  }
+  
+  .chairman-name {
+    font-size: 38px;
+  }
+  
+  .chairman-message {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) and (min-height: 768px) and (max-height: 1079px) {
+  .chairman-card {
+    width: min(660px, 82%);
+    padding: 24px;
+  }
+  
+  .chairman-portrait-wrap {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .chairman-name {
+    font-size: 20px;
+  }
+  
+  .chairman-message {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) and (min-height: 720px) and (max-height: 767px) {
+  .chairman-card {
+    width: min(750px, 87%);
+    padding: 20px;
+  }
+  
+  .chairman-portrait-wrap {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .chairman-name {
+    font-size: 18px;
+  }
+  
+  .chairman-message {
+    font-size: 14px;
+  }
+}
+
+/* ================= About Us overlay ================= */
+.about-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 2.2vw, 28px);
+  animation: fadeInOverlay 0.4s ease-out;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+.about-modal {
+  width: min(1200px, 96vw);
+  max-height: min(86vh, 920px);
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #FFFFFF;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.25);
+  color: #1A1A2E;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  direction: ltr; /* ensure header/title are on the left side */
+  animation: slideInModal 0.5s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+@keyframes slideInModal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.about-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.about-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.about-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #FFFFFF;
+}
+
+.about-title {
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #1A1A2E;
+}
+
+.about-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.about-tab {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: 700;
+  letter-spacing: 0.25px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.about-tab:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.about-tab.is-active {
+  background: #1A1A2E;
+  border-color: #1A1A2E;
+  color: #FFFFFF;
+}
+
+.about-body {
+  padding: 20px 24px;
+  overflow: hidden;
+  background: #FFFFFF;
+  max-height: calc(86vh - 120px);
+}
+
+.about-who {
+  display: grid;
+  grid-template-columns: 0.75fr 1fr;
+  gap: clamp(20px, 2.5vw, 32px);
+  align-items: start;
+  direction: ltr; /* ensure photo is on the left, text on the right */
+}
+
+.about-hero-wrapper {
+  width: 100%;
+  height: auto;
+  max-height: min(420px, 50vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  background: transparent;
+}
+
+.about-hero {
+  width: 100%;
+  height: 100%;
+  max-height: min(420px, 50vh);
+  object-fit: cover;
+  display: block;
+  background: transparent;
+}
+
+.about-copy {
+  padding-left: clamp(16px, 2vw, 24px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.about-copy::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(200, 200, 200, 0.03) 2px, rgba(200, 200, 200, 0.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(200, 200, 200, 0.03) 2px, rgba(200, 200, 200, 0.03) 4px);
+  background-size: 40px 40px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-copy > * {
+  position: relative;
+  z-index: 1;
+}
+
+.about-h1 {
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: clamp(18px, 1.8vw, 26px);
+  margin-bottom: 12px;
+  color: #4A9ED8;
+  text-transform: uppercase;
+}
+
+.about-h2 {
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  font-size: clamp(24px, 2.5vw, 36px);
+  color: #1A1A2E;
+  margin-bottom: 18px;
+  line-height: 1.2;
+}
+
+.about-text {
+  font-size: clamp(14px, 1.3vw, 18px);
+  line-height: 1.8;
+  color: #333333;
+}
+
+/* Larger headline for Our Vision main statement */
+.vision-heading {
+  font-weight: 800;
+  font-size: clamp(24px, 2.8vw, 38px);
+  margin-top: 4px;
+  margin-bottom: 14px;
+  color: #1a1a2e; /* dark, like main headings */
+}
+
+/* ================= About modal – 16:9 responsive tweaks ================= */
+/* Any screen that is effectively 16:9 (HD, FHD, QHD, 4K, etc.) */
+@media (min-aspect-ratio: 16/9) and (max-aspect-ratio: 16/9) {
+  .about-modal {
+    width: min(1320px, 78vw);
+    max-height: 82vh;
+  }
+
+  .about-body {
+    max-height: calc(82vh - 120px);
+  }
+
+  .about-who {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(24px, 3vw, 40px);
+  }
+
+  .about-hero-wrapper {
+    max-height: min(420px, 52vh);
+  }
+
+  .about-hero {
+    height: min(380px, 48vh);
+  }
+
+  .about-title {
+    font-size: clamp(22px, 2.0vw, 26px);
+  }
+
+  .about-h1 {
+    font-size: clamp(18px, 1.7vw, 22px);
+  }
+
+  .about-text {
+    font-size: clamp(14px, 1.15vw, 17px);
+  }
+
+  .vision-heading {
+    font-size: clamp(26px, 2.4vw, 36px);
+  }
+}
+
+.about-placeholder {
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 700;
+}
+
+.about-vision {
+  padding: 0;
+  margin: 0 -24px -20px; /* stretch to the edges of the modal body */
+}
+
+.vision-hero {
+  position: relative;
+  min-height: 360px;
+  border-radius: 0 0 22px 22px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.vision-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6, 21, 42, 0.94) 0%, rgba(6, 21, 42, 0.88) 42%, rgba(6, 21, 42, 0.45) 70%, rgba(6, 21, 42, 0) 100%);
+  pointer-events: none;
+}
+
+.vision-panel {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  padding: 48px 54px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vision-kicker {
+  font-size: 13px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: #55a9e6;
+}
+
+.vision-title {
+  margin: 0;
+  font-size: clamp(26px, 2.6vw, 36px);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.vision-text {
+  margin: 0;
+  font-size: clamp(14px, 1.3vw, 18px);
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 32rem;
+}
+
+@media (max-width: 860px) {
+  .about-vision {
+    margin: 0 -16px -16px;
+  }
+
+  .vision-panel {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 860px) {
+  .about-who {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    height: min(320px, 38vh);
+  }
+}
+
+@keyframes slideUpFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chairman Message Scrollbar Styles - Hidden */
+.chairman-scrollable {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.chairman-scrollable::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
+}
+
+@keyframes chairmanCardIn {
+  0% { opacity: 0; transform: translateY(18px) rotateX(12deg) scale(0.96); filter: blur(12px); }
+  55% { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0deg) scale(1); }
+}
+
+@keyframes chairmanTextReveal {
+  from { opacity: 0; transform: translateY(10px); clip-path: inset(0 100% 0 0); filter: blur(8px); }
+  to { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); filter: blur(0); }
+}
+
+@keyframes chairmanSigIn {
+  from { opacity: 0; transform: translateY(10px); filter: blur(8px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
 /* CSS Variables for 16:9 responsive design */
 :root {
   --main-logo-size: clamp(280px, 32vw, 550px);
@@ -2894,6 +3663,31 @@
   50% {
     opacity: 0.7;
     transform: translateY(-5px);
+  }
+}
+
+/* New Chairman Message Animations */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
   }
 }
 

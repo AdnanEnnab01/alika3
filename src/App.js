@@ -6,13 +6,16 @@ export default function App() {
   const [showPartners, setShowPartners] = useState(false);
   const [activeTab, setActiveTab] = useState('partners'); // 'partners', 'team', 'project'
   const [showGulfConsultLearnMore, setShowGulfConsultLearnMore] = useState(false);
+  const [showGulfConsultArchQRModal, setShowGulfConsultArchQRModal] = useState(false);
   const [gulfConsultActiveTab, setGulfConsultActiveTab] = useState('tab1'); // 'tab1', 'tab2', 'tab3'
   const [showAntiqueLearnMore, setShowAntiqueLearnMore] = useState(false);
   const [antiqueActiveTab, setAntiqueActiveTab] = useState('tab3'); // 'tab1', 'tab2', 'tab3'
   const [showAMTLearnMore, setShowAMTLearnMore] = useState(false);
   const [amtActiveTab, setAmtActiveTab] = useState('tab1'); // 'tab1' = Projects, 'tab2' = Team, 'tab3' = Partners
+  const [showAMTQRModal, setShowAMTQRModal] = useState(false);
   const [showGulfConsult2LearnMore, setShowGulfConsult2LearnMore] = useState(false);
   const [gulfConsult2ActiveTab, setGulfConsult2ActiveTab] = useState('tab1'); // 'tab1' = Projects, 'tab2' = Team, 'tab3' = Partners
+  const [showGulfConsultQRModal, setShowGulfConsultQRModal] = useState(false);
   const [showGSGLearnMore, setShowGSGLearnMore] = useState(false);
   const [gsgActiveTab, setGsgActiveTab] = useState('tab1'); // 'tab1' = Projects, 'tab2' = Team, 'tab3' = Partners
   const [showGulfDorrahLearnMore, setShowGulfDorrahLearnMore] = useState(false);
@@ -21,6 +24,7 @@ export default function App() {
   const [showAHEnvironmentalLearnMore, setShowAHEnvironmentalLearnMore] = useState(false);
   const [ahEnvironmentalActiveTab, setAhEnvironmentalActiveTab] = useState('tab1'); // 'tab1' = Partners, 'tab2' = Team, 'tab3' = Projects
   const [showIDCLearnMore, setShowIDCLearnMore] = useState(false);
+  const [showIDCQRModal, setShowIDCQRModal] = useState(false);
   const [showGTALearnMore, setShowGTALearnMore] = useState(false);
   const [dorrahVideoPlaying, setDorrahVideoPlaying] = useState(false);
   const [dorrahVideoFullscreen, setDorrahVideoFullscreen] = useState(false);
@@ -49,6 +53,14 @@ export default function App() {
   const [centralMedicalcareVideoPlaying, setCentralMedicalcareVideoPlaying] = useState(false);
   const [centralMedicalcareVideoFullscreen, setCentralMedicalcareVideoFullscreen] = useState(false);
   const centralMedicalcareVideoContainerRef = useRef(null);
+
+  // Home background sound + reveal animation (main page only)
+  const [homeSoundEnabled, setHomeSoundEnabled] = useState(false);
+  const [homeReveal, setHomeReveal] = useState(false);
+  const [homeReturning, setHomeReturning] = useState(false);
+  const [showChairmanMessage, setShowChairmanMessage] = useState(false);
+  const [showAboutUs, setShowAboutUs] = useState(false);
+  const [aboutUsTab, setAboutUsTab] = useState('who'); // 'who' | 'values' | 'vision'
 
   // Handle fullscreen change for Dorrah
   useEffect(() => {
@@ -230,20 +242,559 @@ export default function App() {
     };
   }, []);
 
-  // Company logos data
+  // Handle Escape key to close AMT QR Modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && showAMTQRModal) {
+        setShowAMTQRModal(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [showAMTQRModal]);
+
+  // Auto-close AMT QR Modal after 90 seconds of inactivity
+  useEffect(() => {
+    if (!showAMTQRModal) return;
+
+    let inactivityTimer;
+
+    const resetTimer = () => {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(() => {
+        setShowAMTQRModal(false);
+      }, 90000); // 90 seconds (1.5 minutes)
+    };
+
+    const handleActivity = () => {
+      resetTimer();
+    };
+
+    // Start the timer
+    resetTimer();
+
+    // Listen for user activity
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+    events.forEach(event => {
+      document.addEventListener(event, handleActivity, true);
+    });
+
+    return () => {
+      clearTimeout(inactivityTimer);
+      events.forEach(event => {
+        document.removeEventListener(event, handleActivity, true);
+      });
+    };
+  }, [showAMTQRModal]);
+
+  // Handle Escape key to close IDC QR Modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && showIDCQRModal) {
+        setShowIDCQRModal(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [showIDCQRModal]);
+
+  // Auto-close IDC QR Modal after 90 seconds of inactivity
+  useEffect(() => {
+    if (!showIDCQRModal) return;
+
+    let inactivityTimer;
+
+    const resetTimer = () => {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(() => {
+        setShowIDCQRModal(false);
+      }, 90000); // 90 seconds (1.5 minutes)
+    };
+
+    const handleActivity = () => {
+      resetTimer();
+    };
+
+    // Start the timer
+    resetTimer();
+
+    // Listen for user activity
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+    events.forEach(event => {
+      document.addEventListener(event, handleActivity, true);
+    });
+
+    return () => {
+      clearTimeout(inactivityTimer);
+      events.forEach(event => {
+        document.removeEventListener(event, handleActivity, true);
+      });
+    };
+  }, [showIDCQRModal]);
+
+  // Handle Escape key to close Gulf Consult QR Modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && showGulfConsultQRModal) {
+        setShowGulfConsultQRModal(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [showGulfConsultQRModal]);
+
+  // Auto-close Gulf Consult QR Modal after 90 seconds of inactivity
+  useEffect(() => {
+    if (!showGulfConsultQRModal) return;
+
+    let inactivityTimer;
+
+    const resetTimer = () => {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(() => {
+        setShowGulfConsultQRModal(false);
+      }, 90000); // 90 seconds (1.5 minutes)
+    };
+
+    const handleActivity = () => {
+      resetTimer();
+    };
+
+    // Start the timer
+    resetTimer();
+
+    // Listen for user activity
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+    events.forEach(event => {
+      document.addEventListener(event, handleActivity, true);
+    });
+
+    return () => {
+      clearTimeout(inactivityTimer);
+      events.forEach(event => {
+        document.removeEventListener(event, handleActivity, true);
+      });
+    };
+  }, [showGulfConsultQRModal]);
+
+  // Handle Escape key to close Gulf Consult Arch QR Modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && showGulfConsultArchQRModal) {
+        setShowGulfConsultArchQRModal(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [showGulfConsultArchQRModal]);
+
+  // Auto-close Gulf Consult Arch QR Modal after 90 seconds of inactivity
+  useEffect(() => {
+    if (!showGulfConsultArchQRModal) return;
+
+    let inactivityTimer;
+
+    const resetTimer = () => {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(() => {
+        setShowGulfConsultArchQRModal(false);
+      }, 90000); // 90 seconds (1.5 minutes)
+    };
+
+    const handleActivity = () => {
+      resetTimer();
+    };
+
+    // Start the timer
+    resetTimer();
+
+    // Listen for user activity
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+    events.forEach(event => {
+      document.addEventListener(event, handleActivity, true);
+    });
+
+    return () => {
+      clearTimeout(inactivityTimer);
+      events.forEach(event => {
+        document.removeEventListener(event, handleActivity, true);
+      });
+    };
+  }, [showGulfConsultArchQRModal]);
+
+  // Auto-redirect to homepage after 90 seconds of inactivity on company/Learn More pages
+  useEffect(() => {
+    // Check if we're on a company page or Learn More page
+    const isOnCompanyOrLearnMorePage = () => {
+      return selectedCompany !== null || 
+             showGulfConsultLearnMore || 
+             showAntiqueLearnMore || 
+             showAMTLearnMore || 
+             showGulfConsult2LearnMore || 
+             showGSGLearnMore || 
+             showGulfDorrahLearnMore || 
+             showCentralMedicalcareLearnMore || 
+             showRKLearnMore || 
+             showAHEnvironmentalLearnMore || 
+             showIDCLearnMore || 
+             showGTALearnMore;
+    };
+
+    // Check if any video is playing or modal/overlay is open
+    const isVideoOrModalOpen = () => {
+      return amtVideoFullscreen || 
+             idcVideoFullscreen || 
+             antiqueVideoFullscreen || 
+             centralMedicalcareVideoFullscreen || 
+             gulfConsultArchVideoFullscreen || 
+             dorrahVideoFullscreen || 
+             tlcoVideoFullscreen || 
+             gulfConsultVideoFullscreen || 
+             gulfLogoVideoFullscreen ||
+             showChairmanMessage ||
+             showAboutUs;
+    };
+
+    // Function to navigate back to homepage
+    const navigateToHomepage = () => {
+      // Close all company pages and Learn More modals
+      setSelectedCompany(null);
+      setShowGulfConsultLearnMore(false);
+      setShowAntiqueLearnMore(false);
+      setShowAMTLearnMore(false);
+      setShowGulfConsult2LearnMore(false);
+      setShowGSGLearnMore(false);
+      setShowGulfDorrahLearnMore(false);
+      setShowCentralMedicalcareLearnMore(false);
+      setShowRKLearnMore(false);
+      setShowAHEnvironmentalLearnMore(false);
+      setShowIDCLearnMore(false);
+      setShowGTALearnMore(false);
+      setShowPartners(false);
+      setActiveTab('partners');
+      
+      // Reset home state
+      setHomeReturning(true);
+      setTimeout(() => setHomeReturning(false), 600);
+    };
+
+    // Only run if we're on a company or Learn More page
+    if (!isOnCompanyOrLearnMorePage()) {
+      return;
+    }
+
+    let inactivityTimer = null;
+    const INACTIVITY_TIMEOUT = 90000; // 90 seconds in milliseconds
+
+    // Function to reset the inactivity timer
+    const resetInactivityTimer = () => {
+      // Clear existing timer
+      if (inactivityTimer) {
+        clearTimeout(inactivityTimer);
+      }
+
+      // Don't start timer if video or modal is open
+      if (isVideoOrModalOpen()) {
+        return;
+      }
+
+      // Set new timer
+      inactivityTimer = setTimeout(() => {
+        // Double-check we're still on a company/Learn More page and no video/modal is open
+        if (isOnCompanyOrLearnMorePage() && !isVideoOrModalOpen()) {
+          navigateToHomepage();
+        }
+      }, INACTIVITY_TIMEOUT);
+    };
+
+    // Activity event handlers
+    const handleActivity = () => {
+      resetInactivityTimer();
+    };
+
+    // Track mouse movement
+    const handleMouseMove = () => {
+      handleActivity();
+    };
+
+    // Track clicks
+    const handleClick = () => {
+      handleActivity();
+    };
+
+    // Track scrolling
+    const handleScroll = () => {
+      handleActivity();
+    };
+
+    // Track keyboard input
+    const handleKeyDown = () => {
+      handleActivity();
+    };
+
+    // Track touch events (for mobile)
+    const handleTouchStart = () => {
+      handleActivity();
+    };
+
+    // Add event listeners
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('click', handleClick);
+    document.addEventListener('scroll', handleScroll, true); // Use capture for scroll
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll, true);
+
+    // Start the timer initially
+    resetInactivityTimer();
+
+    // Cleanup
+    return () => {
+      if (inactivityTimer) {
+        clearTimeout(inactivityTimer);
+      }
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('scroll', handleScroll, true);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll, true);
+    };
+  }, [
+    selectedCompany,
+    showGulfConsultLearnMore,
+    showAntiqueLearnMore,
+    showAMTLearnMore,
+    showGulfConsult2LearnMore,
+    showGSGLearnMore,
+    showGulfDorrahLearnMore,
+    showCentralMedicalcareLearnMore,
+    showRKLearnMore,
+    showAHEnvironmentalLearnMore,
+    showIDCLearnMore,
+    showGTALearnMore,
+    amtVideoFullscreen,
+    idcVideoFullscreen,
+    antiqueVideoFullscreen,
+    centralMedicalcareVideoFullscreen,
+    gulfConsultArchVideoFullscreen,
+    dorrahVideoFullscreen,
+    tlcoVideoFullscreen,
+    gulfConsultVideoFullscreen,
+    gulfLogoVideoFullscreen,
+    showChairmanMessage,
+    showAboutUs
+  ]);
+
+  // Disable right-click context menu globally across the entire website
+  useEffect(() => {
+    // Prevent context menu on right-click (works globally via event capture)
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
+
+    // Disable common developer tools shortcuts
+    const handleKeyDown = (e) => {
+      // F12 - Developer Tools
+      if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+Shift+I - Developer Tools
+      if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+Shift+J - Console
+      if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+U - View Source
+      if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+Shift+C - Element Inspector
+      if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+S - Save Page (can be used to save images)
+      if (e.ctrlKey && (e.key === 'S' || e.key === 's')) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    // Use capture phase to catch events before they reach target elements
+    document.addEventListener('contextmenu', handleContextMenu, true);
+    document.addEventListener('keydown', handleKeyDown, true);
+    
+    // Also add to window for additional coverage
+    window.addEventListener('contextmenu', handleContextMenu, true);
+    window.addEventListener('keydown', handleKeyDown, true);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu, true);
+      document.removeEventListener('keydown', handleKeyDown, true);
+      window.removeEventListener('contextmenu', handleContextMenu, true);
+      window.removeEventListener('keydown', handleKeyDown, true);
+    };
+  }, []);
+
+  // Helper function to close video and exit fullscreen - use useCallback to ensure it's stable
+  const closeVideo = React.useCallback((setVideoFullscreen, setVideoPlaying) => {
+    // Small delay for smooth transition
+    setTimeout(() => {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+      setVideoFullscreen(false);
+      setVideoPlaying(false);
+    }, 300);
+  }, []);
+
+  // Handle video end events for all videos - auto-close when finished
+  useEffect(() => {
+    const handleMessage = (event) => {
+      // Listen for Cloudinary player events from their domain
+      if (!event.origin || !event.origin.includes('cloudinary.com')) {
+        // Also check for events from the same origin (for local testing)
+        if (event.origin && !event.origin.includes('localhost') && !event.origin.includes('127.0.0.1')) {
+          return;
+        }
+      }
+      
+      // Cloudinary sends events in various formats
+      if (event.data) {
+        let eventType = null;
+        let eventData = event.data;
+        
+        // Handle object format
+        if (typeof eventData === 'object') {
+          eventType = eventData.event || eventData.eventName || eventData.type || eventData.name || eventData.eventType;
+          // Also check nested properties
+          if (!eventType && eventData.data) {
+            eventType = eventData.data.event || eventData.data.eventName || eventData.data.type;
+          }
+        }
+        // Handle string format (JSON stringified)
+        else if (typeof eventData === 'string') {
+          try {
+            const parsed = JSON.parse(eventData);
+            eventType = parsed.event || parsed.eventName || parsed.type || parsed.name || parsed.eventType;
+            if (!eventType && parsed.data) {
+              eventType = parsed.data.event || parsed.data.eventName || parsed.data.type;
+            }
+          } catch (e) {
+            // Not JSON, check if it's a direct string event
+            const lowerData = eventData.toLowerCase();
+            if (lowerData.includes('ended') || lowerData.includes('complete') || 
+                lowerData.includes('videoend') || lowerData.includes('playback-ended')) {
+              eventType = 'ended';
+            }
+          }
+        }
+        
+        // Check for video end events - comprehensive list
+        if (eventType === 'ended' || eventType === 'video-ended' || eventType === 'complete' || 
+            eventType === 'playback-ended' || eventType === 'videoend' || eventType === 'end' ||
+            eventType === 'video_complete' || eventType === 'playback_complete') {
+          // Auto-close all videos when they end
+          if (amtVideoFullscreen) {
+            closeVideo(setAmtVideoFullscreen, setAmtVideoPlaying);
+          }
+          if (idcVideoFullscreen) {
+            closeVideo(setIdcVideoFullscreen, setIdcVideoPlaying);
+          }
+          if (antiqueVideoFullscreen) {
+            closeVideo(setAntiqueVideoFullscreen, setAntiqueVideoPlaying);
+          }
+          if (centralMedicalcareVideoFullscreen) {
+            closeVideo(setCentralMedicalcareVideoFullscreen, setCentralMedicalcareVideoPlaying);
+          }
+          if (gulfConsultArchVideoFullscreen) {
+            closeVideo(setGulfConsultArchVideoFullscreen, setGulfConsultArchVideoPlaying);
+          }
+          if (dorrahVideoFullscreen) {
+            closeVideo(setDorrahVideoFullscreen, setDorrahVideoPlaying);
+          }
+          if (tlcoVideoFullscreen) {
+            closeVideo(setTlcoVideoFullscreen, setTlcoVideoPlaying);
+          }
+          if (gulfConsultVideoFullscreen) {
+            closeVideo(setGulfConsultVideoFullscreen, setGulfConsultVideoPlaying);
+          }
+          if (gulfLogoVideoFullscreen) {
+            closeVideo(setGulfLogoVideoFullscreen, setGulfLogoVideoPlaying);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [amtVideoFullscreen, idcVideoFullscreen, antiqueVideoFullscreen, centralMedicalcareVideoFullscreen, gulfConsultArchVideoFullscreen, dorrahVideoFullscreen, tlcoVideoFullscreen, gulfConsultVideoFullscreen, gulfLogoVideoFullscreen]);
+
+  // Additional detection: Listen for iframe visibility changes that might indicate video end
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      // If page becomes visible and video is playing, check if it ended
+      if (!document.hidden) {
+        // This is a fallback - the postMessage handler should catch it first
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+  // Company logos data - AMT أسفل Central Care (بين AH و GC)
+  // GTA next to AMT, Antique next to AH Environmental
   const companies = [
-    { id: 1, logo: '/IDC.png', row: 1, col: 2, name: 'IDC', bgImage: '/idc-gif.gif' },
-    { id: 2, logo: '/antiqqe.png', row: 1, col: 3, name: 'Antique', bgImage: '/ant-git.gif' },
-    { id: 3,  logo: '/cc.png', row: 1, col: 4, name: 'Central Care', bgImage: '/rk-gif.gif' },
-    { id: 4,  logo: '/GTA.png', row: 2, col: 1, name: 'GTA', bgImage: '/GTA-bg.jpeg' },
-    { id: 5,  logo: '/ah-white.png', row: 2, col: 2, name: 'AH Environmental', bgImage: '/ah-gif.gif' },
-    { id: 6,  logo: '/RK.png', row: 2, col: 3, name: 'RK', bgImage: '/rk1-gif.gif' },
-    { id: 7,  logo: '/dorrah.png', row: 2, col: 4, name: 'Al Dorrah', bgImage: '/dorrah-gif.gif' },
-    { id: 8,  logo: '/AMT.png', row: 2, col: 5, name: 'AMT', bgImage: '/amt-bg.JPEG', modalLogo: '/amt-internal.png' },
+    // Right side - pattern (1-2-2-1) moving southeast
+    // Row 1: 2 squares - Gulf Logo between IDC and GSG (at top of TLCO)
+    { id: 1, logo: '/IDC.png', row: 1, col: 4, name: 'IDC', bgImage: '/idcbg.png' },
+    { id: 12, logo: '/gulf-logo.png', row: 1, col: 5, name: 'Gulf Logo', bgImage: '/gulfconsultbg.png', modalLogo: '/Gulf-white.png' },
+    // Row 2: 2 squares
+    { id: 10, logo: '/tico.png', row: 2, col: 4, name: 'TLCO', bgImage: '/elco-gif.gif' },
+    { id: 11, logo: '/gsg.png', row: 2, col: 5, name: 'GSG', bgImage: '/gcg-gif.gif' },
+    // Row 3: 4 squares - Gulf Consult next to Antique
     { id: 9,  logo: '/GULF-CONSULT.png', row: 3, col: 2, name: 'Gulf Consult', bgImage: '/GC-bg.jpeg', modalLogo: '/GULF-CONSULT.png' },
-    { id: 10, logo: '/tico.png', row: 3, col: 3, name: 'TLCO', bgImage: '/elco-gif.gif' },
-    { id: 11, logo: '/gsg.png', row: 3, col: 4, name: 'GSG', bgImage: '/gcg-gif.gif' },
-    { id: 12, logo: '/gulf-logo.png', row: 3, col: 5, name: 'Gulf Logo', bgImage: '/gulf-internal.jpeg', modalLogo: '/Gulf-white.png' },
+    { id: 2, logo: '/antique.png', row: 3, col: 3, name: 'Antique', bgImage: '/ant-git.gif', modalLogo: '/antiqqe.png' },
+    { id: 5,  logo: '/AH-ENVIRONMENTAL.png', row: 3, col: 4, name: 'AH Environmental', bgImage: '/ah-gif.gif', modalLogo: '/ah-white.png' },
+    { id: 3,  logo: '/cc.png', row: 3, col: 5, name: 'Central Care', bgImage: '/rk-gif.gif' },
+    // Row 4: 4 squares - RK between Central Care and AMT (at left of AH Environmental)
+    { id: 7,  logo: '/dorrah.png', row: 4, col: 2, name: 'Al Dorrah', bgImage: '/dorrah-gif.gif' },
+    { id: 4,  logo: '/GTA.png', row: 4, col: 3, name: 'GTA', bgImage: '/GTA-bg.jpeg' },
+    { id: 8,  logo: '/AMT.png', row: 4, col: 4, name: 'AMT', bgImage: '/amt-bg.JPEG', modalLogo: '/amt-internal.jpg' },
+    { id: 6,  logo: '/RK.png', row: 4, col: 5, name: 'RK', bgImage: '/rk1-gif.gif' },
   ];
 
 
@@ -253,7 +804,9 @@ export default function App() {
 
 
   return (
-    <div style={{
+    <div
+      className={`home-root${homeReveal ? ' is-reveal' : ''}${homeReturning ? ' is-return' : ''}`}
+      style={{
       width: '100vw',
       height: '100vh',
       background: '#9FB2BC',
@@ -264,75 +817,409 @@ export default function App() {
       aspectRatio: '16/9',
       minHeight: '100vh',
       minWidth: '100vw'
-    }}>
+      }}
+    >
       {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+      <div
         style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
+          inset: 0,
           zIndex: 0,
-          opacity: 0.3
+          opacity: homeSoundEnabled ? 1 : 0.3,
+          overflow: 'hidden'
         }}
       >
-        <source src="https://res.cloudinary.com/dl2rqs0lo/video/upload/Cinematic_sunrise_shot_202511182351_wwjlkk.mp4" type="video/mp4" />
-      </video>
-
-      {/* Left side - Company info */}
-      <div style={{
-        flex: '0 0 var(--left-panel-width, 35%)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 'var(--main-padding, clamp(20px, 3vw, 60px)) clamp(20px, 2.5vw, 40px)',
-        position: 'relative',
-        zIndex: 10
-      }}>
-        {/* Logo */}
-        <div style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
-          <img
-            src="/alika.png"
-            alt="Alika Logo"
-            className="left-hero-item left-hero-item--alika"
-            style={{
-              width: 'var(--main-logo-size, clamp(200px, 25vw, 400px))',
-              height: 'auto',
-              maxWidth: '100%'
-            }}
-          />
-        </div>
+        <iframe
+          key={homeSoundEnabled ? 'bg-sound-on' : 'bg-sound-off'}
+          src={`https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=alika_final_2_pttcrz&profile=cld-default&autoplay=true&muted=${homeSoundEnabled ? 'false' : 'true'}&loop=true&controls=false&playsinline=true`}
+          title="Alika Background Video"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowFullScreen
+          frameBorder="0"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width: '100%',
+            height: '100%',
+            transform: 'translate(-50%, -50%) scale(1.2)',
+            transformOrigin: 'center',
+            border: 0,
+            pointerEvents: 'none'
+          }}
+        />
       </div>
 
-      {/* Right side - Diamond grid */}
-      <div style={{
-        flex: '0 0 var(--right-panel-width, 65%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        padding: 'var(--main-padding, clamp(20px, 3vw, 60px))',
-        overflow: 'hidden'
-      }}>
+      {/* Home action button (enable sound + reveal animation) */}
+      {!homeSoundEnabled && (
+        <button
+          type="button"
+          className="home-sound-btn"
+          onClick={() => {
+            setHomeSoundEnabled(true);
+            setHomeReveal(true);
+            setHomeReturning(false);
+            setShowChairmanMessage(false);
+          }}
+          aria-label="Enable background video sound"
+        >
+          Enable Sound
+        </button>
+      )}
+
+      {/* Back button (return to main UI) */}
+      {homeSoundEnabled && (
+        <button
+          type="button"
+          className="home-back-btn"
+          onClick={() => {
+            setHomeSoundEnabled(false);
+            setHomeReveal(false);
+            setHomeReturning(true);
+            window.setTimeout(() => setHomeReturning(false), 720);
+            setShowChairmanMessage(false);
+          }}
+          aria-label="Back to Alika"
+        >
+          Back to Alika
+        </button>
+      )}
+
+      {/* Chairman message button (home only) - always visible when not on sound screen */}
+      {!homeSoundEnabled && (
+        <button
+          type="button"
+          className={`home-chairman-btn ${showChairmanMessage ? 'active' : ''}`}
+          onClick={() => {
+            if (showChairmanMessage) {
+              setShowChairmanMessage(false);
+            } else {
+              setShowChairmanMessage(true);
+              setShowAboutUs(false);
+            }
+            setHomeReveal(false);
+            setHomeReturning(false);
+          }}
+          aria-label="Message from the Chairman"
+        >
+          Message from the Chairman
+        </button>
+      )}
+
+      {/* About us button (home only) - always visible when not on sound screen */}
+      {!homeSoundEnabled && (
+        <button
+          type="button"
+          className={`home-about-btn ${showAboutUs ? 'active' : ''}`}
+          onClick={() => {
+            if (showAboutUs) {
+              setShowAboutUs(false);
+            } else {
+              setShowAboutUs(true);
+              setAboutUsTab('who');
+              setShowChairmanMessage(false);
+            }
+            setHomeReveal(false);
+            setHomeReturning(false);
+          }}
+          aria-label="About us"
+        >
+          About us
+        </button>
+      )}
+
+      {/* About us overlay */}
+      {showAboutUs && (
+        <div
+          className="about-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="About us"
+          onClick={() => setShowAboutUs(false)}
+        >
+          <div className="about-modal" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="about-close"
+              onClick={() => setShowAboutUs(false)}
+              aria-label="Back to Alika"
+            >
+              Back to Alika
+            </button>
+
+            <div className="about-header">
+              <div className="about-title">About us</div>
+              <div className="about-tabs" role="tablist" aria-label="About us tabs">
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={aboutUsTab === 'who'}
+                  className={`about-tab${aboutUsTab === 'who' ? ' is-active' : ''}`}
+                  onClick={() => setAboutUsTab('who')}
+                >
+                  Who We Are
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={aboutUsTab === 'values'}
+                  className={`about-tab${aboutUsTab === 'values' ? ' is-active' : ''}`}
+                  onClick={() => setAboutUsTab('values')}
+                >
+                  Our Values
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={aboutUsTab === 'vision'}
+                  className={`about-tab${aboutUsTab === 'vision' ? ' is-active' : ''}`}
+                  onClick={() => setAboutUsTab('vision')}
+                >
+                  Our Vision
+                </button>
+              </div>
+            </div>
+
+            <div className="about-body">
+              {aboutUsTab === 'who' && (
+                <div className="about-who">
+                  <div className="about-hero-wrapper">
+                    <img className="about-hero" src="/whoweare.jpg" alt="Who we are" />
+                  </div>
+                  <div className="about-copy">
+                    <div className="about-h1">Who We Are</div>
+                    <div className="about-text">
+                      We at ALIKA Holding Group, a leading Saudi investment group, we manage and grow our assets through a diversified portfolio that spans strategic sectors such as professional services, technology and communications, healthcare, and real estate development. We believe that smart investment is the true driver of sustainable growth; therefore, we rely on our innovative vision to seize promising opportunities and build long-term investments that enhance our operational efficiency and increase the value of our subsidiaries. Through this approach, we continue to strengthen our competitive position and create lasting value for our shareholders and partners.
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {aboutUsTab === 'values' && (
+                <div className="about-who">
+                  <div className="about-hero-wrapper">
+                    <img className="about-hero" src="/ourvalues.jpg" alt="Our values" />
+                  </div>
+                  <div className="about-copy">
+                    <div className="about-h1">Our Values</div>
+                    <div className="about-text">
+                      At ALIKA Holding Group, we believe that our success is built on a solid foundation of values that guide every aspect of our work. Integrity and transparency represent our unwavering commitment in all dealings, while the spirit of teamwork defines our professional and inspiring work environment, fostering performance, quality, and innovation. We place quality and continuous improvement at the heart of our operations, recognizing that development and innovation are the path to sustainable success. Equally, we prioritize sustainability in our environmental and social impact, alongside our commitment to empowering national talent as the true driver of growth and progress.
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {aboutUsTab === 'vision' && (
+                <div className="about-who">
+                  <div className="about-hero-wrapper">
+                    <img
+                      className="about-hero"
+                      src="/ourvission.jpg"
+                      alt="Our vision"
+                    />
+                  </div>
+                  <div className="about-copy">
+                    <div className="about-h1">Our Vision</div>
+                    <div className="about-text vision-heading">
+                      Strategic Investments for Sustainable Growth
+                    </div>
+                    <div className="about-text">
+                      We manage a diversified portfolio of investment assets guided by well-defined strategies
+                      designed to ensure sustainable growth and continuity. Our approach focuses on creating
+                      long-term value that strengthens the interests of our partners and supports their future
+                      ambitions.
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Exit chairman message (button is rendered inside the chairman card for better proximity) */}
+
+      {/* Foreground UI (logos / Alika / grid) */}
+      <div className="home-foreground" style={{ display: 'flex', width: '100%', height: '100%' }}>
+        {/* Left side - Company info */}
+        <div className="home-left" style={{
+          flex: '0 0 var(--left-panel-width, 35%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 'var(--main-padding, clamp(20px, 3vw, 60px)) clamp(20px, 2.5vw, 40px)',
+          position: 'relative',
+          zIndex: 10
+        }}>
+          {/* Logo or Chairman Message */}
+          <div style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            minHeight: showChairmanMessage ? 'auto' : 'clamp(300px, 40vh, 600px)',
+            maxHeight: showChairmanMessage ? '90vh' : 'none',
+            overflowY: showChairmanMessage ? 'auto' : 'visible'
+          }}>
+            {!showChairmanMessage ? (
+              <img
+                src="/alika.png"
+                alt="Alika Logo"
+                className="left-hero-item left-hero-item--alika"
+                style={{
+                  width: 'var(--main-logo-size, clamp(200px, 25vw, 400px))',
+                  height: 'auto',
+                  maxWidth: '100%',
+                  transition: 'opacity 0.3s ease, transform 0.3s ease'
+                }}
+              />
+            ) : (
+              <div 
+                className="chairman-message-container chairman-scrollable"
+                style={{
+                  width: '100%',
+                  maxWidth: 'clamp(350px, 45vw, 600px)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  animation: 'slideUpFromBottom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  padding: 'clamp(25px, 3vw, 40px)',
+                  maxHeight: '90vh',
+                  overflowY: 'auto',
+                  background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.9) 100%)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  borderRadius: '20px',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset'
+                }}
+              >
+                {/* Chairman Image */}
+                <div style={{
+                  position: 'relative',
+                  width: 'clamp(120px, 12vw, 200px)',
+                  height: 'clamp(120px, 12vw, 200px)',
+                  marginBottom: 'clamp(15px, 2vw, 25px)'
+                }}>
+                  <div style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '50%',
+                    border: '3px solid rgba(255, 255, 255, 0.4)',
+                    padding: '6px',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05))',
+                    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset'
+                  }}>
+                    <img 
+                      src="/chairman.png" 
+                      alt="Eng. Ali Khudair Al Harbi"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        display: 'block'
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Title */}
+                <div style={{
+                  textAlign: 'center',
+                  marginBottom: 'clamp(12px, 1.5vw, 20px)'
+                }}>
+                  <div style={{
+                    fontSize: 'clamp(10px, 1vw, 14px)',
+                    fontWeight: '600',
+                    letterSpacing: '2px',
+                    textTransform: 'uppercase',
+                    color: 'rgba(255, 255, 255, 0.9)',
+                    marginBottom: 'clamp(8px, 1vw, 12px)',
+                    position: 'relative',
+                    display: 'inline-block'
+                  }}>
+                    <span style={{
+                      position: 'absolute',
+                      left: '-25px',
+                      top: '50%',
+                      width: '20px',
+                      height: '1px',
+                      background: 'rgba(255, 255, 255, 0.4)'
+                    }} />
+                    Message from the Chairman
+                    <span style={{
+                      position: 'absolute',
+                      right: '-25px',
+                      top: '50%',
+                      width: '20px',
+                      height: '1px',
+                      background: 'rgba(255, 255, 255, 0.4)'
+                    }} />
+                  </div>
+                  <h2 style={{
+                    fontSize: 'clamp(16px, 1.8vw, 28px)',
+                    fontWeight: '300',
+                    letterSpacing: '1px',
+                    color: '#ffffff',
+                    margin: 0,
+                    lineHeight: '1.3',
+                    fontFamily: 'inherit'
+                  }}>
+                    Eng. Ali Khudair Al Harbi
+                  </h2>
+                </div>
+
+                {/* Message Text */}
+                <div style={{
+                  position: 'relative',
+                  padding: 'clamp(20px, 2.5vw, 35px) clamp(18px, 2vw, 28px)',
+                  marginBottom: 0,
+                  width: '100%'
+                }}>
+                  <p 
+                    dir="ltr"
+                    style={{
+                      fontSize: 'clamp(12px, 1.2vw, 18px)',
+                      lineHeight: '1.7',
+                      color: '#ffffff',
+                      fontWeight: '400',
+                      letterSpacing: '0.3px',
+                      margin: 0,
+                      textAlign: 'center',
+                      fontStyle: 'italic',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.4), 0 0 3px rgba(0, 0, 0, 0.3)'
+                    }}
+                  >
+                    A legacy of success, leadership, and development supports our promising long-term investment strategy and strengthens our ambitious vision for sustainable growth. We move forward toward a future that extends from one generation to the next.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Right side - Diamond grid */}
+        <div className="home-right" style={{
+          flex: '0 0 var(--right-panel-width, 65%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+          padding: 'var(--main-padding, clamp(20px, 3vw, 60px)) clamp(20px, 2.5vw, 40px) clamp(20px, 3vw, 60px) clamp(20px, 4vw, 80px)',
+          overflow: 'hidden'
+        }}>
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: `repeat(5, var(--grid-item-size, clamp(80px, 8vw, 130px)))`,
-          gridTemplateRows: `repeat(4, var(--grid-item-size, clamp(80px, 8vw, 130px)))`,
-          gap: 'var(--grid-gap, clamp(15px, 1.5vw, 25px))',
-          transform: 'rotate(45deg)',
+          gridTemplateColumns: `repeat(5, var(--grid-item-size, clamp(70px, 7vw, 115px)))`,
+          gridTemplateRows: `repeat(4, var(--grid-item-size, clamp(70px, 7vw, 115px)))`,
+          gap: 'var(--grid-gap, clamp(12px, 1.2vw, 20px))',
+          transform: 'rotate(45deg) translate(clamp(20px, 4vw, 60px), clamp(30px, 5vh, 90px))',
           position: 'relative'
         }}>
           {companies.map((company) => {
@@ -353,8 +1240,8 @@ export default function App() {
                       cursor: company.id === 10 || company.id === 3 || company.id === 11 || company.id === 1 || company.id === 6 || company.id === 5 || company.id === 2 || company.id === 7 || company.id === 8 || company.id === 9 || company.id === 12 || company.id === 4 ? 'pointer' : 'default',
                       width: '100%',
                       height: '100%',
-                      minWidth: 'var(--grid-item-size, clamp(80px, 8vw, 130px))',
-                      minHeight: 'var(--grid-item-size, clamp(80px, 8vw, 130px))',
+                      minWidth: 'var(--grid-item-size, clamp(70px, 7vw, 115px))',
+                      minHeight: 'var(--grid-item-size, clamp(70px, 7vw, 115px))',
                       background: '#E8E8E8',
                       border: '1px solid rgba(200, 200, 200, 0.5)',
                       display: 'flex',
@@ -413,7 +1300,9 @@ export default function App() {
             );
           })}
         </div>
+        </div>
       </div>
+
 
       {/* Full Screen Background */}
       {selectedCompany && (
@@ -476,7 +1365,7 @@ export default function App() {
               {/* AMT Internal Image - Top Right */}
               <div style={{
                 position: 'fixed',
-                top: 'clamp(120px, 12vh, 200px)',
+                top: 'clamp(280px, 28vh, 420px)',
                 right: 'clamp(50px, 5vw, 100px)',
                 zIndex: 11,
                 animation: 'logoFlyIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both'
@@ -609,19 +1498,21 @@ export default function App() {
                 }}
               >
                 {amtVideoFullscreen && (
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=amt_ecx4u7&profile=cld-default"
-                    width="100%"
-                    height="100%"
+                  <video
+                    key={`amt-video-${amtVideoFullscreen}`}
+                    src="https://res.cloudinary.com/dl2rqs0lo/video/upload/amt_ecx4u7.mp4"
+                    autoPlay
+                    controls
                     style={{
                       height: '100%',
                       width: '100%',
-                      aspectRatio: '640 / 360',
-                      border: 'none'
+                      maxHeight: '100vh',
+                      maxWidth: '100vw',
+                      objectFit: 'contain'
                     }}
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
+                    onEnded={() => {
+                      closeVideo(setAmtVideoFullscreen, setAmtVideoPlaying);
+                    }}
                   />
                 )}
                 {amtVideoFullscreen && (
@@ -754,6 +1645,7 @@ export default function App() {
                     <img
                       src="/amtqr.jpeg"
                       alt="AMT QR Code"
+                      onClick={() => setShowAMTQRModal(true)}
                       style={{
                         maxWidth: 'var(--amt-qr-size, clamp(160px, 18vw, 240px))',
                         maxHeight: 'var(--amt-qr-size, clamp(160px, 18vw, 240px))',
@@ -763,7 +1655,17 @@ export default function App() {
                         borderRadius: '8px',
                         boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
                         backgroundColor: '#ffffff',
-                        padding: 'clamp(6px, 0.8vw, 12px)'
+                        padding: 'clamp(6px, 0.8vw, 12px)',
+                        cursor: 'pointer',
+                        transition: 'transform 0.2s ease, boxShadow 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
                       }}
                     />
                   </div>
@@ -897,6 +1799,7 @@ export default function App() {
                     <img
                       src="/idcqr.jpeg"
                       alt="IDC QR Code"
+                      onClick={() => setShowIDCQRModal(true)}
                       style={{
                         maxWidth: 'var(--idc-qr-size, clamp(150px, 20vw, 200px))',
                         maxHeight: 'var(--idc-qr-size, clamp(150px, 20vw, 200px))',
@@ -906,7 +1809,17 @@ export default function App() {
                         borderRadius: '8px',
                         boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
                         backgroundColor: '#ffffff',
-                        padding: '8px'
+                        padding: '8px',
+                        cursor: 'pointer',
+                        transition: 'transform 0.2s ease, boxShadow 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
                       }}
                     />
                   </div>
@@ -951,8 +1864,8 @@ export default function App() {
                 <div
                   style={{
                     position: 'fixed',
-                    right: '20%',
-                    top: '30%',
+                    right: '5%',
+                    top: '40%',
                     transform: 'translate(50%, -50%)',
                     zIndex: 11,
                     display: 'flex',
@@ -961,80 +1874,122 @@ export default function App() {
                     justifyContent: 'center',
                     animation: 'fadeInUp 0.8s ease-out 0.3s both'
                   }}
-                  onClick={async () => {
-                    if (idcVideoContainerRef.current) {
-                      try {
-                        // فتح fullscreen
-                        setIdcVideoFullscreen(true);
-                        setIdcVideoPlaying(true);
-
-                        let fullscreenPromise;
-                        if (idcVideoContainerRef.current.requestFullscreen) {
-                          fullscreenPromise = idcVideoContainerRef.current.requestFullscreen();
-                        } else if (idcVideoContainerRef.current.webkitRequestFullscreen) {
-                          fullscreenPromise = idcVideoContainerRef.current.webkitRequestFullscreen();
-                        } else if (idcVideoContainerRef.current.msRequestFullscreen) {
-                          fullscreenPromise = idcVideoContainerRef.current.msRequestFullscreen();
-                        }
-
-                        if (fullscreenPromise) {
-                          await fullscreenPromise;
-                        }
-                      } catch (error) {
-                        console.error('Error opening fullscreen:', error);
-                      }
-                    }
-                  }}
                 >
-                  {/* Animation Text */}
+                  {/* Video Thumbnail Container - Relative positioning */}
                   <div
                     style={{
-                      color: '#ffffff',
-                      fontSize: 'var(--idc-play-text-size, clamp(14px, 1.5vw, 18px))',
-                      fontWeight: '600',
-                      marginBottom: '20px',
-                      textAlign: 'center',
-                      animation: 'pulse 2s ease-in-out infinite',
-                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                      position: 'relative',
+                      display: 'inline-block',
+                      animation: 'fadeInUp 0.8s ease-out 0.5s both'
                     }}
                   >
-                    Click to play video
-                  </div>
-                  
-                  {/* Play Button */}
-                  <div
-                    style={{
-                      width: 'var(--idc-play-button-size, 100px)',
-                      height: 'var(--idc-play-button-size, 100px)',
-                      borderRadius: '50%',
-                      background: 'rgba(11, 111, 191, 0.9)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 20px rgba(11, 111, 191, 0.4)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(11, 111, 191, 1)';
-                      e.currentTarget.style.transform = 'scale(1.1)';
-                      e.currentTarget.style.boxShadow = '0 6px 30px rgba(11, 111, 191, 0.6)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(11, 111, 191, 0.9)';
-                      e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(11, 111, 191, 0.4)';
-                    }}
-                  >
-                    <svg
-                      width="calc(var(--idc-play-button-size, 100px) * 0.5)"
-                      height="calc(var(--idc-play-button-size, 100px) * 0.5)"
-                      viewBox="0 0 24 24"
-                      fill="white"
-                      style={{ marginLeft: '6px' }}
+                    {/* IDC Internal Photo */}
+                    <img
+                      src="/idc-internal.jpg"
+                      alt="IDC Contracting"
+                      style={{
+                        maxWidth: 'clamp(500px, 42vw, 750px)',
+                        maxHeight: 'clamp(350px, 35vh, 550px)',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '12px',
+                        boxShadow: '0 8px 25px rgba(0, 0, 0, 0.6)',
+                        display: 'block'
+                      }}
+                    />
+                    
+                    {/* Overlay Group - Text and Play Button centered together */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 2,
+                        gap: 'clamp(16px, 2vh, 24px)'
+                      }}
                     >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+                      {/* Click to play video text */}
+                      <div
+                        style={{
+                          color: '#ffffff',
+                          fontSize: 'var(--idc-play-text-size, clamp(14px, 1.5vw, 18px))',
+                          fontWeight: '600',
+                          textAlign: 'center',
+                          animation: 'pulse 2s ease-in-out infinite',
+                          textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)',
+                          whiteSpace: 'nowrap'
+                        }}
+                      >
+                        Click to play video
+                      </div>
+                      
+                      {/* Play Button - Centered within the text */}
+                      <div
+                        onClick={async () => {
+                          if (idcVideoContainerRef.current) {
+                            try {
+                              // فتح fullscreen
+                              setIdcVideoFullscreen(true);
+                              setIdcVideoPlaying(true);
+
+                              let fullscreenPromise;
+                              if (idcVideoContainerRef.current.requestFullscreen) {
+                                fullscreenPromise = idcVideoContainerRef.current.requestFullscreen();
+                              } else if (idcVideoContainerRef.current.webkitRequestFullscreen) {
+                                fullscreenPromise = idcVideoContainerRef.current.webkitRequestFullscreen();
+                              } else if (idcVideoContainerRef.current.msRequestFullscreen) {
+                                fullscreenPromise = idcVideoContainerRef.current.msRequestFullscreen();
+                              }
+
+                              if (fullscreenPromise) {
+                                await fullscreenPromise;
+                              }
+                            } catch (error) {
+                              console.error('Error opening fullscreen:', error);
+                            }
+                          }
+                        }}
+                        style={{
+                          width: 'var(--idc-play-button-size, 100px)',
+                          height: 'var(--idc-play-button-size, 100px)',
+                          borderRadius: '50%',
+                          background: 'rgba(11, 111, 191, 0.9)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          boxShadow: '0 4px 20px rgba(11, 111, 191, 0.4)',
+                          flexShrink: 0
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = 'rgba(11, 111, 191, 1)';
+                          e.currentTarget.style.transform = 'scale(1.1)';
+                          e.currentTarget.style.boxShadow = '0 6px 30px rgba(11, 111, 191, 0.6)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'rgba(11, 111, 191, 0.9)';
+                          e.currentTarget.style.transform = 'scale(1)';
+                          e.currentTarget.style.boxShadow = '0 4px 20px rgba(11, 111, 191, 0.4)';
+                        }}
+                      >
+                        <svg
+                          width="calc(var(--idc-play-button-size, 100px) * 0.5)"
+                          height="calc(var(--idc-play-button-size, 100px) * 0.5)"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          style={{ marginLeft: '6px' }}
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -1056,19 +2011,21 @@ export default function App() {
                 }}
               >
                 {idcVideoFullscreen && (
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=idc_egyila&profile=cld-default"
-                    width="100%"
-                    height="100%"
+                  <video
+                    key={`idc-video-${idcVideoFullscreen}`}
+                    src="https://res.cloudinary.com/dl2rqs0lo/video/upload/idc_egyila.mp4"
+                    autoPlay
+                    controls
                     style={{
                       height: '100%',
                       width: '100%',
-                      aspectRatio: '640 / 360',
-                      border: 'none'
+                      maxHeight: '100vh',
+                      maxWidth: '100vw',
+                      objectFit: 'contain'
                     }}
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
+                    onEnded={() => {
+                      closeVideo(setIdcVideoFullscreen, setIdcVideoPlaying);
+                    }}
                   />
                 )}
                 {idcVideoFullscreen && (
@@ -1400,19 +2357,21 @@ export default function App() {
                 }}
               >
                 {antiqueVideoFullscreen && (
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=WhatsApp_Video_2026-02-04_at_11.38.28_AM_mhpll7&profile=cld-default"
-                    width="100%"
-                    height="100%"
+                  <video
+                    key={`antique-video-${antiqueVideoFullscreen}`}
+                    src="https://res.cloudinary.com/dl2rqs0lo/video/upload/WhatsApp_Video_2026-02-04_at_11.38.28_AM_mhpll7.mp4"
+                    autoPlay
+                    controls
                     style={{
                       height: '100%',
                       width: '100%',
-                      aspectRatio: '640 / 360',
-                      border: 'none'
+                      maxHeight: '100vh',
+                      maxWidth: '100vw',
+                      objectFit: 'contain'
                     }}
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
+                    onEnded={() => {
+                      closeVideo(setAntiqueVideoFullscreen, setAntiqueVideoPlaying);
+                    }}
                   />
                 )}
                 {antiqueVideoFullscreen && (
@@ -1719,19 +2678,21 @@ export default function App() {
                 }}
               >
                 {centralMedicalcareVideoFullscreen && (
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=WhatsApp_Video_2026-02-03_at_4.02.50_PM_wo8g32&profile=cld-default"
-                    width="100%"
-                    height="100%"
+                  <video
+                    key={`central-video-${centralMedicalcareVideoFullscreen}`}
+                    src="https://res.cloudinary.com/dl2rqs0lo/video/upload/WhatsApp_Video_2026-02-03_at_4.02.50_PM_wo8g32.mp4"
+                    autoPlay
+                    controls
                     style={{
                       height: '100%',
                       width: '100%',
-                      aspectRatio: '640 / 360',
-                      border: 'none'
+                      maxHeight: '100vh',
+                      maxWidth: '100vw',
+                      objectFit: 'contain'
                     }}
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
+                    onEnded={() => {
+                      closeVideo(setCentralMedicalcareVideoFullscreen, setCentralMedicalcareVideoPlaying);
+                    }}
                   />
                 )}
                 {centralMedicalcareVideoFullscreen && (
@@ -1902,6 +2863,7 @@ export default function App() {
                     <img
                       src="/gcqr.jpeg"
                       alt="Gulf Consult QR Code"
+                      onClick={() => setShowGulfConsultArchQRModal(true)}
                       style={{
                         maxWidth: 'var(--gulf-qr-size, clamp(160px, 18vw, 240px))',
                         maxHeight: 'var(--gulf-qr-size, clamp(160px, 18vw, 240px))',
@@ -1911,7 +2873,17 @@ export default function App() {
                         borderRadius: '8px',
                         boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
                         backgroundColor: '#ffffff',
-                        padding: 'clamp(6px, 0.8vw, 12px)'
+                        padding: 'clamp(6px, 0.8vw, 12px)',
+                        cursor: 'pointer',
+                        transition: 'transform 0.2s ease, boxShadow 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
                       }}
                     />
                   </div>
@@ -2061,19 +3033,21 @@ export default function App() {
                 }}
               >
                 {gulfConsultArchVideoFullscreen && (
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=WhatsApp_Video_2026-02-03_at_4.03.03_PM_h59upq&profile=cld-default"
-                    width="100%"
-                    height="100%"
+                  <video
+                    key={`gulf-arch-video-${gulfConsultArchVideoFullscreen}`}
+                    src="https://res.cloudinary.com/dl2rqs0lo/video/upload/WhatsApp_Video_2026-02-03_at_4.03.03_PM_h59upq.mp4"
+                    autoPlay
+                    controls
                     style={{
                       height: '100%',
                       width: '100%',
-                      aspectRatio: '640 / 360',
-                      border: 'none'
+                      maxHeight: '100vh',
+                      maxWidth: '100vw',
+                      objectFit: 'contain'
                     }}
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
+                    onEnded={() => {
+                      closeVideo(setGulfConsultArchVideoFullscreen, setGulfConsultArchVideoPlaying);
+                    }}
                   />
                 )}
                 {gulfConsultArchVideoFullscreen && (
@@ -2304,19 +3278,21 @@ export default function App() {
                 }}
               >
                 {dorrahVideoFullscreen && (
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=dorrah_ei9ijx&profile=cld-default"
-                    width="100%"
-                    height="100%"
+                  <video
+                    key={`dorrah-video-${dorrahVideoFullscreen}`}
+                    src="https://res.cloudinary.com/dl2rqs0lo/video/upload/dorrah_ei9ijx.mp4"
+                    autoPlay
+                    controls
                     style={{
                       height: '100%',
                       width: '100%',
-                      aspectRatio: '640 / 360',
-                      border: 'none'
+                      maxHeight: '100vh',
+                      maxWidth: '100vw',
+                      objectFit: 'contain'
                     }}
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
+                    onEnded={() => {
+                      closeVideo(setDorrahVideoFullscreen, setDorrahVideoPlaying);
+                    }}
                   />
                 )}
                 {dorrahVideoFullscreen && (
@@ -2954,19 +3930,21 @@ export default function App() {
                 }}
               >
                 {tlcoVideoFullscreen && (
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=tlco_onczo4&profile=cld-default"
-                    width="100%"
-                    height="100%"
+                  <video
+                    key={`tlco-video-${tlcoVideoFullscreen}`}
+                    src="https://res.cloudinary.com/dl2rqs0lo/video/upload/tlco_onczo4.mp4"
+                    autoPlay
+                    controls
                     style={{
                       height: '100%',
                       width: '100%',
-                      aspectRatio: '640 / 360',
-                      border: 'none'
+                      maxHeight: '100vh',
+                      maxWidth: '100vw',
+                      objectFit: 'contain'
                     }}
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
+                    onEnded={() => {
+                      closeVideo(setTlcoVideoFullscreen, setTlcoVideoPlaying);
+                    }}
                   />
                 )}
                 {tlcoVideoFullscreen && (
@@ -3116,7 +4094,7 @@ export default function App() {
                     gap: 'clamp(20px, 4vw, 40px)',
                     alignItems: 'flex-start',
                     animation: 'textReveal 1000ms cubic-bezier(0.2, 0.9, 0.2, 1) 500ms both',
-                    marginBottom: '8px',
+                    marginBottom: '-8px',
                     position: 'relative',
                     zIndex: 13
                   }}
@@ -3183,7 +4161,7 @@ export default function App() {
                 <button
                   onClick={() => setShowGSGLearnMore(true)}
                   style={{
-                    marginTop: 'clamp(16px, 2.5vh, 28px)',
+                    marginTop: 'clamp(8px, 1.5vh, 16px)',
                     padding: 'var(--gsg-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
                     fontSize: 'var(--gsg-button-font, clamp(16px, 1.8vw, 22px))',
                     fontWeight: '700',
@@ -3694,6 +4672,7 @@ export default function App() {
                     <img
                       src="/gulfconsultqr.jpeg"
                       alt="Gulf Consult QR Code"
+                      onClick={() => setShowGulfConsultQRModal(true)}
                       style={{
                         maxWidth: 'var(--gulf-qr-size, clamp(160px, 18vw, 240px))',
                         maxHeight: 'var(--gulf-qr-size, clamp(160px, 18vw, 240px))',
@@ -3703,7 +4682,17 @@ export default function App() {
                         borderRadius: '8px',
                         boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
                         backgroundColor: '#ffffff',
-                        padding: '8px'
+                        padding: '8px',
+                        cursor: 'pointer',
+                        transition: 'transform 0.2s ease, boxShadow 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
                       }}
                     />
                   </div>
@@ -3748,8 +4737,8 @@ export default function App() {
                 <div
                   style={{
                     position: 'fixed',
-                    right: '15%',
-                    top: '40%',
+                    right: '5%',
+                    top: '30%',
                     transform: 'translate(50%, -50%)',
                     zIndex: 11,
                     display: 'flex',
@@ -3758,80 +4747,122 @@ export default function App() {
                     justifyContent: 'center',
                     animation: 'fadeInUp 0.8s ease-out 0.3s both'
                   }}
-                  onClick={async () => {
-                    if (gulfLogoVideoContainerRef.current) {
-                      try {
-                        // فتح fullscreen
-                        setGulfLogoVideoFullscreen(true);
-                        setGulfLogoVideoPlaying(true);
-
-                        let fullscreenPromise;
-                        if (gulfLogoVideoContainerRef.current.requestFullscreen) {
-                          fullscreenPromise = gulfLogoVideoContainerRef.current.requestFullscreen();
-                        } else if (gulfLogoVideoContainerRef.current.webkitRequestFullscreen) {
-                          fullscreenPromise = gulfLogoVideoContainerRef.current.webkitRequestFullscreen();
-                        } else if (gulfLogoVideoContainerRef.current.msRequestFullscreen) {
-                          fullscreenPromise = gulfLogoVideoContainerRef.current.msRequestFullscreen();
-                        }
-
-                        if (fullscreenPromise) {
-                          await fullscreenPromise;
-                        }
-                      } catch (error) {
-                        console.error('Error opening fullscreen:', error);
-                      }
-                    }
-                  }}
                 >
-                  {/* Animation Text */}
+                  {/* Video Thumbnail Container - Relative positioning */}
                   <div
                     style={{
-                      color: '#ffffff',
-                      fontSize: 'clamp(14px, 1.6vw, 22px)',
-                      fontWeight: '600',
-                      marginBottom: 'clamp(16px, 2vh, 24px)',
-                      textAlign: 'center',
-                      animation: 'pulse 2s ease-in-out infinite',
-                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)'
+                      position: 'relative',
+                      display: 'inline-block',
+                      animation: 'fadeInUp 0.8s ease-out 0.5s both'
                     }}
                   >
-                    Click to play video
-                  </div>
-                  
-                  {/* Play Button */}
-                  <div
-                    style={{
-                      width: 'var(--gulf-play-button-size, clamp(90px, 8vw, 130px))',
-                      height: 'var(--gulf-play-button-size, clamp(90px, 8vw, 130px))',
-                      borderRadius: '50%',
-                      background: 'rgba(22, 52, 138, 0.9)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 20px rgba(22, 52, 138, 0.4)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(22, 52, 138, 1)';
-                      e.currentTarget.style.transform = 'scale(1.1)';
-                      e.currentTarget.style.boxShadow = '0 6px 30px rgba(22, 52, 138, 0.6)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(22, 52, 138, 0.9)';
-                      e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(22, 52, 138, 0.4)';
-                    }}
-                  >
-                    <svg
-                      width="clamp(40px, 4vw, 60px)"
-                      height="clamp(40px, 4vw, 60px)"
-                      viewBox="0 0 24 24"
-                      fill="white"
-                      style={{ marginLeft: '6px' }}
+                    {/* Gulf Photo - Increased size for better visual impact */}
+                    <img
+                      src="/gulfphoto.jpg"
+                      alt="Gulf Consult"
+                      style={{
+                        maxWidth: 'clamp(600px, 48vw, 900px)',
+                        maxHeight: 'clamp(400px, 38vh, 600px)',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: '12px',
+                        boxShadow: '0 8px 25px rgba(0, 0, 0, 0.6)',
+                        display: 'block'
+                      }}
+                    />
+                    
+                    {/* Overlay Group - Text and Play Button centered together */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 2,
+                        gap: 'clamp(16px, 2vh, 24px)'
+                      }}
                     >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+                      {/* Click to play video text */}
+                      <div
+                        style={{
+                          color: '#ffffff',
+                          fontSize: 'clamp(14px, 1.6vw, 22px)',
+                          fontWeight: '600',
+                          textAlign: 'center',
+                          animation: 'pulse 2s ease-in-out infinite',
+                          textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)',
+                          whiteSpace: 'nowrap'
+                        }}
+                      >
+                        Click to play video
+                      </div>
+                      
+                      {/* Play Button - Centered within the text */}
+                      <div
+                        onClick={async () => {
+                          if (gulfLogoVideoContainerRef.current) {
+                            try {
+                              // فتح fullscreen
+                              setGulfLogoVideoFullscreen(true);
+                              setGulfLogoVideoPlaying(true);
+
+                              let fullscreenPromise;
+                              if (gulfLogoVideoContainerRef.current.requestFullscreen) {
+                                fullscreenPromise = gulfLogoVideoContainerRef.current.requestFullscreen();
+                              } else if (gulfLogoVideoContainerRef.current.webkitRequestFullscreen) {
+                                fullscreenPromise = gulfLogoVideoContainerRef.current.webkitRequestFullscreen();
+                              } else if (gulfLogoVideoContainerRef.current.msRequestFullscreen) {
+                                fullscreenPromise = gulfLogoVideoContainerRef.current.msRequestFullscreen();
+                              }
+
+                              if (fullscreenPromise) {
+                                await fullscreenPromise;
+                              }
+                            } catch (error) {
+                              console.error('Error opening fullscreen:', error);
+                            }
+                          }
+                        }}
+                        style={{
+                          width: 'var(--gulf-play-button-size, clamp(90px, 8vw, 130px))',
+                          height: 'var(--gulf-play-button-size, clamp(90px, 8vw, 130px))',
+                          borderRadius: '50%',
+                          background: 'rgba(22, 52, 138, 0.9)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          boxShadow: '0 4px 20px rgba(22, 52, 138, 0.4)',
+                          flexShrink: 0
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = 'rgba(22, 52, 138, 1)';
+                          e.currentTarget.style.transform = 'scale(1.1)';
+                          e.currentTarget.style.boxShadow = '0 6px 30px rgba(22, 52, 138, 0.6)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'rgba(22, 52, 138, 0.9)';
+                          e.currentTarget.style.transform = 'scale(1)';
+                          e.currentTarget.style.boxShadow = '0 4px 20px rgba(22, 52, 138, 0.4)';
+                        }}
+                      >
+                        <svg
+                          width="clamp(40px, 4vw, 60px)"
+                          height="clamp(40px, 4vw, 60px)"
+                          viewBox="0 0 24 24"
+                          fill="white"
+                          style={{ marginLeft: '6px' }}
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -3853,19 +4884,21 @@ export default function App() {
                 }}
               >
                 {gulfLogoVideoFullscreen && (
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dl2rqs0lo&public_id=gulfconsult_pjinhc&profile=cld-default"
-                    width="100%"
-                    height="100%"
+                  <video
+                    key={`gulf-logo-video-${gulfLogoVideoFullscreen}`}
+                    src="https://res.cloudinary.com/dl2rqs0lo/video/upload/gulfconsult_pjinhc.mp4"
+                    autoPlay
+                    controls
                     style={{
                       height: '100%',
                       width: '100%',
-                      aspectRatio: '640 / 360',
-                      border: 'none'
+                      maxHeight: '100vh',
+                      maxWidth: '100vw',
+                      objectFit: 'contain'
                     }}
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
+                    onEnded={() => {
+                      closeVideo(setGulfLogoVideoFullscreen, setGulfLogoVideoPlaying);
+                    }}
                   />
                 )}
                 {gulfLogoVideoFullscreen && (
@@ -3945,41 +4978,44 @@ export default function App() {
             </>
           )}
 
-          {/* Close button - Top Right */}
+          {/* Back to Alika button - Top Right */}
           <button
             onClick={() => setSelectedCompany(null)}
             style={{
               position: 'fixed',
-              top: '40px',
-              right: '40px',
-              background: selectedCompany.id === 8 ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.9)',
-              border: 'none',
-              color: selectedCompany.id === 8 ? '#fff' : '#333',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              top: 'clamp(20px, 2.5vw, 40px)',
+              right: 'clamp(20px, 2.5vw, 40px)',
+              background: selectedCompany.id === 8 ? 'rgba(0, 0, 0, 0.75)' : 'rgba(0, 0, 0, 0.35)',
+              border: '1px solid rgba(255, 255, 255, 0.28)',
+              color: 'rgba(255, 255, 255, 0.95)',
+              padding: 'clamp(10px, 1.2vw, 14px) clamp(18px, 2vw, 24px)',
+              borderRadius: '12px',
+              fontSize: 'clamp(13px, 1.2vw, 16px)',
+              fontWeight: '800',
+              letterSpacing: '0.35px',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               transition: 'all 0.3s ease',
               zIndex: 10,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              boxShadow: '0 16px 45px rgba(0, 0, 0, 0.35)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              whiteSpace: 'nowrap'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = selectedCompany.id === 8 ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              e.currentTarget.style.background = selectedCompany.id === 8 ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.45)';
+              e.currentTarget.style.transform = 'scale(1.05)';
+              e.currentTarget.style.boxShadow = '0 18px 50px rgba(0, 0, 0, 0.4)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = selectedCompany.id === 8 ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.9)';
+              e.currentTarget.style.background = selectedCompany.id === 8 ? 'rgba(0, 0, 0, 0.75)' : 'rgba(0, 0, 0, 0.35)';
               e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              e.currentTarget.style.boxShadow = '0 16px 45px rgba(0, 0, 0, 0.35)';
             }}
           >
-            ✕
+            Back to Alika
           </button>
         </div>
       )}
@@ -4226,41 +5262,34 @@ export default function App() {
             )}
           </div>
 
-          {/* Close button */}
+          {/* Back button - text only */}
           <button
             onClick={() => setShowPartners(false)}
             style={{
               position: 'fixed',
-              top: '40px',
-              right: '40px',
-              background: 'rgba(255, 255, 255, 0.9)',
+              top: 'clamp(20px, 2.5vw, 40px)',
+              right: 'clamp(20px, 2.5vw, 40px)',
+              background: 'transparent',
               border: 'none',
-              color: '#333',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              color: 'rgba(255, 255, 255, 0.95)',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '700',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            ✕
+            Back
           </button>
         </div>
       )}
@@ -4692,42 +5721,134 @@ export default function App() {
             )}
           </div>
 
-          {/* Close button */}
+          {/* Back button - text only */}
           <button
             onClick={() => setShowGulfConsultLearnMore(false)}
             style={{
               position: 'fixed',
-              top: '40px',
-              right: '40px',
-              background: 'rgba(255, 255, 255, 0.9)',
+              top: 'clamp(20px, 2.5vw, 40px)',
+              right: 'clamp(20px, 2.5vw, 40px)',
+              background: 'transparent',
               border: 'none',
-              color: '#333',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              color: '#4a148c',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '800',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease',
+              textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              e.currentTarget.style.opacity = '0.8';
+              e.currentTarget.style.color = '#3d0f6f';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.color = '#4a148c';
             }}
           >
-            ✕
+            Back
           </button>
+        </div>
+      )}
+
+      {/* Gulf Consult Arch QR Code Modal */}
+      {showGulfConsultArchQRModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            zIndex: 10000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            animation: 'fadeIn 0.3s ease-in-out'
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowGulfConsultArchQRModal(false);
+            }
+          }}
+        >
+          {/* Modal Content - Card Style */}
+          <div
+            style={{
+              position: 'relative',
+              width: '500px',
+              height: '100%',
+              maxHeight: '100vh',
+              backgroundColor: '#ffffff',
+              borderRadius: '12px',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowGulfConsultArchQRModal(false)}
+              style={{
+                position: 'absolute',
+                top: '12px',
+                right: '12px',
+                background: 'rgba(0, 0, 0, 0.8)',
+                border: 'none',
+                color: '#fff',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                fontSize: '24px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease',
+                zIndex: 10001,
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+                fontWeight: 'bold',
+                lineHeight: '1'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 0, 0, 1)';
+                e.currentTarget.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              ×
+            </button>
+
+            {/* Iframe Container */}
+            <iframe
+              src="https://linktrees-s.netlify.app/page3"
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                display: 'block',
+                flex: 1,
+                margin: 0,
+                padding: 0
+              }}
+              title="Gulf Consult Arch QR Link"
+              allow="fullscreen"
+              scrolling="auto"
+            />
+          </div>
         </div>
       )}
 
@@ -5002,41 +6123,34 @@ export default function App() {
             )}
           </div>
 
-          {/* Close button */}
+          {/* Back to Alika button */}
           <button
             onClick={() => setShowAntiqueLearnMore(false)}
             style={{
               position: 'fixed',
-              top: '40px',
-              right: '40px',
-              background: 'rgba(255, 255, 255, 0.9)',
+              top: 'clamp(20px, 2.5vw, 40px)',
+              right: 'clamp(20px, 2.5vw, 40px)',
+              background: 'transparent',
               border: 'none',
-              color: '#333',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              color: 'rgba(255, 255, 255, 0.95)',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '700',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            ✕
+            Back
           </button>
         </div>
       )}
@@ -5574,9 +6688,105 @@ export default function App() {
               e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
               e.currentTarget.style.transform = 'scale(1)';
             }}
-          >
-            ✕
+            >
+            Back
           </button>
+        </div>
+      )}
+
+      {/* AMT QR Code Modal */}
+      {showAMTQRModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            zIndex: 10000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            animation: 'fadeIn 0.3s ease-in-out'
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowAMTQRModal(false);
+            }
+          }}
+        >
+          {/* Modal Content - Card Style */}
+          <div
+            style={{
+              position: 'relative',
+              width: '500px',
+              height: '100%',
+              maxHeight: '100vh',
+              backgroundColor: '#ffffff',
+              borderRadius: '12px',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowAMTQRModal(false)}
+              style={{
+                position: 'absolute',
+                top: '12px',
+                right: '12px',
+                background: 'rgba(0, 0, 0, 0.8)',
+                border: 'none',
+                color: '#fff',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                fontSize: '24px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease',
+                zIndex: 10001,
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+                fontWeight: 'bold',
+                lineHeight: '1'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 0, 0, 1)';
+                e.currentTarget.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              ×
+            </button>
+
+            {/* Iframe Container */}
+            <iframe
+              src="https://linktrees-s.netlify.app/page1"
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                display: 'block',
+                flex: 1,
+                margin: 0,
+                padding: 0
+              }}
+              title="AMT QR Link"
+              allow="fullscreen"
+              scrolling="auto"
+            />
+          </div>
         </div>
       )}
 
@@ -6125,30 +7335,124 @@ export default function App() {
               background: 'rgba(255, 255, 255, 0.9)',
               border: 'none',
               color: '#333',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              background: 'transparent',
+              border: 'none',
+              color: 'rgba(255, 255, 255, 0.95)',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '700',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
+              e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            ✕
+            Back
           </button>
+        </div>
+      )}
+
+      {/* Gulf Consult QR Code Modal */}
+      {showGulfConsultQRModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            zIndex: 10000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            animation: 'fadeIn 0.3s ease-in-out'
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowGulfConsultQRModal(false);
+            }
+          }}
+        >
+          {/* Modal Content - Card Style */}
+          <div
+            style={{
+              position: 'relative',
+              width: '500px',
+              height: '100%',
+              maxHeight: '100vh',
+              backgroundColor: '#ffffff',
+              borderRadius: '12px',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowGulfConsultQRModal(false)}
+              style={{
+                position: 'absolute',
+                top: '12px',
+                right: '12px',
+                background: 'rgba(0, 0, 0, 0.8)',
+                border: 'none',
+                color: '#fff',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                fontSize: '24px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease',
+                zIndex: 10001,
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+                fontWeight: 'bold',
+                lineHeight: '1'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 0, 0, 1)';
+                e.currentTarget.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              ×
+            </button>
+
+            {/* Iframe Container */}
+            <iframe
+              src="https://linktrees-s.netlify.app/page3"
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                display: 'block',
+                flex: 1,
+                margin: 0,
+                padding: 0
+              }}
+              title="Gulf Consult QR Link"
+              allow="fullscreen"
+              scrolling="auto"
+            />
+          </div>
         </div>
       )}
 
@@ -6402,38 +7706,34 @@ export default function App() {
               </div>
             )}
           </div>
+          {/* Back button - text only */}
           <button
             onClick={() => setShowGSGLearnMore(false)}
             style={{
               position: 'fixed',
-              top: '40px',
-              right: '40px',
-              background: 'rgba(7, 55, 60, 0.8)',
+              top: 'clamp(20px, 2.5vw, 40px)',
+              right: 'clamp(20px, 2.5vw, 40px)',
+              background: 'transparent',
               border: 'none',
-              color: '#fff',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              color: '#07373c',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '700',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(7, 55, 60, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
+              e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(7, 55, 60, 0.8)';
-              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            ✕
+            Back
           </button>
         </div>
       )}
@@ -6507,29 +7807,27 @@ export default function App() {
               background: 'rgba(255, 255, 255, 0.9)',
               border: 'none',
               color: '#333',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              background: 'transparent',
+              border: 'none',
+              color: 'rgba(255, 255, 255, 0.95)',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '700',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
+              e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            ✕
+            Back
           </button>
         </div>
       )}
@@ -6593,29 +7891,27 @@ export default function App() {
               background: 'rgba(255, 255, 255, 0.9)',
               border: 'none',
               color: '#333',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              background: 'transparent',
+              border: 'none',
+              color: 'rgba(255, 255, 255, 0.95)',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '700',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
+              e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            ✕
+            Back
           </button>
         </div>
       )}
@@ -6700,8 +7996,8 @@ export default function App() {
               e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
               e.currentTarget.style.transform = 'scale(1)';
             }}
-          >
-            ✕
+            >
+            Back
           </button>
         </div>
       )}
@@ -7071,38 +8367,35 @@ export default function App() {
               </div>
             )}
           </div>
+          {/* Back button - text only */}
           <button
             onClick={() => setShowAHEnvironmentalLearnMore(false)}
             style={{
               position: 'fixed',
-              top: '40px',
-              right: '40px',
-              background: 'rgba(255, 255, 255, 0.9)',
+              top: 'clamp(20px, 2.5vw, 40px)',
+              right: 'clamp(20px, 2.5vw, 40px)',
+              background: 'transparent',
               border: 'none',
-              color: '#333',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              color: ahEnvironmentalActiveTab === 'tab1' ? '#283152' : 'rgba(255, 255, 255, 0.95)',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '800',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease',
+              textShadow: ahEnvironmentalActiveTab === 'tab1' ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.2)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
+              e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
-              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            ✕
+            Back
           </button>
         </div>
       )}
@@ -7157,39 +8450,131 @@ export default function App() {
               More information about IDC Contracting Company will be available here.
             </p>
           </div>
+          {/* IDC Back button - text only */}
           <button
             onClick={() => setShowIDCLearnMore(false)}
             style={{
               position: 'fixed',
-              top: '40px',
-              right: '40px',
-              background: 'rgba(11, 34, 57, 0.8)',
+              top: 'clamp(20px, 2.5vw, 40px)',
+              right: 'clamp(20px, 2.5vw, 40px)',
+              background: 'transparent',
               border: 'none',
-              color: '#fff',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              color: '#0b2239',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '800',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(11, 34, 57, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
+              e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(11, 34, 57, 0.8)';
-              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            ✕
+            Back
           </button>
+        </div>
+      )}
+
+      {/* IDC QR Code Modal */}
+      {showIDCQRModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            zIndex: 10000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            animation: 'fadeIn 0.3s ease-in-out'
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowIDCQRModal(false);
+            }
+          }}
+        >
+          {/* Modal Content - Card Style */}
+          <div
+            style={{
+              position: 'relative',
+              width: '500px',
+              height: '100%',
+              maxHeight: '100vh',
+              backgroundColor: '#ffffff',
+              borderRadius: '12px',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowIDCQRModal(false)}
+              style={{
+                position: 'absolute',
+                top: '12px',
+                right: '12px',
+                background: 'rgba(0, 0, 0, 0.8)',
+                border: 'none',
+                color: '#fff',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                fontSize: '24px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease',
+                zIndex: 10001,
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+                fontWeight: 'bold',
+                lineHeight: '1'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 0, 0, 1)';
+                e.currentTarget.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              ×
+            </button>
+
+            {/* Iframe Container */}
+            <iframe
+              src="https://linktrees-s.netlify.app/page2"
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                display: 'block',
+                flex: 1,
+                margin: 0,
+                padding: 0
+              }}
+              title="IDC QR Link"
+              allow="fullscreen"
+              scrolling="auto"
+            />
+          </div>
         </div>
       )}
 
@@ -7243,38 +8628,35 @@ export default function App() {
               More information about German Technology Auto will be available here.
             </p>
           </div>
+          {/* GTA Back button - text only */}
           <button
             onClick={() => setShowGTALearnMore(false)}
             style={{
               position: 'fixed',
-              top: '40px',
-              right: '40px',
-              background: 'rgba(0, 0, 0, 0.8)',
+              top: 'clamp(20px, 2.5vw, 40px)',
+              right: 'clamp(20px, 2.5vw, 40px)',
+              background: 'transparent',
               border: 'none',
-              color: '#fff',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              fontSize: '28px',
+              color: '#b91c1c',
+              padding: '0',
+              fontSize: 'clamp(14px, 1.3vw, 18px)',
+              fontWeight: '800',
+              letterSpacing: '0.5px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
               zIndex: 2001,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-              fontWeight: 'bold'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              transition: 'opacity 0.3s ease',
+              textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(0, 0, 0, 1)';
-              e.currentTarget.style.transform = 'scale(1.1)';
+              e.currentTarget.style.opacity = '0.8';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
-              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            ✕
+            Back
           </button>
         </div>
       )}
