@@ -792,7 +792,7 @@
 
 /* CSS Variables for 16:9 responsive design */
 :root {
-  --main-logo-size: clamp(280px, 32vw, 550px);
+  --main-logo-size: clamp(280px, 35vw, 700px);
   --grid-item-size: clamp(110px, 10vw, 170px);
   --grid-gap: clamp(18px, 1.8vw, 30px);
   --left-panel-width: clamp(30%, 35vw, 40%);

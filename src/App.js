@@ -1070,7 +1070,7 @@ export default function App() {
                 alt="Alika Logo"
                 className="left-hero-item left-hero-item--alika"
                 style={{
-                  width: 'var(--main-logo-size, clamp(200px, 25vw, 400px))',
+                  width: 'var(--main-logo-size, clamp(200px, 30vw, 700px))',
                   height: 'auto',
                   maxWidth: '100%',
                   transition: 'opacity 0.3s ease, transform 0.3s ease'
@@ -1889,8 +1889,8 @@ export default function App() {
                       src="/idc-internal.jpg"
                       alt="IDC Contracting"
                       style={{
-                        maxWidth: 'clamp(500px, 55vw, 1600px)',
-                        maxHeight: 'clamp(350px, 45vh, 1000px)',
+                        maxWidth: 'clamp(500px, 60vw, 2000px)',
+                        maxHeight: 'clamp(350px, 50vh, 1200px)',
                         width: 'auto',
                         height: 'auto',
                         objectFit: 'contain',
