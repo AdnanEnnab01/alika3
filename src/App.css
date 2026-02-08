@@ -762,6 +762,18 @@
   height: 0;
 }
 
+/* Central Medicalcare Modal - Hide Scrollbar */
+.central-medicalcare-modal {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.central-medicalcare-modal::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
+}
+
 @keyframes chairmanCardIn {
   0% { opacity: 0; transform: translateY(18px) rotateX(12deg) scale(0.96); filter: blur(12px); }
   55% { opacity: 1; filter: blur(0); }

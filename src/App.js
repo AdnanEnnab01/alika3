@@ -20,6 +20,7 @@ export default function App() {
   const [gsgActiveTab, setGsgActiveTab] = useState('tab1'); // 'tab1' = Projects, 'tab2' = Team, 'tab3' = Partners
   const [showGulfDorrahLearnMore, setShowGulfDorrahLearnMore] = useState(false);
   const [showCentralMedicalcareLearnMore, setShowCentralMedicalcareLearnMore] = useState(false);
+  const [centralMedicalcareActiveTab, setCentralMedicalcareActiveTab] = useState('tab1'); // 'tab1' = Projects, 'tab2' = Partners, 'tab3' = Team
   const [showRKLearnMore, setShowRKLearnMore] = useState(false);
   const [showAHEnvironmentalLearnMore, setShowAHEnvironmentalLearnMore] = useState(false);
   const [ahEnvironmentalActiveTab, setAhEnvironmentalActiveTab] = useState('tab1'); // 'tab1' = Partners, 'tab2' = Team, 'tab3' = Projects
@@ -1888,8 +1889,8 @@ export default function App() {
                       src="/idc-internal.jpg"
                       alt="IDC Contracting"
                       style={{
-                        maxWidth: 'clamp(500px, 42vw, 750px)',
-                        maxHeight: 'clamp(350px, 35vh, 550px)',
+                        maxWidth: 'clamp(500px, 50vw, 1200px)',
+                        maxHeight: 'clamp(350px, 40vh, 800px)',
                         width: 'auto',
                         height: 'auto',
                         objectFit: 'contain',
@@ -1918,7 +1919,7 @@ export default function App() {
                       <div
                         style={{
                           color: '#ffffff',
-                          fontSize: 'var(--idc-play-text-size, clamp(14px, 1.5vw, 18px))',
+                          fontSize: 'var(--idc-play-text-size, clamp(14px, 1.5vw, 28px))',
                           fontWeight: '600',
                           textAlign: 'center',
                           animation: 'pulse 2s ease-in-out infinite',
@@ -1956,8 +1957,8 @@ export default function App() {
                           }
                         }}
                         style={{
-                          width: 'var(--idc-play-button-size, 100px)',
-                          height: 'var(--idc-play-button-size, 100px)',
+                          width: 'var(--idc-play-button-size, clamp(100px, 8vw, 180px))',
+                          height: 'var(--idc-play-button-size, clamp(100px, 8vw, 180px))',
                           borderRadius: '50%',
                           background: 'rgba(11, 111, 191, 0.9)',
                           display: 'flex',
@@ -1980,8 +1981,8 @@ export default function App() {
                         }}
                       >
                         <svg
-                          width="calc(var(--idc-play-button-size, 100px) * 0.5)"
-                          height="calc(var(--idc-play-button-size, 100px) * 0.5)"
+                          width="calc(var(--idc-play-button-size, clamp(100px, 8vw, 180px)) * 0.5)"
+                          height="calc(var(--idc-play-button-size, clamp(100px, 8vw, 180px)) * 0.5)"
                           viewBox="0 0 24 24"
                           fill="white"
                           style={{ marginLeft: '6px' }}
@@ -2536,7 +2537,10 @@ export default function App() {
 
                 {/* Learn More Button */}
                 <button
-                  onClick={() => setShowCentralMedicalcareLearnMore(true)}
+                  onClick={() => {
+                    setShowCentralMedicalcareLearnMore(true);
+                    setCentralMedicalcareActiveTab('tab1');
+                  }}
                   style={{
                     marginTop: 'clamp(20px, 3vh, 32px)',
                     padding: 'var(--central-button-padding, clamp(16px, 1.8vw, 24px) clamp(36px, 3.5vw, 48px))',
@@ -3209,7 +3213,7 @@ export default function App() {
                     }}
                   >
                     <img
-                      src="/dorrahqr.jpeg"
+                      src="/dorrahqr1.jpeg"
                       alt="Gulf Dorrah QR Code"
                       style={{
                         maxWidth: 'var(--dorrah-qr-size, clamp(150px, 20vw, 200px))',
@@ -4670,7 +4674,7 @@ export default function App() {
                     }}
                   >
                     <img
-                      src="/gulfconsultqr.jpeg"
+                      src="/gulfconsultrectangleqr.jpeg"
                       alt="Gulf Consult QR Code"
                       onClick={() => setShowGulfConsultQRModal(true)}
                       style={{
@@ -4761,8 +4765,8 @@ export default function App() {
                       src="/gulfphoto.jpg"
                       alt="Gulf Consult"
                       style={{
-                        maxWidth: 'clamp(600px, 48vw, 900px)',
-                        maxHeight: 'clamp(400px, 38vh, 600px)',
+                        maxWidth: 'clamp(600px, 50vw, 1200px)',
+                        maxHeight: 'clamp(400px, 40vh, 800px)',
                         width: 'auto',
                         height: 'auto',
                         objectFit: 'contain',
@@ -4791,7 +4795,7 @@ export default function App() {
                       <div
                         style={{
                           color: '#ffffff',
-                          fontSize: 'clamp(14px, 1.6vw, 22px)',
+                          fontSize: 'clamp(14px, 1.6vw, 28px)',
                           fontWeight: '600',
                           textAlign: 'center',
                           animation: 'pulse 2s ease-in-out infinite',
@@ -4829,8 +4833,8 @@ export default function App() {
                           }
                         }}
                         style={{
-                          width: 'var(--gulf-play-button-size, clamp(90px, 8vw, 130px))',
-                          height: 'var(--gulf-play-button-size, clamp(90px, 8vw, 130px))',
+                          width: 'var(--gulf-play-button-size, clamp(90px, 8vw, 180px))',
+                          height: 'var(--gulf-play-button-size, clamp(90px, 8vw, 180px))',
                           borderRadius: '50%',
                           background: 'rgba(22, 52, 138, 0.9)',
                           display: 'flex',
@@ -4853,8 +4857,8 @@ export default function App() {
                         }}
                       >
                         <svg
-                          width="clamp(40px, 4vw, 60px)"
-                          height="clamp(40px, 4vw, 60px)"
+                          width="clamp(40px, 4vw, 90px)"
+                          height="clamp(40px, 4vw, 90px)"
                           viewBox="0 0 24 24"
                           fill="white"
                           style={{ marginLeft: '6px' }}
@@ -7834,23 +7838,25 @@ export default function App() {
 
       {/* Central Medicalcare Learn More Modal */}
       {showCentralMedicalcareLearnMore && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: '#bfa874',
-          backgroundImage: 'url(/bg.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          zIndex: 2000,
-          animation: 'fadeIn 0.6s ease-in-out',
-          overflow: 'auto'
-        }}>
+        <div 
+          className="central-medicalcare-modal"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: '#bfa874',
+            backgroundImage: 'url(/bg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            zIndex: 2000,
+            animation: 'fadeIn 0.6s ease-in-out',
+            overflow: 'hidden'
+          }}>
           <div style={{
             width: '100%',
             minHeight: '100vh',
@@ -7858,29 +7864,214 @@ export default function App() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            color: '#ffffff'
+            justifyContent: 'flex-start',
+            color: '#ffffff',
+            paddingTop: '80px'
           }}>
-            <h1 style={{
-              fontSize: 'clamp(28px, 3.5vw, 42px)',
-              fontWeight: '900',
-              marginBottom: '30px',
-              color: '#ffffff',
-              textTransform: 'uppercase',
-              letterSpacing: '2px'
-            }}>
-              CENTRAL MEDICALCARE
-            </h1>
-            <p style={{
-              fontSize: 'clamp(16px, 1.5vw, 20px)',
-              lineHeight: '1.8',
-              maxWidth: '800px',
-              textAlign: 'center',
+            {/* Tabs Navigation */}
+            <div style={{
+              display: 'flex',
+              gap: '10px',
               marginBottom: '40px',
-              color: '#ffffff'
+              zIndex: 10
             }}>
-              More information about Central Medicalcare will be available here.
-            </p>
+              <button
+                onClick={() => setCentralMedicalcareActiveTab('tab1')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: centralMedicalcareActiveTab === 'tab1' ? '#ffffff' : '#ffffff',
+                  background: centralMedicalcareActiveTab === 'tab1' ? 'rgba(191, 168, 116, 0.9)' : 'rgba(191, 168, 116, 0.6)',
+                  border: '2px solid rgba(191, 168, 116, 0.8)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px',
+                  whiteSpace: 'nowrap',
+                  overflow: 'visible',
+                  textOverflow: 'clip'
+                }}
+                onMouseEnter={(e) => {
+                  if (centralMedicalcareActiveTab !== 'tab1') {
+                    e.currentTarget.style.background = 'rgba(191, 168, 116, 0.7)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (centralMedicalcareActiveTab !== 'tab1') {
+                    e.currentTarget.style.background = 'rgba(191, 168, 116, 0.6)';
+                  }
+                }}
+              >
+                OUR PROJECTS
+              </button>
+              <button
+                onClick={() => setCentralMedicalcareActiveTab('tab2')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: centralMedicalcareActiveTab === 'tab2' ? '#ffffff' : '#ffffff',
+                  background: centralMedicalcareActiveTab === 'tab2' ? 'rgba(191, 168, 116, 0.9)' : 'rgba(191, 168, 116, 0.6)',
+                  border: '2px solid rgba(191, 168, 116, 0.8)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px',
+                  whiteSpace: 'nowrap',
+                  overflow: 'visible',
+                  textOverflow: 'clip'
+                }}
+                onMouseEnter={(e) => {
+                  if (centralMedicalcareActiveTab !== 'tab2') {
+                    e.currentTarget.style.background = 'rgba(191, 168, 116, 0.7)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (centralMedicalcareActiveTab !== 'tab2') {
+                    e.currentTarget.style.background = 'rgba(191, 168, 116, 0.6)';
+                  }
+                }}
+              >
+                OUR PARTNERS
+              </button>
+              <button
+                onClick={() => setCentralMedicalcareActiveTab('tab3')}
+                style={{
+                  padding: '12px 30px',
+                  fontSize: '16px',
+                  fontWeight: '700',
+                  color: centralMedicalcareActiveTab === 'tab3' ? '#ffffff' : '#ffffff',
+                  background: centralMedicalcareActiveTab === 'tab3' ? 'rgba(191, 168, 116, 0.9)' : 'rgba(191, 168, 116, 0.6)',
+                  border: '2px solid rgba(191, 168, 116, 0.8)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textTransform: 'none',
+                  letterSpacing: '1px',
+                  whiteSpace: 'nowrap',
+                  overflow: 'visible',
+                  textOverflow: 'clip'
+                }}
+                onMouseEnter={(e) => {
+                  if (centralMedicalcareActiveTab !== 'tab3') {
+                    e.currentTarget.style.background = 'rgba(191, 168, 116, 0.7)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (centralMedicalcareActiveTab !== 'tab3') {
+                    e.currentTarget.style.background = 'rgba(191, 168, 116, 0.6)';
+                  }
+                }}
+              >
+                OUR TEAM
+              </button>
+            </div>
+
+            {/* Tab Content */}
+            {centralMedicalcareActiveTab === 'tab1' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1400px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '40px',
+                backgroundColor: 'transparent',
+                minHeight: '600px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  marginBottom: '30px',
+                  color: '#ffffff',
+                  textTransform: 'uppercase',
+                  letterSpacing: '2px'
+                }}>
+                  OUR PROJECTS
+                </h1>
+                <p style={{
+                  fontSize: 'clamp(16px, 1.5vw, 20px)',
+                  lineHeight: '1.8',
+                  maxWidth: '800px',
+                  textAlign: 'center',
+                  color: '#ffffff'
+                }}>
+                  Information about Central Medicalcare projects will be available here.
+                </p>
+              </div>
+            )}
+
+            {centralMedicalcareActiveTab === 'tab2' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1400px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '40px',
+                backgroundColor: 'transparent',
+                minHeight: '600px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  marginBottom: '30px',
+                  color: '#ffffff',
+                  textTransform: 'uppercase',
+                  letterSpacing: '2px'
+                }}>
+                  OUR PARTNERS
+                </h1>
+                <p style={{
+                  fontSize: 'clamp(16px, 1.5vw, 20px)',
+                  lineHeight: '1.8',
+                  maxWidth: '800px',
+                  textAlign: 'center',
+                  color: '#ffffff'
+                }}>
+                  Information about Central Medicalcare partners will be available here.
+                </p>
+              </div>
+            )}
+
+            {centralMedicalcareActiveTab === 'tab3' && (
+              <div style={{
+                width: '100%',
+                maxWidth: '1400px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '40px',
+                backgroundColor: 'transparent',
+                minHeight: '600px'
+              }}>
+                <h1 style={{
+                  fontSize: 'clamp(24px, 2.5vw, 36px)',
+                  fontWeight: '900',
+                  marginBottom: '30px',
+                  color: '#ffffff',
+                  textTransform: 'uppercase',
+                  letterSpacing: '2px'
+                }}>
+                  OUR TEAM
+                </h1>
+                <p style={{
+                  fontSize: 'clamp(16px, 1.5vw, 20px)',
+                  lineHeight: '1.8',
+                  maxWidth: '800px',
+                  textAlign: 'center',
+                  color: '#ffffff'
+                }}>
+                  Information about Central Medicalcare team will be available here.
+                </p>
+              </div>
+            )}
           </div>
           <button
             onClick={() => setShowCentralMedicalcareLearnMore(false)}
@@ -7888,13 +8079,11 @@ export default function App() {
               position: 'fixed',
               top: '40px',
               right: '40px',
-              background: 'rgba(255, 255, 255, 0.9)',
-              border: 'none',
-              color: '#333',
-              background: 'transparent',
-              border: 'none',
-              color: 'rgba(255, 255, 255, 0.95)',
-              padding: '0',
+              background: 'rgba(191, 168, 116, 0.9)',
+              border: '2px solid rgba(191, 168, 116, 1)',
+              borderRadius: '8px',
+              color: '#ffffff',
+              padding: '12px 24px',
               fontSize: 'clamp(14px, 1.3vw, 18px)',
               fontWeight: '700',
               letterSpacing: '0.5px',
@@ -7902,16 +8091,22 @@ export default function App() {
               zIndex: 2001,
               whiteSpace: 'nowrap',
               textDecoration: 'none',
-              transition: 'opacity 0.3s ease'
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.opacity = '0.8';
+              e.currentTarget.style.background = 'rgba(191, 168, 116, 1)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.background = 'rgba(191, 168, 116, 0.9)';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
             }}
+            aria-label="Back to Alika"
           >
-            Back
+            Back to Alika
           </button>
         </div>
       )}
