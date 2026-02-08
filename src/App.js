@@ -1889,8 +1889,8 @@ export default function App() {
                       src="/idc-internal.jpg"
                       alt="IDC Contracting"
                       style={{
-                        maxWidth: 'clamp(500px, 50vw, 1200px)',
-                        maxHeight: 'clamp(350px, 40vh, 800px)',
+                        maxWidth: 'clamp(500px, 55vw, 1600px)',
+                        maxHeight: 'clamp(350px, 45vh, 1000px)',
                         width: 'auto',
                         height: 'auto',
                         objectFit: 'contain',
@@ -1919,7 +1919,7 @@ export default function App() {
                       <div
                         style={{
                           color: '#ffffff',
-                          fontSize: 'var(--idc-play-text-size, clamp(14px, 1.5vw, 28px))',
+                          fontSize: 'var(--idc-play-text-size, clamp(14px, 1.8vw, 32px))',
                           fontWeight: '600',
                           textAlign: 'center',
                           animation: 'pulse 2s ease-in-out infinite',
@@ -1957,8 +1957,8 @@ export default function App() {
                           }
                         }}
                         style={{
-                          width: 'var(--idc-play-button-size, clamp(100px, 8vw, 180px))',
-                          height: 'var(--idc-play-button-size, clamp(100px, 8vw, 180px))',
+                          width: 'var(--idc-play-button-size, clamp(100px, 9vw, 220px))',
+                          height: 'var(--idc-play-button-size, clamp(100px, 9vw, 220px))',
                           borderRadius: '50%',
                           background: 'rgba(11, 111, 191, 0.9)',
                           display: 'flex',
@@ -1981,8 +1981,8 @@ export default function App() {
                         }}
                       >
                         <svg
-                          width="calc(var(--idc-play-button-size, clamp(100px, 8vw, 180px)) * 0.5)"
-                          height="calc(var(--idc-play-button-size, clamp(100px, 8vw, 180px)) * 0.5)"
+                          width="calc(var(--idc-play-button-size, clamp(100px, 9vw, 220px)) * 0.5)"
+                          height="calc(var(--idc-play-button-size, clamp(100px, 9vw, 220px)) * 0.5)"
                           viewBox="0 0 24 24"
                           fill="white"
                           style={{ marginLeft: '6px' }}
@@ -4765,8 +4765,8 @@ export default function App() {
                       src="/gulfphoto.jpg"
                       alt="Gulf Consult"
                       style={{
-                        maxWidth: 'clamp(600px, 50vw, 1200px)',
-                        maxHeight: 'clamp(400px, 40vh, 800px)',
+                        maxWidth: 'clamp(600px, 55vw, 1600px)',
+                        maxHeight: 'clamp(400px, 45vh, 1000px)',
                         width: 'auto',
                         height: 'auto',
                         objectFit: 'contain',
@@ -4795,7 +4795,7 @@ export default function App() {
                       <div
                         style={{
                           color: '#ffffff',
-                          fontSize: 'clamp(14px, 1.6vw, 28px)',
+                          fontSize: 'clamp(14px, 1.8vw, 32px)',
                           fontWeight: '600',
                           textAlign: 'center',
                           animation: 'pulse 2s ease-in-out infinite',
@@ -4833,8 +4833,8 @@ export default function App() {
                           }
                         }}
                         style={{
-                          width: 'var(--gulf-play-button-size, clamp(90px, 8vw, 180px))',
-                          height: 'var(--gulf-play-button-size, clamp(90px, 8vw, 180px))',
+                          width: 'var(--gulf-play-button-size, clamp(90px, 9vw, 220px))',
+                          height: 'var(--gulf-play-button-size, clamp(90px, 9vw, 220px))',
                           borderRadius: '50%',
                           background: 'rgba(22, 52, 138, 0.9)',
                           display: 'flex',
@@ -4857,8 +4857,8 @@ export default function App() {
                         }}
                       >
                         <svg
-                          width="clamp(40px, 4vw, 90px)"
-                          height="clamp(40px, 4vw, 90px)"
+                          width="clamp(40px, 4.5vw, 110px)"
+                          height="clamp(40px, 4.5vw, 110px)"
                           viewBox="0 0 24 24"
                           fill="white"
                           style={{ marginLeft: '6px' }}
